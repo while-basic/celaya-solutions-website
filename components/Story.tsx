@@ -1,3 +1,13 @@
+//----------------------------------------------------------------------------
+// File:       Story.tsx
+// Project:    Celaya Solutions Website
+// Created by: Celaya Solutions, 2025
+// Author:     Christopher Celaya <chris@chriscelaya.com>
+// Description: Origin story section with timeline and founder background
+// Version:    1.0.0
+// License:    MIT
+// Last Update: December 2025
+//----------------------------------------------------------------------------
 
 import React from 'react';
 import { Zap, Building2, Music, Code } from 'lucide-react';
@@ -124,3 +134,4 @@ const Story: React.FC = () => {
 };
 
 export default Story;
+

@@ -1,3 +1,13 @@
+//----------------------------------------------------------------------------
+// File:       ClosSection.tsx
+// Project:    Celaya Solutions Website
+// Created by: Celaya Solutions, 2025
+// Author:     Christopher Celaya <chris@chriscelaya.com>
+// Description: CLOS product showcase section with features
+// Version:    1.0.0
+// License:    MIT
+// Last Update: December 2025
+//----------------------------------------------------------------------------
 
 import React from 'react';
 import { Eye, Mic, Shield, Zap, Layout, Activity } from 'lucide-react';

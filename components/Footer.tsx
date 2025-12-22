@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
             </a>
 
             <a
-              href="https://github.com/while-basic"
+              href="https://github.com/celaya-solutions"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center space-x-2 text-zinc-400 hover:text-white transition-colors group"

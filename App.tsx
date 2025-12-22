@@ -1,15 +1,25 @@
+//----------------------------------------------------------------------------
+// File:       App.tsx
+// Project:    Celaya Solutions Website
+// Created by: Celaya Solutions, 2025
+// Author:     Christopher Celaya <chris@chriscelaya.com>
+// Description: Main application component with routing and layout structure
+// Version:    1.0.0
+// License:    MIT
+// Last Update: December 2025
+//----------------------------------------------------------------------------
 
 import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ClosSection from './components/ClosSection';
-import Story from './Story';
+import Story from './components/Story';
 import Philosophy from './components/Philosophy';
 import Capabilities from './components/Capabilities';
 import ArchitectureDiagram from './components/ArchitectureDiagram';
 import UserJourney from './components/UserJourney';
-import Research from './Research';
-import LabNotes from './LabNotes';
+import Research from './components/Research';
+import LabNotes from './components/LabNotes';
 import Chatbot from './components/Chatbot';
 import Footer from './components/Footer';
 import AnimatedBackground from './components/AnimatedBackground';
@@ -36,38 +46,16 @@ const App: React.FC = () => {
           <Navbar />
           
           <main>
-          <Hero />
-          
-          {/* Statistics Strip */}
-          <div className="border-y border-white/5 bg-zinc-950 overflow-hidden">
-            <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center py-8 px-6 gap-8">
-              <div className="flex flex-col">
-                <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest mb-1">Type</span>
-                <span className="text-xl font-bold tracking-tight">Research Lab</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest mb-1">Philosophy</span>
-                <span className="text-xl font-bold tracking-tight">Build in Public</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest mb-1">Stack</span>
-                <span className="text-xl font-bold tracking-tight">Apple + Local LLM</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest mb-1">Location</span>
-                <span className="text-xl font-bold tracking-tight">El Paso, TX</span>
-              </div>
-            </div>
-          </div>
-
-          <ClosSection />
-          <UserJourney />
-          <Story />
-          <Research />
-          <LabNotes />
-          <Philosophy />
-          <ArchitectureDiagram />
-          <Capabilities />
+            <Hero />
+            
+            <ClosSection />
+            <UserJourney />
+            <Story />
+            <Research />
+            <LabNotes />
+            <Philosophy />
+            <ArchitectureDiagram />
+            <Capabilities />
           </main>
 
           {/* Footer */}

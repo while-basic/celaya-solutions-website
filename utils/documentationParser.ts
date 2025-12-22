@@ -79,16 +79,6 @@ export const allDocumentation: DocItem[] = [
 
   // Development Items
   {
-    id: 'local-first-ai',
-    title: "Why Local-First AI Isn't Just About Privacy",
-    category: 'development',
-    date: 'December 18, 2024',
-    readTime: '8 min',
-    excerpt: 'Most people think local LLMs are about avoiding surveillance. That\'s true, but incomplete. The real advantage is latency, cost structure, and owning your cognitive infrastructure.',
-    tags: ['Architecture', 'Privacy', 'Economics'],
-    status: 'new',
-  },
-  {
     id: 'claude-optimization',
     title: 'Claude Code Optimization Prototype',
     category: 'development',
@@ -172,6 +162,16 @@ export const allDocumentation: DocItem[] = [
   },
 
   // Lab Notes / Insights
+  {
+    id: 'local-first-ai',
+    title: "Why Local-First AI Isn't Just About Privacy",
+    category: 'lab-notes',
+    date: 'December 18, 2024',
+    readTime: '8 min',
+    excerpt: 'Most people think local LLMs are about avoiding surveillance. That\'s true, but incomplete. The real advantage is latency, cost structure, and owning your cognitive infrastructure.',
+    tags: ['Architecture', 'Privacy', 'Economics'],
+    status: 'new',
+  },
   {
     id: 'week-1-findings',
     title: 'Building CLOS: Week 1 Findings',

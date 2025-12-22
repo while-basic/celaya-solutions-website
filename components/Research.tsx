@@ -1,13 +1,18 @@
+//----------------------------------------------------------------------------
+// File:       Research.tsx
+// Project:    Celaya Solutions Website
+// Created by: Celaya Solutions, 2025
+// Author:     Christopher Celaya <chris@chriscelaya.com>
+// Description: Research lab section showcasing active projects and experiments
+// Version:    1.0.0
+// License:    MIT
+// Last Update: December 2025
+//----------------------------------------------------------------------------
 
 import React from 'react';
 import { FileText, Beaker, TrendingUp, ExternalLink } from 'lucide-react';
-import { useRouter } from './components/Router';
-import { getItemsByCategory } from './utils/documentationParser';
 
 const Research: React.FC = () => {
-  const { navigate } = useRouter();
-  const researchItems = getItemsByCategory('research').slice(0, 3);
-
   const publications = [
     {
       title: "CLOS: A Privacy-First Cognitive Operating System",
@@ -83,42 +88,35 @@ const Research: React.FC = () => {
         <div className="mb-24">
           <div className="flex items-center justify-between mb-8">
             <h3 className="text-2xl font-bold">Active Research</h3>
-            <button 
-              onClick={() => navigate({ type: 'lab-notes' })}
-              className="text-xs font-mono uppercase text-zinc-500 hover:text-white transition-colors flex items-center space-x-2"
-              data-test="view-all-research"
-            >
-              <span>View All Research</span>
+            <a href="https://github.com/celaya-solutions" className="text-xs font-mono uppercase text-zinc-500 hover:text-white transition-colors flex items-center space-x-2">
+              <span>View All on GitHub</span>
               <ExternalLink className="w-3 h-3" />
-            </button>
+            </a>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {researchItems.map((item) => (
-              <div 
-                key={item.id}
-                onClick={() => navigate({ type: 'research-detail', id: item.id })}
-                className="group glass-card p-6 rounded-sm border border-white/5 hover:border-white/20 transition-all cursor-pointer"
-                data-test={`research-${item.id}`}
+            {publications.map((pub, idx) => (
+              <a 
+                key={idx}
+                href={pub.link}
+                className="group glass-card p-6 rounded-sm border border-white/5 hover:border-white/20 transition-all"
               >
                 <div className="flex items-start justify-between mb-4">
                   <FileText className="w-5 h-5 text-zinc-500 group-hover:text-white transition-colors" />
-                  {item.status && (
-                    <span className={`text-[10px] font-mono px-2 py-1 rounded uppercase ${
-                      item.status === 'active' ? 'bg-emerald-500/10 text-emerald-500' :
-                      item.status === 'beta' ? 'bg-blue-500/10 text-blue-500' :
-                      'bg-zinc-800 text-zinc-500'
-                    }`}>
-                      {item.status}
-                    </span>
-                  )}
+                  <span className={`text-[10px] font-mono px-2 py-1 rounded ${
+                    pub.status === 'Active' ? 'bg-emerald-500/10 text-emerald-500' :
+                    pub.status === 'Beta' ? 'bg-blue-500/10 text-blue-500' :
+                    'bg-zinc-800 text-zinc-500'
+                  }`}>
+                    {pub.status}
+                  </span>
                 </div>
 
-                <h4 className="font-bold mb-2 group-hover:text-white transition-colors">{item.title}</h4>
-                <p className="text-xs text-zinc-500 mb-4">{item.excerpt}</p>
+                <h4 className="font-bold mb-2 group-hover:text-white transition-colors">{pub.title}</h4>
+                <p className="text-xs text-zinc-500 mb-4">{pub.description}</p>
 
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {item.tags.map((tag, i) => (
+                  {pub.tags.map((tag, i) => (
                     <span key={i} className="text-[10px] font-mono px-2 py-1 bg-zinc-900 text-zinc-600 rounded">
                       {tag}
                     </span>
@@ -126,16 +124,16 @@ const Research: React.FC = () => {
                 </div>
 
                 <div className="flex items-center justify-between text-[10px] font-mono text-zinc-700">
-                  <span>{item.readTime}</span>
-                  <span>{item.date}</span>
+                  <span>{pub.type}</span>
+                  <span>{pub.date}</span>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
 
         {/* Current Experiments */}
-        <div className="mb-24">
+        <div>
           <h3 className="text-2xl font-bold mb-8">Current Experiments</h3>
           
           <div className="space-y-4">
@@ -171,3 +169,4 @@ const Research: React.FC = () => {
 };
 
 export default Research;
+

@@ -1,6 +1,16 @@
+//----------------------------------------------------------------------------
+// File:       Hero.tsx
+// Project:    Celaya Solutions Website
+// Created by: Celaya Solutions, 2025
+// Author:     Christopher Celaya <chris@chriscelaya.com>
+// Description: Hero section with research lab positioning and credibility metrics
+// Version:    1.0.0
+// License:    MIT
+// Last Update: December 2025
+//----------------------------------------------------------------------------
 
 import React from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Github } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
@@ -20,11 +30,11 @@ const Hero: React.FC = () => {
           </div>
           
           <h1 className="text-5xl md:text-8xl font-bold tracking-tight mb-8 leading-[0.9]">
-            Building AI products that <span className="text-zinc-500 italic">don't exist</span> yet.
+            Cognitive systems research. <span className="text-zinc-500 italic">Built in public</span>.
           </h1>
           
           <p className="text-xl md:text-2xl text-zinc-400 font-light leading-relaxed max-w-2xl mb-12">
-            An innovation lab focused on systems-level architecture, on-device privacy, and cognitive augmentation. We don't build wrappers; we build infrastructure for the mind.
+            A one-person research lab focused on human-AI integration, privacy-first architecture, and metacognitive tools. No wrappers. No surveillance. Just infrastructure for the mind.
           </p>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
@@ -36,10 +46,17 @@ const Hero: React.FC = () => {
               <ArrowUpRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
             </a>
             <a 
-              href="#contact" 
+              href="#research" 
               className="px-8 py-4 border border-white/10 text-white font-mono text-sm uppercase hover:bg-zinc-900 transition-colors"
             >
-              Consultation / Research
+              View Research
+            </a>
+            <a 
+              href="https://github.com/celaya-solutions" 
+              className="px-8 py-4 border border-white/10 text-white font-mono text-sm uppercase hover:bg-zinc-900 transition-colors inline-flex items-center space-x-2"
+            >
+              <Github className="w-4 h-4" />
+              <span>GitHub</span>
             </a>
           </div>
         </div>

@@ -1,48 +1,60 @@
+//----------------------------------------------------------------------------
+// File:       LabNotes.tsx
+// Project:    Celaya Solutions Website
+// Created by: Celaya Solutions, 2025
+// Author:     Christopher Celaya <chris@chriscelaya.com>
+// Description: Lab notes section displaying research blog posts and updates
+// Version:    1.0.0
+// License:    MIT
+// Last Update: December 2025
+//----------------------------------------------------------------------------
 
 import React from 'react';
 import { Clock, ArrowRight } from 'lucide-react';
-import { useRouter } from './components/Router';
-import { getItemsByCategory, getRecentItems } from './utils/documentationParser';
+import { useRouter } from './Router';
+import { getItemsByCategory } from '../utils/documentationParser';
 
 const LabNotes: React.FC = () => {
-  const { navigate } = useRouter();
-  const labNoteItems = getItemsByCategory('lab-notes');
-  const recentItems = getRecentItems(4);
+  let navigate: ((route: { type: 'lab-note-detail'; id: string }) => void) | null = null;
+  
+  try {
+    const router = useRouter();
+    navigate = router.navigate;
+  } catch (error) {
+    console.error('Router context not available:', error);
+  }
+  
+  // Get lab notes from documentation parser
+  const allLabNotes = getItemsByCategory('lab-notes');
+  
+  // Get the 4 most recent lab notes for preview
+  const notes = allLabNotes.slice(0, 4);
 
-  const notes = [
-    {
-      title: "Why Local-First AI Isn't Just About Privacy",
-      date: "December 18, 2024",
-      readTime: "8 min",
-      excerpt: "Most people think local LLMs are about avoiding surveillance. That's true, but incomplete. The real advantage is latency, cost structure, and owning your cognitive infrastructure.",
-      tags: ["Architecture", "Privacy", "Economics"],
-      status: "new"
-    },
-    {
-      title: "Building CLOS: Week 1 Findings",
-      date: "December 15, 2024",
-      readTime: "12 min",
-      excerpt: "First week of 90-day self-experimentation protocol. Voice capture friction still too high. Speech-to-text accuracy degrades with technical jargon. Switching to hybrid approach.",
-      tags: ["CLOS", "Self-Experimentation", "Product"],
-      status: null
-    },
-    {
-      title: "The MCP Server I Needed Didn't Exist",
-      date: "December 10, 2024",
-      readTime: "6 min",
-      excerpt: "So I built one. Bridging my MPC Key 37, IDE, and 172K sample library. Sometimes the best tools are the ones you make for yourself.",
-      tags: ["MCP", "Music Production", "Automation"],
-      status: null
-    },
-    {
-      title: "Systems Thinking: Electrical ↔ Software ↔ Cognitive",
-      date: "December 5, 2024",
-      readTime: "15 min",
-      excerpt: "The debugging patterns I learned in datacenters directly translate to debugging human attention patterns. Here's how systems-level thinking bridges three seemingly different domains.",
-      tags: ["Systems Thinking", "Cross-Domain", "Philosophy"],
-      status: null
+  const handleNoteClick = (id: string) => {
+    try {
+      console.log('Lab note clicked:', id, 'Navigate available:', !!navigate);
+      if (navigate) {
+        navigate({ type: 'lab-note-detail', id });
+      } else {
+        console.error('Navigate function not available - Router context may not be set up correctly');
+        // Fallback: try to navigate using window location
+        window.location.href = `#lab-note-${id}`;
+      }
+    } catch (error) {
+      console.error('Error navigating to lab note:', error);
     }
-  ];
+  };
+
+  // If no notes, show message
+  if (notes.length === 0) {
+    return (
+      <section id="lab-notes" className="py-32 px-6 bg-black border-y border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <p className="text-zinc-500">No lab notes available.</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="lab-notes" className="py-32 px-6 bg-black border-y border-white/5">
@@ -65,21 +77,33 @@ const LabNotes: React.FC = () => {
 
         {/* Notes Grid */}
         <div className="grid md:grid-cols-2 gap-6">
-          {recentItems.map((item) => (
+          {notes.map((note) => (
             <article 
-              key={item.id}
-              onClick={() => navigate({ type: 'lab-note-detail', id: item.id })}
-              className="group glass-card p-8 rounded-sm border border-white/5 hover:border-white/20 transition-all cursor-pointer"
-              data-test={`lab-note-${item.id}`}
+              key={note.id}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                handleNoteClick(note.id);
+              }}
+              className="group glass-card p-8 rounded-sm border border-white/5 hover:border-white/20 transition-all cursor-pointer relative z-10"
+              role="button"
+              tabIndex={0}
+              aria-label={`Read ${note.title}`}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleNoteClick(note.id);
+                }
+              }}
             >
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center space-x-3 text-[10px] font-mono text-zinc-600">
                   <Clock className="w-3 h-3" />
-                  <span>{item.date}</span>
+                  <span>{note.date}</span>
                   <span>•</span>
-                  <span>{item.readTime}</span>
+                  <span>{note.readTime}</span>
                 </div>
-                {item.status === 'new' && (
+                {note.status === 'new' && (
                   <span className="text-[10px] font-mono px-2 py-1 bg-emerald-500/10 text-emerald-500 rounded uppercase">
                     New
                   </span>
@@ -87,16 +111,16 @@ const LabNotes: React.FC = () => {
               </div>
 
               <h3 className="text-xl font-bold mb-3 group-hover:text-white transition-colors">
-                {item.title}
+                {note.title}
               </h3>
 
               <p className="text-sm text-zinc-500 mb-6 leading-relaxed">
-                {item.excerpt}
+                {note.excerpt}
               </p>
 
               <div className="flex items-center justify-between pt-6 border-t border-white/5">
                 <div className="flex flex-wrap gap-2">
-                  {item.tags.map((tag, i) => (
+                  {note.tags.map((tag, i) => (
                     <span 
                       key={i}
                       className="text-[10px] font-mono px-2 py-1 bg-zinc-900 text-zinc-600 rounded hover:text-white transition-colors"
@@ -114,10 +138,9 @@ const LabNotes: React.FC = () => {
 
         {/* CTA */}
         <div className="mt-12 text-center">
-          <button 
+          <button
             onClick={() => navigate({ type: 'lab-notes' })}
             className="inline-flex items-center space-x-2 px-6 py-3 border border-white/10 hover:border-white/30 text-sm font-mono uppercase transition-all"
-            data-test="view-all-lab-notes"
           >
             <span>View All Lab Notes</span>
             <ArrowRight className="w-3 h-3" />
@@ -129,3 +152,4 @@ const LabNotes: React.FC = () => {
 };
 
 export default LabNotes;
+
