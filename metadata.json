@@ -1,0 +1,7 @@
+{
+  "name": "Celaya Solutions",
+  "description": "El Paso-based AI innovation lab focusing on systems-level thinking and novel cognitive operating systems.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
