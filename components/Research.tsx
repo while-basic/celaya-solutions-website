@@ -9,10 +9,12 @@
 // Last Update: December 2025
 //----------------------------------------------------------------------------
 
-import React from 'react';
+import React, { useState } from 'react';
 import { FileText, Beaker, TrendingUp, ExternalLink } from 'lucide-react';
 
 const Research: React.FC = () => {
+  const [activePublicationIndex, setActivePublicationIndex] = useState<number | null>(0);
+
   const publications = [
     {
       title: "CLOS: A Privacy-First Cognitive Operating System",
@@ -20,7 +22,7 @@ const Research: React.FC = () => {
       date: "December 2024",
       status: "In Progress",
       description: "Architectural design for voice-native metacognitive mirror using local LLM inference and Apple ecosystem integration.",
-      link: "#",
+      link: "#clos",
       tags: ["Architecture", "Privacy", "iOS"]
     },
     {
@@ -29,7 +31,7 @@ const Research: React.FC = () => {
       date: "Ongoing",
       status: "Active",
       description: "Structured voice memo protocol to establish cognitive baselines and reverse-engineer personal flow states through quantified self-tracking.",
-      link: "#",
+      link: "#contact",
       tags: ["Cognitive Science", "QS", "Flow States"]
     },
     {
@@ -38,7 +40,7 @@ const Research: React.FC = () => {
       date: "December 2024",
       status: "Beta",
       description: "Python-based Model Context Protocol server bridging IDE, MIDI controllers, and 172K+ sample library for automated expansion pack creation.",
-      link: "#",
+      link: "https://github.com/celaya-solutions",
       tags: ["MCP", "Audio", "Automation"]
     }
   ];
@@ -96,10 +98,28 @@ const Research: React.FC = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {publications.map((pub, idx) => (
-              <a 
+              <button
                 key={idx}
-                href={pub.link}
-                className="group glass-card p-6 rounded-sm border border-white/5 hover:border-white/20 transition-all"
+                type="button"
+                onClick={() => {
+                  setActivePublicationIndex(idx);
+
+                  if (!pub.link) return;
+
+                  if (pub.link.startsWith('#')) {
+                    const target = document.querySelector(pub.link);
+                    if (target) {
+                      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  } else {
+                    window.open(pub.link, '_blank', 'noopener,noreferrer');
+                  }
+                }}
+                className={`group glass-card p-6 rounded-sm border transition-all text-left w-full ${
+                  activePublicationIndex === idx
+                    ? 'border-white/30 bg-white/[0.03]'
+                    : 'border-white/5 hover:border-white/20'
+                }`}
               >
                 <div className="flex items-start justify-between mb-4">
                   <FileText className="w-5 h-5 text-zinc-500 group-hover:text-white transition-colors" />
@@ -127,9 +147,74 @@ const Research: React.FC = () => {
                   <span>{pub.type}</span>
                   <span>{pub.date}</span>
                 </div>
-              </a>
+              </button>
             ))}
           </div>
+
+          {activePublicationIndex !== null && (
+            <div className="mt-10 glass-card rounded-sm border border-white/10 p-8">
+              <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+                <div className="flex-1">
+                  <h4 className="text-xl font-bold mb-2">
+                    {publications[activePublicationIndex].title}
+                  </h4>
+                  <p className="text-sm text-zinc-400 mb-4">
+                    {publications[activePublicationIndex].description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {publications[activePublicationIndex].tags.map((tag, i) => (
+                      <span
+                        key={i}
+                        className="text-[10px] font-mono px-2 py-1 bg-zinc-900 text-zinc-500 rounded"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {publications[activePublicationIndex].link && (
+                    <a
+                      href={publications[activePublicationIndex].link}
+                      target={publications[activePublicationIndex].link.startsWith('#') ? '_self' : '_blank'}
+                      rel={publications[activePublicationIndex].link.startsWith('#') ? undefined : 'noreferrer'}
+                      className="inline-flex items-center text-xs font-mono uppercase tracking-[0.18em] text-zinc-300 hover:text-white mt-2"
+                    >
+                      Open project
+                    </a>
+                  )}
+                </div>
+
+                <div className="w-full max-w-xs space-y-3 text-[11px] font-mono text-zinc-500">
+                  <div className="flex items-center justify-between">
+                    <span className="uppercase tracking-widest text-zinc-600">
+                      Status
+                    </span>
+                    <span>
+                      {publications[activePublicationIndex].status}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="uppercase tracking-widest text-zinc-600">
+                      Type
+                    </span>
+                    <span>{publications[activePublicationIndex].type}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="uppercase tracking-widest text-zinc-600">
+                      Updated
+                    </span>
+                    <span>{publications[activePublicationIndex].date}</span>
+                  </div>
+                  <p className="pt-2 text-[11px] text-zinc-600">
+                    These are live, evolving projects. The details and metrics
+                    change as experiments run, tools ship, and the architecture
+                    matures.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Current Experiments */}

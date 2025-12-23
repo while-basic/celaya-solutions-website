@@ -123,7 +123,18 @@ const Chatbot: React.FC = () => {
 
       {/* Chatbot Window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-[400px] h-[600px] bg-zinc-950 border border-white/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+        <div
+          className="
+            fixed 
+            inset-x-0 bottom-0 
+            sm:inset-auto sm:bottom-6 sm:right-6 sm:left-auto
+            z-50 
+            w-full sm:w-[360px] md:w-[400px] 
+            h-[70vh] sm:h-[520px] md:h-[600px] max-h-[90vh]
+            bg-zinc-950 border border-white/10 rounded-t-2xl sm:rounded-2xl 
+            shadow-2xl flex flex-col overflow-hidden
+          "
+        >
           {/* Header */}
           <div className="bg-gradient-to-r from-zinc-900 to-zinc-950 border-b border-white/10 p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">

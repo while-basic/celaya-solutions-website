@@ -34,7 +34,7 @@ const Hero: React.FC = () => {
           </h1>
           
           <p className="text-xl md:text-2xl text-zinc-400 font-light leading-relaxed max-w-2xl mb-12">
-            A one-person research lab focused on human-AI integration, privacy-first architecture, and metacognitive tools. No wrappers. No surveillance. Just infrastructure for the mind.
+            An independent research lab exploring human–AI collaboration, privacy-first systems, and metacognitive tools. We don&apos;t replicate existing products; We design atypical applications and infrastructure for the mind that don&apos;t fit conventional categories.
           </p>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">

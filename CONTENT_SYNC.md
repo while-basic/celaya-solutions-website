@@ -91,10 +91,10 @@ npm install --save-dev chokidar-cli
 ## Current Lab Notes
 
 1. **local-first-ai** → `01-local-first-ai.md` ✅
-2. **week-1-findings** → `02-clos-week-1.md` (needs markdown file)
-3. **mcp-server** → `03-mcp-music-server.md` (needs markdown file)
-4. **systems-thinking** → `04-systems-thinking.md` (needs markdown file)
-5. **cognitive-drift** → `05-cognitive-drift.md` (needs markdown file)
+2. **week-1-findings** → `02-clos-week-1.md` ✅
+3. **mcp-server** → `03-mcp-music-server.md` ✅
+4. **systems-thinking** → `04-systems-thinking.md` ✅
+5. **cognitive-drift** → `05-cognitive-drift.md` ✅
 
 ## Rendering
 

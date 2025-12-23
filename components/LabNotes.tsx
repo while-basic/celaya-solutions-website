@@ -37,8 +37,15 @@ const LabNotes: React.FC = () => {
         navigate({ type: 'lab-note-detail', id });
       } else {
         console.error('Navigate function not available - Router context may not be set up correctly');
-        // Fallback: try to navigate using window location
-        window.location.href = `#lab-note-${id}`;
+        // Fallback: navigate to in-page anchor for this note
+        const targetId = `lab-note-${id}`;
+        const target = document.getElementById(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          window.history.replaceState(null, '', `#${targetId}`);
+        } else {
+          window.location.hash = targetId;
+        }
       }
     } catch (error) {
       console.error('Error navigating to lab note:', error);
@@ -80,6 +87,7 @@ const LabNotes: React.FC = () => {
           {notes.map((note) => (
             <article 
               key={note.id}
+              id={`lab-note-${note.id}`}
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -139,7 +147,19 @@ const LabNotes: React.FC = () => {
         {/* CTA */}
         <div className="mt-12 text-center">
           <button
-            onClick={() => navigate({ type: 'lab-notes' })}
+            onClick={() => {
+              if (navigate) {
+                navigate({ type: 'lab-notes' });
+                return;
+              }
+
+              // Fallback: scroll to the lab-notes section
+              const target = document.getElementById('lab-notes');
+              if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                window.history.replaceState(null, '', '#lab-notes');
+              }
+            }}
             className="inline-flex items-center space-x-2 px-6 py-3 border border-white/10 hover:border-white/30 text-sm font-mono uppercase transition-all"
           >
             <span>View All Lab Notes</span>

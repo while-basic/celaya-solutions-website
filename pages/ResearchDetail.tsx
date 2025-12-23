@@ -137,7 +137,6 @@ const ResearchDetail: React.FC<ResearchDetailProps> = ({ id, onBack }) => {
             // Render markdown content for lab notes
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
-              className="markdown-content"
               components={{
                 h1: ({ children }) => <h1 className="text-4xl font-bold mb-6 mt-12 text-white">{children}</h1>,
                 h2: ({ children }) => <h2 className="text-3xl font-bold mb-4 mt-10 text-white border-b border-white/10 pb-2">{children}</h2>,
