@@ -1,13 +1,3 @@
-//----------------------------------------------------------------------------
-// File:       Capabilities.tsx
-// Project:    Celaya Solutions Website
-// Created by: Celaya Solutions, 2025
-// Author:     Christopher Celaya <chris@chriscelaya.com>
-// Description: Technical capabilities and tech stack section
-// Version:    1.0.0
-// License:    MIT
-// Last Update: December 2025
-//----------------------------------------------------------------------------
 
 import React from 'react';
 import { Cpu, Layers, Code, Database, Terminal, Smartphone } from 'lucide-react';
@@ -16,22 +6,22 @@ const Capabilities: React.FC = () => {
   const stack = [
     {
       category: "AI & ML",
-      icon: <Cpu className="w-7 h-7" />,
+      icon: <Cpu className="w-5 h-5" />,
       items: ["Local LLMs (Llama, Gemma)", "Vector Embeddings", "RAG Infrastructure", "Modal Audio Processing"]
     },
     {
       category: "Apple Ecosystem",
-      icon: <Smartphone className="w-7 h-7" />,
+      icon: <Smartphone className="w-5 h-5" />,
       items: ["SwiftUI & Combine", "HealthKit Integration", "Shortcuts Workflows", "App Intents / SiriKit"]
     },
     {
       category: "Distributed Systems",
-      icon: <Layers className="w-7 h-7" />,
+      icon: <Layers className="w-5 h-5" />,
       items: ["Cloudflare Workers", "D1 & KV Store", "Flask Microservices", "PostgreSQL / Prisma"]
     },
     {
       category: "Data Viz",
-      icon: <Database className="w-7 h-7" />,
+      icon: <Database className="w-5 h-5" />,
       items: ["D3.js / Recharts", "Plotly / Dash", "Real-time Telemetry", "Pattern Recognition"]
     }
   ];
@@ -45,35 +35,15 @@ const Capabilities: React.FC = () => {
             <h2 className="text-4xl md:text-5xl font-bold">Built for performance. <br/>Engineered for scale.</h2>
           </div>
           <p className="text-zinc-400 max-w-sm mb-2 text-sm leading-relaxed">
-            Our toolkit is curated for speed, reliability and redundancy, prioritizing local execution and edge computing to ensure zero-latency intelligence.
+            Our toolkit is curated for speed and reliability, prioritizing local execution and edge computing to ensure zero-latency intelligence.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 border border-white/5">
           {stack.map((group, idx) => (
-            <div key={idx} className="bg-black p-10 hover:bg-zinc-900 transition-colors duration-500 group">
-              <div className="relative mb-8">
-                <div className="relative w-16 h-16 flex items-center justify-center">
-                  {/* Outer glow ring */}
-                  <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-white/10 via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm"></div>
-                  
-                  {/* Main icon container with gradient border */}
-                  <div className="relative w-full h-full rounded-lg bg-gradient-to-br from-zinc-900 via-zinc-950 to-black border border-white/10 group-hover:border-white/20 transition-all duration-500 flex items-center justify-center overflow-hidden">
-                    {/* Inner gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    
-                    {/* Icon with color on hover */}
-                    <div className="relative z-10 text-zinc-400 group-hover:text-white transition-colors duration-500">
-                      {group.icon}
-                    </div>
-                    
-                    {/* Corner accent */}
-                    <div className="absolute top-0 right-0 w-3 h-3 bg-gradient-to-br from-white/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  </div>
-                  
-                  {/* Animated corner highlight */}
-                  <div className="absolute -top-1 -right-1 w-2 h-2 bg-white/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
-                </div>
+            <div key={idx} className="bg-black p-10 hover:bg-zinc-900 transition-colors duration-500">
+              <div className="w-10 h-10 bg-zinc-900 rounded-sm flex items-center justify-center mb-8 border border-white/5">
+                {group.icon}
               </div>
               <h3 className="text-lg font-bold mb-6 tracking-tight">{group.category}</h3>
               <ul className="space-y-3">

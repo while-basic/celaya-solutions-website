@@ -1,13 +1,3 @@
-//----------------------------------------------------------------------------
-// File:       UserJourney.tsx
-// Project:    Celaya Solutions Website
-// Created by: Celaya Solutions, 2025
-// Author:     Christopher Celaya <chris@chriscelaya.com>
-// Description: Day in the life user journey visualization
-// Version:    1.0.0
-// License:    MIT
-// Last Update: December 2025
-//----------------------------------------------------------------------------
 
 import React from 'react';
 import { Sun, Coffee, Zap, Moon, ChevronRight } from 'lucide-react';

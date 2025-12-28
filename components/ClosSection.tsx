@@ -1,13 +1,3 @@
-//----------------------------------------------------------------------------
-// File:       ClosSection.tsx
-// Project:    Celaya Solutions Website
-// Created by: Celaya Solutions, 2025
-// Author:     Christopher Celaya <chris@chriscelaya.com>
-// Description: CLOS product showcase section with features
-// Version:    1.0.0
-// License:    MIT
-// Last Update: December 2025
-//----------------------------------------------------------------------------
 
 import React from 'react';
 import { Eye, Mic, Shield, Zap, Layout, Activity } from 'lucide-react';
@@ -65,6 +55,10 @@ const ClosSection: React.FC = () => {
                 <p className="text-sm text-zinc-500">Deep integration with SwiftUI, HealthKit, and iCloud sync.</p>
               </div>
             </div>
+
+            <button className="px-6 py-3 bg-zinc-900 border border-white/5 hover:border-white/20 transition-all text-sm font-mono uppercase">
+              Join Private Beta
+            </button>
           </div>
 
           <div className="relative">

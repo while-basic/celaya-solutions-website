@@ -1,13 +1,3 @@
-//----------------------------------------------------------------------------
-// File:       Contact.tsx
-// Project:    Celaya Solutions Website
-// Created by: Celaya Solutions, 2025
-// Author:     Christopher Celaya <chris@chriscelaya.com>
-// Description: Contact form section with social links
-// Version:    1.0.0
-// License:    MIT
-// Last Update: December 2025
-//----------------------------------------------------------------------------
 
 import React, { useState } from 'react';
 import { Mail, Github, Linkedin, Send } from 'lucide-react';
@@ -41,7 +31,7 @@ const Contact: React.FC = () => {
                 <span className="font-mono text-sm">hello@celaya.solutions</span>
               </a>
               <div className="flex space-x-4 pt-4">
-                <a href="https://github.com/celaya-solutions" className="w-12 h-12 glass-card rounded-sm flex items-center justify-center hover:bg-white hover:text-black transition-all">
+                <a href="https://github.com/chriscelaya" className="w-12 h-12 glass-card rounded-sm flex items-center justify-center hover:bg-white hover:text-black transition-all">
                   <Github className="w-5 h-5" />
                 </a>
                 <a href="#" className="w-12 h-12 glass-card rounded-sm flex items-center justify-center hover:bg-white hover:text-black transition-all">
@@ -60,7 +50,7 @@ const Contact: React.FC = () => {
                   value={form.name}
                   onChange={e => setForm({...form, name: e.target.value})}
                   className="w-full bg-zinc-900/50 border border-white/10 p-4 text-sm focus:outline-none focus:border-white/40 transition-colors"
-                  placeholder="Alan Turing "
+                  placeholder="John Doe"
                   required
                 />
               </div>
@@ -71,7 +61,7 @@ const Contact: React.FC = () => {
                   value={form.email}
                   onChange={e => setForm({...form, email: e.target.value})}
                   className="w-full bg-zinc-900/50 border border-white/10 p-4 text-sm focus:outline-none focus:border-white/40 transition-colors"
-                  placeholder="alan@turing.com"
+                  placeholder="john@company.com"
                   required
                 />
               </div>

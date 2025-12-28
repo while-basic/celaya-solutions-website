@@ -1,13 +1,3 @@
-//----------------------------------------------------------------------------
-// File:       ArchitectureDiagram.tsx
-// Project:    Celaya Solutions Website
-// Created by: Celaya Solutions, 2025
-// Author:     Christopher Celaya <chris@chriscelaya.com>
-// Description: Interactive architecture diagram showing CLOS tech stack
-// Version:    1.0.0
-// License:    MIT
-// Last Update: December 2025
-//----------------------------------------------------------------------------
 
 import React, { useState } from 'react';
 import { Smartphone, Shield, Cpu, Cloud, Database, ArrowRight } from 'lucide-react';
