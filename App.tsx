@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Manifesto from './components/Manifesto';
@@ -182,6 +183,8 @@ const App: React.FC = () => {
       </main>
 
       <ChatBot />
+
+      <Analytics />
 
       <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-[80vw] h-1 bg-gradient-to-r from-transparent via-white/10 to-transparent blur-xl pointer-events-none"></div>
     </div>
