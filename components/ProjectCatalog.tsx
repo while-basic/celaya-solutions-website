@@ -1,15 +1,16 @@
 
 import React, { useState } from 'react';
-import { Box, ExternalLink, ChevronRight, Activity, Terminal, Shield, Brain, X, Cpu, Globe, Database, Code, ArrowRight, Mic, Layout } from 'lucide-react';
+import { Box, ExternalLink, ChevronRight, Activity, Terminal, Shield, Brain, X, Cpu, Globe, Database, Code, ArrowRight, Mic, Layout, Music, Bot, Share2 } from 'lucide-react';
 import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 interface ProjectEntry {
   id: string;
   name: string;
   category: string[];
-  status: 'In Dev' | 'Internal' | 'No';
+  status: 'Active Dev' | 'Pre-Launch' | 'Staged';
   icon: React.ReactNode;
   description: string;
+  metrics: string;
   technicalSpecs: string[];
   architecture: string;
   roadmap: string[];
@@ -31,131 +32,70 @@ const ProjectCatalog: React.FC = () => {
 
   const projects: ProjectEntry[] = [
     { 
-      id: '12', 
+      id: '01', 
       name: 'CLOS', 
-      category: ['Cognitive OS', 'Framework'], 
-      status: 'In Dev', 
+      category: ['Cognitive OS', 'Agentic Framework'], 
+      status: 'Pre-Launch', 
       icon: <Brain className="w-5 h-5" />,
-      description: "The Cognitive Life Operating System is a privacy-first, voice-native meta-cognitive mirror. It acts as an external executive function for the technical mind, detecting cognitive drift and surfacing patterns in decision-making.",
-      technicalSpecs: ["SwiftUI & Combine Core", "HealthKit Deep Linking", "Local CoreML Inference", "iCloud Secure Sync"],
-      architecture: "Unified cognitive data plane connecting physiological telemetry with semantic knowledge graphs.",
-      roadmap: ["v0.1: Pattern Matching Alpha", "v0.2: Automated Intervention Loops", "v0.3: Public Researcher API"],
+      metrics: "37 Specialized Agents",
+      description: "The Cognitive Life Operating System. A biometric-integrated agentic layer designed to mirror and optimize executive function. Features 37 specialized agents named after algorithm founders to manage diverse cognitive workflows.",
+      technicalSpecs: ["37 LLM Agents (Founder Series)", "HealthKit Biometric Fusion", "Real-time Flow State Detection", "SwiftUI / iCloud Encrypted Sync"],
+      architecture: "Decentralized agentic swarm managed by a primary executive 'mirror' node.",
+      roadmap: ["v0.1: Biometric-Informed Reflection", "v0.2: Agent Swarm Coordination", "Jan 2026: Public Release"],
       features: [
-        { title: "Voice First", description: "Zero-friction capture via Apple Ecosystem shortcuts and local STT.", icon: <Mic className="w-4 h-4" /> },
-        { title: "Privacy Hardened", description: "Local LLM inference where possible. No behavioral data harvesting.", icon: <Shield className="w-4 h-4" /> },
-        { title: "Pattern Detection", description: "Detecting burnout, flow state triggers, and decision fatigue cycles.", icon: <Activity className="w-4 h-4" /> },
-        { title: "Apple Native", description: "Deep integration with SwiftUI, HealthKit, and iCloud sync.", icon: <Layout className="w-4 h-4" /> }
+        { title: "Flow Detection", description: "Real-time biometric analysis to protect and sustain deep work states.", icon: <Activity className="w-4 h-4" /> },
+        { title: "Founder Agents", description: "37 distinct cognitive personas optimized for specific reasoning modes.", icon: <Bot className="w-4 h-4" /> },
+        { title: "Voice Journaling", description: "NLP-driven analysis pipeline for structured thought capture.", icon: <Mic className="w-4 h-4" /> },
+        { title: "Privacy First", description: "On-device processing with zero-knowledge biometric storage.", icon: <Shield className="w-4 h-4" /> }
       ]
     },
     { 
-      id: '1', 
-      name: 'AI Beat Mapper', 
-      category: ['Framework'], 
-      status: 'In Dev', 
+      id: '02', 
+      name: 'Robotics Pipeline', 
+      category: ['Robotics', 'Spatial AI'], 
+      status: 'Active Dev', 
       icon: <Activity className="w-5 h-5" />,
-      description: "A high-precision temporal alignment engine for mapping complex auditory rhythms to visual state machines. Used in reactive multi-sensory environments.",
-      technicalSpecs: ["Fast Fourier Transform (FFT)", "Rust-based DSP Core", "WebAssembly Bindings"],
-      architecture: "Edge-computed signal processing with zero-latency visual dispatch.",
-      roadmap: ["Phase 1: Real-time frequency mapping", "Phase 2: Predictive tempo forecasting", "Phase 3: MIDI 2.0 Integration"]
+      metrics: "~20,000 VR Training Files",
+      description: "Transforming high-fidelity VR movement data (Beat Saber) into humanoid robotics training datasets. Mapping spatial rhythms to joint-velocity coordinate transformations for MuJoCo and PyBullet simulations.",
+      technicalSpecs: ["MuJoCo / PyBullet Integration", "Three.js Spatial Simulator", "Coordinate Transform: VR → Joint Space", "Mobile Simulation Previews"],
+      architecture: "Data ingestion pipeline translating .dat/json movement files into robotic control primitives.",
+      roadmap: ["Phase 1: 20k File Processing", "Phase 2: Humanoid Simulation Model", "Phase 3: Real-world Hardware Mapping"]
     },
     { 
-      id: '2', 
-      name: 'Baby LLM', 
-      category: ['Framework'], 
-      status: 'In Dev', 
-      icon: <Brain className="w-5 h-5" />,
-      description: "A research-focused, small-parameter model designed to run exclusively on micro-controllers and low-power hardware for discrete classification tasks.",
-      technicalSpecs: ["Quantized Transformer Core", "CoreML Optimization", "TensorFlow Lite Micro"],
-      architecture: "Static graph weights optimized for SRAM constraints.",
-      roadmap: ["Prototype: 100M param base", "Iteration: On-device fine-tuning", "Deploy: Ambient inference"]
+      id: '03', 
+      name: 'Music MCP Servers', 
+      category: ['Automation', 'Audio'], 
+      status: 'Active Dev', 
+      icon: <Music className="w-5 h-5" />,
+      metrics: "172,737 Audio Samples",
+      description: "Artist C-Cell's custom Model Context Protocol (MCP) servers for music production. Integrating an IDE + MIDI controller workflow with a massive, structured sample library.",
+      technicalSpecs: ["MCP Server Architecture", "Python-driven Sample Management", "MIDI Hardware Handshake", "Ableton/Logic Integration Tools"],
+      architecture: "Headless management node acting as a bridge between LLMs and audio production software.",
+      roadmap: ["Core: Library Indexing", "Beta: AI-Co-Production Sync", "Sunday Sessions: Performance Test"]
     },
     { 
-      id: '3', 
-      name: 'MCP-MPC', 
-      category: ['MPC Server'], 
-      status: 'No', 
-      icon: <Shield className="w-5 h-5" />,
-      description: "Multi-party Computation (MPC) server architecture for secure collaborative intelligence without data pooling.",
-      technicalSpecs: ["Differential Privacy", "Homomorphic Encryption", "Secure Enclaves"],
-      architecture: "Distributed key generation across non-colluding nodes.",
-      roadmap: ["Audit: Cryptographic primitives", "Beta: Federated learning wrapper"]
+      id: '04', 
+      name: 'Neural Child', 
+      category: ['Research', 'Developmental AI'], 
+      status: 'Staged', 
+      icon: <Share2 className="w-5 h-5" />,
+      metrics: "5 Interacting Networks",
+      description: "An exploration of developmental AI through the interaction of five distinct neural networks. Researching emergent intelligence and cognitive growth stages within constrained digital environments.",
+      technicalSpecs: ["Multi-Network Topology", "Reinforcement Learning Stages", "Emergent Strategy Monitoring", "Local GPU Training Cluster"],
+      architecture: "A hierarchy of learning nodes designed to simulate developmental growth phases.",
+      roadmap: ["Prototype: Base Connectivity", "Alpha: Strategic Emergence", "Release: Research Findings"]
     },
     { 
-      id: '4', 
-      name: 'C-Suite', 
-      category: ['Framework'], 
-      status: 'No', 
-      icon: <Box className="w-5 h-5" />,
-      description: "A suite of orchestration tools for high-level executive cognitive support, managing context windows across multiple agents.",
-      technicalSpecs: ["Context Window Sharding", "Long-term Vector Memory", "Agentic Orchestration"],
-      architecture: "Hierarchical agent system with supervisor/worker topology.",
-      roadmap: ["Launch: Context management core", "Future: Autonomous planning engine"]
-    },
-    { 
-      id: '5', 
-      name: 'Insight Explorer', 
-      category: ['Framework'], 
-      status: 'No', 
+      id: '05', 
+      name: 'Cognitive Artifacts', 
+      category: ['Framework', 'Prompt Engineering'], 
+      status: 'Staged', 
       icon: <Terminal className="w-5 h-5" />,
-      description: "Dynamic visualization engine for semantic graphs, allowing users to traverse complex knowledge structures in VR/AR environments.",
-      technicalSpecs: ["D3-Force-Directed Graphs", "Three.js Rendering", "Spatial UI"],
-      architecture: "GPU-accelerated layout calculations for millions of nodes.",
-      roadmap: ["Dev: Force-layout optimization", "Test: AR-overlay integration"]
-    },
-    { 
-      id: '6', 
-      name: 'Vitals', 
-      category: ['LLM'], 
-      status: 'No', 
-      icon: <Activity className="w-5 h-5" />,
-      description: "Longitudinal health telemetry analysis. Cross-references biometric data with cognitive state triggers.",
-      technicalSpecs: ["HealthKit SDK", "Time-series forecasting", "Anomalous behavior detection"],
-      architecture: "Private biometric processing pipeline running in Secure Enclave.",
-      roadmap: ["Alpha: Sleep/Cognition correlation", "Beta: Real-time stress mitigation"]
-    },
-    { 
-      id: '7', 
-      name: 'Verdict', 
-      category: ['LLM'], 
-      status: 'No', 
-      icon: <Shield className="w-5 h-5" />,
-      description: "Legal and logic-based reasoning model for objective document analysis and internal consistency auditing.",
-      technicalSpecs: ["Logical Entailment Trees", "RAG Grounding", "Semantic Search"],
-      architecture: "Chain-of-thought verification with external web-search grounding.",
-      roadmap: ["Core: Reasoning engine", "Integration: Legal document parser"]
-    },
-    { 
-      id: '8', 
-      name: 'Volt', 
-      category: ['LLM'], 
-      status: 'No', 
-      icon: <Activity className="w-5 h-5" />,
-      description: "Energy-efficient inference framework designed to optimize token-per-watt ratios for mobile deployments.",
-      technicalSpecs: ["Hardware-aware scheduling", "Dynamic precision scaling", "Wait-time optimization"],
-      architecture: "Low-level metal/vulkan bridge for direct GPU memory access.",
-      roadmap: ["Research: Battery-aware inference", "Optimization: Dynamic LoRA switching"]
-    },
-    { 
-      id: '9', 
-      name: 'Rachel', 
-      category: ['LLM'], 
-      status: 'No', 
-      icon: <Brain className="w-5 h-5" />,
-      description: "An empathetic conversational agent designed for high-fidelity emotional resonance and therapeutic support modeling.",
-      technicalSpecs: ["Affective computing", "Prosody analysis", "Multi-modal sentiment mapping"],
-      architecture: "Cross-modality attention mechanisms for vocal and visual cues.",
-      roadmap: ["Version 1: Text-based empathy", "Version 2: Real-time vocal prosody"]
-    },
-    { 
-      id: '13', 
-      name: 'layer-1', 
-      category: ['CLI Tool', 'Web App'], 
-      status: 'No', 
-      icon: <Terminal className="w-5 h-5" />,
-      description: "Low-level system access tool for managing local AI deployments across distributed local networks.",
-      technicalSpecs: ["Go-based CLI", "React/Next.js frontend", "gRPC Communication"],
-      architecture: "Peer-to-peer node management system for local compute clusters.",
-      roadmap: ["Release: CLI Core", "Beta: Web Management Dashboard"]
+      metrics: "Production Reasoning Suite",
+      description: "An advanced framework for systematic LLM interaction. Utilizing cognitive artifacts and prompt engineering to trigger higher-order reasoning and consistent logic paths in complex problem solving.",
+      technicalSpecs: ["Artifact-Based Prompting", "Logical Entailment Trees", "Systematic Reasoning Triggers", "IDE Extension Suite"],
+      architecture: "Modular reasoning triggers that can be injected into any agentic workflow.",
+      roadmap: ["Core: Artifact Library", "Integration: VS Code Extension", "Jan 2026: Lab-wide Rollout"]
     },
   ];
 
@@ -164,18 +104,18 @@ const ProjectCatalog: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <div className="mb-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
           <div className="max-w-2xl">
-            <span className="text-xs font-mono text-white/40 uppercase tracking-[0.3em] block mb-4">Research Registry</span>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">AI Products</h2>
+            <span className="text-xs font-mono text-white/40 uppercase tracking-[0.3em] block mb-4">Core Research Projects</span>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Project Registry</h2>
           </div>
           <div className="flex items-center space-x-6">
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
-              <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest text-nowrap">Live Development</span>
+              <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest text-nowrap">Active Development</span>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
             <div 
               key={project.id} 
@@ -187,23 +127,27 @@ const ProjectCatalog: React.FC = () => {
                   {project.icon}
                 </div>
                 <div className={`px-2 py-0.5 rounded-full border text-[9px] font-mono uppercase tracking-widest ${
-                  project.status === 'In Dev' 
+                  project.status === 'Active Dev' 
                     ? 'bg-blue-500/10 border-blue-500/20 text-blue-400' 
                     : 'bg-zinc-800/30 border-white/5 text-zinc-600'
                 }`}>
-                  {project.status === 'In Dev' ? 'In Dev' : 'Staged'}
+                  {project.status}
                 </div>
               </div>
 
-              <h3 className="text-xl font-bold mb-3 tracking-tight group-hover:text-white transition-colors">
-                {project.name}
-              </h3>
-              <p className="text-xs text-zinc-500 line-clamp-2 mb-6 leading-relaxed group-hover:text-zinc-400 transition-colors">
+              <div className="mb-4">
+                <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block mb-1">{project.metrics}</span>
+                <h3 className="text-2xl font-bold tracking-tight group-hover:text-white transition-colors">
+                  {project.name}
+                </h3>
+              </div>
+              
+              <p className="text-xs text-zinc-500 line-clamp-3 mb-6 leading-relaxed group-hover:text-zinc-400 transition-colors">
                 {project.description}
               </p>
               
               <div className="flex flex-wrap gap-2 mt-auto pt-6 border-t border-white/5">
-                {project.category.slice(0, 2).map((cat, i) => (
+                {project.category.map((cat, i) => (
                   <span 
                     key={i} 
                     className="px-2 py-0.5 text-[9px] font-mono rounded-sm border border-white/5 bg-white/[0.02] text-zinc-500 group-hover:text-zinc-400"
@@ -243,7 +187,7 @@ const ProjectCatalog: React.FC = () => {
                 <div>
                   <h3 className="text-3xl md:text-4xl font-bold tracking-tight">{selectedProject.name}</h3>
                   <div className="flex items-center space-x-3 mt-2">
-                    <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.2em]">Product ID: {selectedProject.id}</span>
+                    <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.2em]">{selectedProject.metrics}</span>
                     <span className="w-1 h-1 bg-zinc-800 rounded-full"></span>
                     <span className="text-[10px] font-mono text-blue-500 uppercase tracking-[0.2em]">{selectedProject.status}</span>
                   </div>
@@ -252,18 +196,18 @@ const ProjectCatalog: React.FC = () => {
 
               <div className="space-y-12">
                 <section>
-                  <h4 className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest mb-4">Description</h4>
+                  <h4 className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest mb-4">Core Research Overview</h4>
                   <p className="text-xl text-zinc-300 leading-relaxed font-light">
                     {selectedProject.description}
                   </p>
                 </section>
 
-                {/* Special Chart for CLOS */}
+                {/* Specific Visuals for CLOS */}
                 {selectedProject.name === 'CLOS' && (
                   <section className="p-8 border border-white/5 bg-zinc-900/30 rounded-sm">
                     <div className="flex justify-between items-center mb-6">
-                      <h4 className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest">Cognitive State Modeling</h4>
-                      <span className="text-[10px] font-mono text-emerald-500 uppercase tracking-widest">Live Output</span>
+                      <h4 className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest">Cognitive Load Simulation</h4>
+                      <span className="text-[10px] font-mono text-emerald-500 uppercase tracking-widest">Active Mirroring</span>
                     </div>
                     <div className="h-48 w-full">
                       <ResponsiveContainer width="100%" height="100%">
@@ -286,10 +230,9 @@ const ProjectCatalog: React.FC = () => {
                   </section>
                 )}
 
-                {/* Features Grid for CLOS */}
                 {selectedProject.features && (
                   <section>
-                    <h4 className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest mb-6">Core Capabilities</h4>
+                    <h4 className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest mb-6">System Capabilities</h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {selectedProject.features.map((feat, i) => (
                         <div key={i} className="p-4 border border-white/5 bg-white/[0.02] rounded-sm">
@@ -319,7 +262,7 @@ const ProjectCatalog: React.FC = () => {
                 <div>
                   <div className="flex items-center space-x-2 mb-6">
                     <Cpu className="w-4 h-4 text-zinc-500" />
-                    <h4 className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Stack Inventory</h4>
+                    <h4 className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Tech Stack Inventory</h4>
                   </div>
                   <div className="grid grid-cols-1 gap-2">
                     {selectedProject.technicalSpecs.map((spec, i) => (
@@ -332,7 +275,7 @@ const ProjectCatalog: React.FC = () => {
                 </div>
 
                 <div>
-                  <h4 className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest mb-6">Development Roadmap</h4>
+                  <h4 className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest mb-6">Strategic Milestone Roadmap</h4>
                   <div className="space-y-4">
                     {selectedProject.roadmap.map((step, i) => (
                       <div key={i} className="flex items-center space-x-4">
@@ -346,8 +289,12 @@ const ProjectCatalog: React.FC = () => {
                 </div>
 
                 <div className="pt-12 border-t border-white/5">
+                  <div className="p-6 border border-white/10 bg-white/[0.02] rounded-sm mb-6">
+                    <p className="text-[10px] font-mono text-zinc-500 uppercase mb-2">Internal Project Reference</p>
+                    <p className="text-xs text-zinc-400 leading-relaxed">This project is part of our production-grade research cycle. Public beta scheduled for early 2026.</p>
+                  </div>
                   <button className="w-full py-4 bg-white text-black text-[10px] font-mono uppercase font-bold tracking-[0.2em] flex items-center justify-center space-x-2 hover:bg-zinc-200 transition-colors">
-                    <span>Initialize Private Access</span>
+                    <span>Initialize Researcher Sync</span>
                     <ArrowRight className="w-3 h-3" />
                   </button>
                 </div>

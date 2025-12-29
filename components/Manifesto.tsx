@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ShieldAlert, Users, ZapOff, Fingerprint } from 'lucide-react';
+import { ShieldAlert, Users, ZapOff, Fingerprint, Zap } from 'lucide-react';
 
 const Manifesto: React.FC = () => {
   return (
@@ -8,30 +8,30 @@ const Manifesto: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-24">
           <div>
-            <span className="text-xs font-mono text-white/40 uppercase tracking-[0.3em] block mb-4">Signal Filter</span>
-            <h2 className="text-4xl md:text-5xl font-bold mb-10 tracking-tight">Who this is for.</h2>
+            <span className="text-xs font-mono text-white/40 uppercase tracking-[0.3em] block mb-4">The Philosophy</span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-10 tracking-tight">Think Different. <br/><span className="text-zinc-600">Build Production.</span></h2>
             <div className="space-y-8">
               <div className="flex items-start space-x-4">
-                <Users className="w-5 h-5 text-zinc-500 mt-1" />
+                <Zap className="w-5 h-5 text-zinc-500 mt-1" />
                 <p className="text-zinc-400 leading-relaxed">
-                  <strong className="text-white block mb-1">Builders in the Arena.</strong> People moving from first principles to working prototypes in days, not months. You value the delta of research over the polish of the product.
+                  <strong className="text-white block mb-1">Industrial Rigor.</strong> Extensive experience as an industrial electromechanical technician informs our approach to software. We don't build prototypes; we build hardened systems designed for continuous operation.
                 </p>
               </div>
               <div className="flex items-start space-x-4">
                 <Fingerprint className="w-5 h-5 text-zinc-500 mt-1" />
                 <p className="text-zinc-400 leading-relaxed">
-                  <strong className="text-white block mb-1">Privacy Maximists.</strong> You understand that data is a liability. You seek agency and on-device sovereignty, not more surveillance-backed convenience.
+                  <strong className="text-white block mb-1">Self-Experimentation.</strong> We treat ourselves as research subjects. CLOS is tested through longitudinal studies of the developer's own cognitive patterns and health telemetry.
                 </p>
               </div>
               <div className="flex items-start space-x-4">
                 <ShieldAlert className="w-5 h-5 text-zinc-500 mt-1" />
                 <p className="text-zinc-400 leading-relaxed">
-                  <strong className="text-white block mb-1">The Skeptical Technical.</strong> You are tired of wrappers, hype, and "assistants" that distract. You want infrastructure that mirrors your own cognition.
+                  <strong className="text-white block mb-1">Neurodivergent Advantage.</strong> Our systems are architected to leverage non-linear cognitive pathways, turning perceived friction into structured innovation.
                 </p>
               </div>
             </div>
             <p className="mt-12 text-sm font-mono text-zinc-600 border-l border-zinc-800 pl-6 uppercase tracking-widest leading-loose">
-              If you are seeking a vendor, a career path, or a fundraising opportunity, this lab is not for you. This is a collision space for proof of work.
+              If you are seeking a vendor, a career path, or a fundraising opportunity, this lab is not for you. This is a collision space for proof of work and cross-domain synthesis.
             </p>
           </div>
 
@@ -44,10 +44,10 @@ const Manifesto: React.FC = () => {
                   <span>What We Are Not</span>
                 </h4>
                 <ul className="space-y-3 text-sm text-zinc-500 font-mono list-none">
-                  <li>— A Product Company</li>
-                  <li>— An Enterprise Solution Vendor</li>
-                  <li>— A VC-Backed Hype Machine</li>
-                  <li>— For Hire (Generalist)</li>
+                  <li>— Generic AI SaaS</li>
+                  <li>— Prototype Factory</li>
+                  <li>— Speculative Hype House</li>
+                  <li>— Isolated Academics</li>
                 </ul>
               </div>
               <div>
@@ -56,10 +56,10 @@ const Manifesto: React.FC = () => {
                   <span>What We Are</span>
                 </h4>
                 <ul className="space-y-3 text-sm text-zinc-400 font-mono list-none">
-                  <li>— A Cognitive Research Lab</li>
-                  <li>— Systems Architecture Primitives</li>
-                  <li>— Private-First Infrastructure</li>
-                  <li>— High-Signal Peer Collision</li>
+                  <li>— Cognitive Research Lab</li>
+                  <li>— Industrial Systems Engineers</li>
+                  <li>— Cross-Domain Synthesis Hub</li>
+                  <li>— Production-Grade Builders</li>
                 </ul>
               </div>
             </div>
