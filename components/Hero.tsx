@@ -16,15 +16,15 @@ const Hero: React.FC = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest">Building in El Paso, TX</span>
+            <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest">Built in El Paso, TX / Deploying Globally</span>
           </div>
           
           <h1 className="text-5xl md:text-8xl font-bold tracking-tight mb-8 leading-[0.9]">
-            Building AI products that <span className="text-zinc-500 italic">don't exist</span> yet.
+            Cognitive systems research. <span className="text-zinc-500 italic">Built in public.</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-zinc-400 font-light leading-relaxed max-w-2xl mb-12">
-            An innovation lab focused on systems-level architecture, on-device privacy, and cognitive augmentation. We don't build wrappers; we build infrastructure for the mind.
+            Infrastructure for the mind. This lab exists for people who can’t unsee systems once they’ve learned how they fail. We optimize for judgment and agency, not throughput.
           </p>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
@@ -39,7 +39,7 @@ const Hero: React.FC = () => {
               href="#contact" 
               className="px-8 py-4 border border-white/10 text-white font-mono text-sm uppercase hover:bg-zinc-900 transition-colors"
             >
-              Consultation / Research
+              Peer Collision / Sync Signal
             </a>
           </div>
         </div>

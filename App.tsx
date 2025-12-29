@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import Manifesto from './components/Manifesto';
 import ClosSection from './components/ClosSection';
 import Philosophy from './components/Philosophy';
 import Capabilities from './components/Capabilities';
@@ -52,6 +53,7 @@ const App: React.FC = () => {
           </div>
         </div>
 
+        <Manifesto />
         <ClosSection />
         <UserJourney />
         <ProjectCatalog />
