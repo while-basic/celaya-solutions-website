@@ -1,9 +1,11 @@
 
-import React from 'react';
-import { Sun, Coffee, Zap, Moon, ChevronRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { Sun, Zap, Moon, ChevronRight, ChevronDown, Coffee } from 'lucide-react';
 
 const UserJourney: React.FC = () => {
-  const steps = [
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const mainSteps = [
     {
       time: "08:15 AM",
       icon: <Sun className="w-5 h-5" />,
@@ -12,18 +14,21 @@ const UserJourney: React.FC = () => {
       focus: "Privacy: All physiological data remains on-device."
     },
     {
-      time: "01:30 PM",
-      icon: <Coffee className="w-5 h-5" />,
-      title: "Decision Support",
-      content: "During a technical review, you capture a voice memo about a system bottleneck. CLOS immediately maps this to an architectural pattern you noted 3 months ago, surfacing the correlation without a manual search.",
-      focus: "Voice-First: Instant capture via Apple Watch."
-    },
-    {
       time: "04:45 PM",
       icon: <Zap className="w-5 h-5" />,
       title: "Drift Detection",
       content: "CLOS detects a pattern of repetitive low-value task switching—a known precursor to your burnout loops. It triggers a 'Refocus' automation, silencing non-essential notifications and suggesting a 10-minute break.",
       focus: "Pattern Matching: Behavioral reflection in real-time."
+    }
+  ];
+
+  const hiddenSteps = [
+    {
+      time: "01:30 PM",
+      icon: <Coffee className="w-5 h-5" />,
+      title: "Decision Support",
+      content: "During a technical review, you capture a voice memo about a system bottleneck. CLOS immediately maps this to an architectural pattern you noted 3 months ago, surfacing the correlation without a manual search.",
+      focus: "Voice-First: Instant capture via Apple Watch."
     },
     {
       time: "09:00 PM",
@@ -53,7 +58,7 @@ const UserJourney: React.FC = () => {
           </div>
           
           <div className="lg:col-span-7 space-y-4">
-            {steps.map((step, idx) => (
+            {mainSteps.map((step, idx) => (
               <div key={idx} className="group relative flex items-start space-x-6 p-6 hover:bg-white/5 transition-colors border-l border-white/10 hover:border-white/30">
                 <div className="mt-1 flex-shrink-0 text-zinc-500 group-hover:text-white transition-colors">
                   {step.icon}
@@ -73,6 +78,35 @@ const UserJourney: React.FC = () => {
                 </div>
               </div>
             ))}
+
+            {isExpanded && hiddenSteps.map((step, idx) => (
+              <div key={idx} className="group relative flex items-start space-x-6 p-6 hover:bg-white/5 transition-colors border-l border-white/10 hover:border-white/30 animate-in fade-in slide-in-from-top-2 duration-300">
+                <div className="mt-1 flex-shrink-0 text-zinc-500 group-hover:text-white transition-colors">
+                  {step.icon}
+                </div>
+                <div className="flex-grow">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-mono text-zinc-600 uppercase">{step.time}</span>
+                    <ChevronRight className="w-3 h-3 text-zinc-800" />
+                  </div>
+                  <h3 className="text-lg font-bold mb-3">{step.title}</h3>
+                  <p className="text-sm text-zinc-500 mb-4 leading-relaxed group-hover:text-zinc-400 transition-colors">
+                    {step.content}
+                  </p>
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-zinc-700">
+                    {step.focus}
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            <button 
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="w-full flex items-center justify-center space-x-2 py-4 border border-white/5 hover:bg-white/5 transition-all group mt-4 text-[10px] font-mono uppercase tracking-widest text-zinc-500"
+            >
+              <span>{isExpanded ? 'Hide Trace' : 'View Full Day Trace'}</span>
+              <ChevronDown className={`w-3 h-3 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+            </button>
           </div>
         </div>
       </div>

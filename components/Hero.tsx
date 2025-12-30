@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ArrowUpRight, Zap } from 'lucide-react';
+import { Zap } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
@@ -25,26 +25,17 @@ const Hero: React.FC = () => {
             </div>
           </div>
           
-          <h1 className="text-5xl md:text-8xl font-bold tracking-tight mb-8 leading-[0.9]">
+          <h1 className="text-5xl md:text-8xl font-bold tracking-tight mb-6 leading-[0.9]">
             Building AI systems that <span className="text-zinc-500 italic">augment human capabilities.</span>
           </h1>
+          
+          <p className="text-lg md:text-xl text-emerald-500/80 font-mono uppercase tracking-[0.2em] mb-12">
+            CLOS is not an assistant; it is a metacognitive mirror.
+          </p>
           
           <p className="text-xl md:text-2xl text-zinc-400 font-light leading-relaxed max-w-3xl mb-12">
             A Neurodivergent research lab synthesizing Industrial Electromechanical engineering with advanced Cognitive Science. We build production-grade systems for the next era of human-machine collaboration.
           </p>
-
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-            <a 
-              href="#catalog" 
-              className="group relative inline-flex items-center px-8 py-4 bg-white text-black font-bold tracking-tight rounded-sm hover:scale-[1.02] active:scale-[0.98] transition-all"
-            >
-              Core Research
-              <ArrowUpRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-            </a>
-            <div className="px-8 py-4 border border-white/10 text-zinc-500 font-mono text-sm uppercase">
-              Industrial Systems Synthesis
-            </div>
-          </div>
         </div>
       </div>
     </section>

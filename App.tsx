@@ -155,11 +155,11 @@ const App: React.FC = () => {
               </div>
             </div>
             <Manifesto />
+            <Philosophy /> {/* Principles & Boundaries sit here after the Manifesto */}
             <ClosSection />
             <UserJourney />
             <ProjectCatalog />
             <Timeline />
-            <Philosophy />
             <Capabilities />
             <Contact />
           </>

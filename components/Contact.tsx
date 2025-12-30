@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Mail, Github, Linkedin, Send, Sparkles } from 'lucide-react';
+import { Mail, Github, Send, Sparkles, Code } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -23,14 +23,32 @@ const Contact: React.FC = () => {
               This is a collision space, not an application process. We are looking for peers working on adjacent systems problems. 
             </p>
             
-            <div className="p-6 border border-white/10 bg-zinc-950/50 rounded-sm mb-12">
-              <div className="flex items-center space-x-3 mb-4 text-white">
-                <Sparkles className="w-4 h-4" />
-                <span className="text-xs font-mono uppercase tracking-widest">Collaborator Filter</span>
-              </div>
-              <p className="text-sm text-zinc-500 italic">
-                "No pitches. No decks. Just proof of work and shared curiosity."
+            <div className="mb-12">
+              <p className="text-[10px] font-mono text-red-500/80 uppercase tracking-widest mb-4 border-l-2 border-red-500/30 pl-4 py-1 leading-relaxed">
+                If you are seeking a vendor, a career path, or a fundraising opportunity, this lab is not for you. This is a collision space for proof of work and cross-domain synthesis.
               </p>
+              
+              <div className="p-6 border border-white/10 bg-zinc-950/50 rounded-sm">
+                <div className="flex items-center space-x-3 mb-6 text-white">
+                  <Sparkles className="w-4 h-4" />
+                  <span className="text-xs font-mono uppercase tracking-widest">Collaborator Filter</span>
+                </div>
+                <p className="text-sm text-zinc-500 italic mb-8">
+                  "No pitches. No decks. Just proof of work and shared curiosity."
+                </p>
+                
+                <div className="space-y-4">
+                  <h4 className="text-[9px] font-mono uppercase text-zinc-600 tracking-widest flex items-center space-x-2">
+                    <Code className="w-3 h-3" />
+                    <span>Send:</span>
+                  </h4>
+                  <ul className="text-xs font-mono text-zinc-400 space-y-2 list-none">
+                    <li>— 1 link to a working artifact (repo/demo)</li>
+                    <li>— 3 bullets: problem, constraint, result</li>
+                    <li>— 1 paragraph: what you’re debugging right now</li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
             <div className="space-y-6">

@@ -30,9 +30,6 @@ const Manifesto: React.FC = () => {
                 </p>
               </div>
             </div>
-            <p className="mt-12 text-sm font-mono text-zinc-600 border-l border-zinc-800 pl-6 uppercase tracking-widest leading-loose">
-              If you are seeking a vendor, a career path, or a fundraising opportunity, this lab is not for you. This is a collision space for proof of work and cross-domain synthesis.
-            </p>
           </div>
 
           <div className="glass-card p-10 md:p-16 rounded-sm border-white/5 bg-zinc-950/50">
