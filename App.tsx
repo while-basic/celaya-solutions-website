@@ -11,6 +11,7 @@ import UserJourney from './components/UserJourney';
 import Timeline from './components/Timeline';
 import ChatBot from './components/ChatBot';
 import ProjectCatalog from './components/ProjectCatalog';
+import LabNotes from './components/LabNotes';
 
 // Detail View Components (Simulated Pages)
 const ClosPage = () => (
@@ -105,18 +106,19 @@ const SystemsPage = () => (
 );
 
 const App: React.FC = () => {
-  const [view, setView] = useState<'home' | 'clos' | 'philosophy' | 'systems'>('home');
+  const [view, setView] = useState<'home' | 'clos' | 'philosophy' | 'systems' | 'lab-notes'>('home');
 
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
-      const validViews = ['home', 'clos', 'philosophy', 'systems', 'capabilities', 'catalog'];
+      const validViews = ['home', 'clos', 'philosophy', 'systems', 'capabilities', 'catalog', 'lab-notes'];
       
       if (validViews.includes(hash) || !hash) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         
         if (hash === 'capabilities') setView('systems');
         else if (hash === 'home' || hash === 'catalog' || !hash) setView('home');
+        else if (hash === 'lab-notes') setView('lab-notes');
         else setView(hash as any);
       }
     };
@@ -155,7 +157,7 @@ const App: React.FC = () => {
               </div>
             </div>
             <Manifesto />
-            <Philosophy /> {/* Principles & Boundaries sit here after the Manifesto */}
+            <Philosophy />
             <ClosSection />
             <UserJourney />
             <ProjectCatalog />
@@ -168,6 +170,7 @@ const App: React.FC = () => {
         {view === 'clos' && <ClosPage />}
         {view === 'philosophy' && <PhilosophyPage />}
         {view === 'systems' && <SystemsPage />}
+        {view === 'lab-notes' && <LabNotes />}
         
         {view !== 'home' && (
           <div className="max-w-7xl mx-auto px-6 pb-20">
