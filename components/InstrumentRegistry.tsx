@@ -1,11 +1,15 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useRef } from "react";
 import { Search } from "lucide-react";
 import type { Instrument } from "../data/instruments";
 import { InstrumentCard } from "./InstrumentCard";
+import { InstrumentModal } from "./InstrumentModal";
 
 export function InstrumentRegistry({ instruments }: { instruments: Instrument[] }) {
   const [activeTag, setActiveTag] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedInstrument, setSelectedInstrument] = useState<Instrument | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const lastFocusRef = useRef<HTMLElement>(null);
 
   const tags = useMemo(() => {
     const all = new Set<string>();
@@ -21,6 +25,12 @@ export function InstrumentRegistry({ instruments }: { instruments: Instrument[] 
       return matchesTag && matchesSearch;
     });
   }, [instruments, activeTag, searchQuery]);
+
+  const handleCardClick = (item: Instrument, el: HTMLElement) => {
+    lastFocusRef.current = el;
+    setSelectedInstrument(item);
+    setIsModalOpen(true);
+  };
 
   return (
     <section id="catalog" className="py-32 px-6 bg-black relative">
@@ -65,10 +75,21 @@ export function InstrumentRegistry({ instruments }: { instruments: Instrument[] 
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map(item => (
-            <InstrumentCard key={item.slug} item={item} />
+            <InstrumentCard 
+              key={item.slug} 
+              item={item} 
+              onClick={(el) => handleCardClick(item, el)}
+            />
           ))}
         </div>
       </div>
+
+      <InstrumentModal 
+        open={isModalOpen}
+        item={selectedInstrument}
+        onClose={() => setIsModalOpen(false)}
+        returnFocusRef={lastFocusRef as any}
+      />
     </section>
   );
 }

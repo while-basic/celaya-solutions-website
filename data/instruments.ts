@@ -6,6 +6,17 @@ export type Instrument = {
   exampleUseCase: string;
   stopAndThink: string;
   tags: string[];
+
+  // Modal-only / Detailed view
+  longForm?: string;            // deeper narrative
+  inputs?: string[];            // what signals/data it consumes
+  outputs?: string[];           // artifacts it emits
+  guardrails?: string[];        // safety boundaries
+  evidenceRequired?: string[];  // proof-of-work expectations
+  failureModes?: string[];      // known ways it can go wrong
+  provenanceNotes?: string[];   // audit/log lineage notes
+  related?: string[];           // slugs of related instruments
+  links?: { label: string; href: string }[];
 };
 
 export const INSTRUMENTS: Instrument[] = [
@@ -20,6 +31,12 @@ export const INSTRUMENTS: Instrument[] = [
     stopAndThink:
       "Like a flight data recorder for your mind — it doesn’t fly the plane, it helps you understand why turbulence happened.",
     tags: ["Cognitive", "Biometrics", "Local-first"],
+    longForm: "CLOS represents our flagship integration of agentic AI and biometric telemetry. It operates on the principle that many cognitive failures (burnout, executive dysfunction, loop rumination) have physiological and behavioral signatures that can be detected before the user is consciously aware of them.",
+    inputs: ["Apple HealthKit (HRV, Heart Rate, Activity)", "Voice-to-Text (Local Whisper/CoreML)", "Geolocation (Pattern detection)", "Calendar/Task metadata"],
+    outputs: ["Ambient Interventions", "Cognitive Trace Logs", "Longitudinal Trend Reports"],
+    guardrails: ["Zero cloud dependency for biometric data", "User must explicitly confirm intervention triggers", "No autonomy over primary communication channels"],
+    evidenceRequired: ["Longitudinal biometric correlation study", "Privacy audit of on-device enclave"],
+    links: [{ label: "Technical Dossier", href: "#clos" }]
   },
   {
     slug: "lmu",
@@ -32,6 +49,11 @@ export const INSTRUMENTS: Instrument[] = [
     stopAndThink:
       "NVIDIA gave graphics a home. LMU argues language deserves one too.",
     tags: ["Infrastructure", "Local-first"],
+    longForm: "Today's LLM landscape is bifurcated between high-performance cloud GPUs and compromised on-device performance. LMU proposes a third path: specialized, low-power silicon optimized specifically for transformer architecture inference at the edge.",
+    inputs: ["Model Weight Shards", "User Prompt Context", "Hardware Telemetry"],
+    outputs: ["Private Inference Stream", "Energy Efficiency Reports"],
+    guardrails: ["Air-gapped by default", "Hardware-level kill switch for inference loops"],
+    failureModes: ["Context window memory saturation", "Thermal throttling on non-optimized silicon"]
   },
   {
     slug: "synapse",
@@ -43,6 +65,10 @@ export const INSTRUMENTS: Instrument[] = [
     stopAndThink:
       "A nervous system: signals move safely, reflexes fire, but control stays distributed.",
     tags: ["Infrastructure", "Provenance", "Safety"],
+    inputs: ["Tool Definitions", "Model Intents", "Permission Tokens"],
+    outputs: ["Deterministic Actions", "Immutable Audit Logs"],
+    guardrails: ["Strict sandboxing of file systems", "Human-in-the-loop for non-reversible destructive actions"],
+    provenanceNotes: ["Every action is signed with the generating model's CID and timestamp."]
   },
   {
     slug: "rachel",
@@ -55,6 +81,10 @@ export const INSTRUMENTS: Instrument[] = [
     stopAndThink:
       "Air-traffic control, not the pilot.",
     tags: ["Orchestration", "Agents"],
+    longForm: "Named as a nod to recursive orchestration, Rachel focuses on the 'manager of managers' problem in multi-agent systems.",
+    inputs: ["Task Decompositions", "Agent Availability Matrix"],
+    outputs: ["Routed Commands", "Sub-task status updates"],
+    failureModes: ["Orchestration loops", "Ambiguous delegation"]
   },
   {
     slug: "biometriclm",
@@ -66,6 +96,9 @@ export const INSTRUMENTS: Instrument[] = [
     stopAndThink:
       "Weather reports for the body—so the mind can plan.",
     tags: ["Biometrics", "Cognitive"],
+    inputs: ["Raw Sensor Streams", "Chronobiological Cycles"],
+    outputs: ["Physiological State Embeddings"],
+    guardrails: ["No direct command execution from sensor data (Context ONLY)"]
   },
   {
     slug: "insight-explorer",
@@ -77,6 +110,7 @@ export const INSTRUMENTS: Instrument[] = [
     stopAndThink:
       "Not a notebook—more like a fossil record of thought.",
     tags: ["Provenance", "Knowledge"],
+    outputs: ["Markdown Artifacts", "Linked Semantic Graph Nodes"]
   },
   {
     slug: "verdict",
@@ -88,6 +122,7 @@ export const INSTRUMENTS: Instrument[] = [
     stopAndThink:
       "A courtroom for claims—evidence over fluency.",
     tags: ["Safety", "Judgment"],
+    guardrails: ["Explicit threshold requirements for high-impact actions"]
   },
   {
     slug: "volt",
@@ -99,6 +134,8 @@ export const INSTRUMENTS: Instrument[] = [
     stopAndThink:
       "Circuit breakers for thought.",
     tags: ["Cognitive", "Timing"],
+    inputs: ["Current Load Delta", "Prompt Priority Matrix"],
+    outputs: ["Timing Delays", "Urgency Signals"]
   },
   {
     slug: "artifacts",
@@ -110,6 +147,7 @@ export const INSTRUMENTS: Instrument[] = [
     stopAndThink:
       "Receipts for intelligence.",
     tags: ["Provenance", "Audit"],
+    outputs: ["Zipped Source Bundles", "Provenance Manifests"]
   },
   {
     slug: "robotics-spatial",
@@ -121,5 +159,7 @@ export const INSTRUMENTS: Instrument[] = [
     stopAndThink:
       "Teaching by showing, not by manuals.",
     tags: ["Robotics", "Spatial AI"],
+    inputs: ["HMD/Controller Telemetry", "Joint Transform Matrices"],
+    outputs: ["Trained Motion Primitives"]
   },
 ];

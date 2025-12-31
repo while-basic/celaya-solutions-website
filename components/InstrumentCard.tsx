@@ -1,17 +1,20 @@
-
 import React from "react";
 import { Info, Zap, ArrowUpRight } from "lucide-react";
 import type { Instrument } from "../data/instruments";
 
 interface InstrumentCardProps {
   item: Instrument;
+  onClick: (el: HTMLElement) => void;
 }
 
-// Convert to React.FC to handle standard React props like 'key' correctly in the TypeScript environment
-export const InstrumentCard: React.FC<InstrumentCardProps> = ({ item }) => {
+export const InstrumentCard: React.FC<InstrumentCardProps> = ({ item, onClick }) => {
   return (
-    <article className="group glass-card border-white/5 p-8 rounded-sm hover:border-white/20 transition-all flex flex-col h-full relative overflow-hidden">
-      <header className="mb-8">
+    <button
+      type="button"
+      onClick={(e) => onClick(e.currentTarget)}
+      className="group text-left glass-card border-white/5 p-8 rounded-sm hover:border-white/20 transition-all flex flex-col h-full relative overflow-hidden focus:outline-none focus:ring-1 focus:ring-white/20"
+    >
+      <header className="mb-8 w-full">
         <div className="flex justify-between items-start mb-4">
           <div className="flex flex-wrap gap-1.5">
             {item.tags.map(t => (
@@ -30,7 +33,7 @@ export const InstrumentCard: React.FC<InstrumentCardProps> = ({ item }) => {
         )}
       </header>
 
-      <div className="space-y-6 flex-grow">
+      <div className="space-y-6 flex-grow w-full">
         <section>
           <h4 className="text-[9px] font-mono text-zinc-600 uppercase tracking-[0.2em] mb-2 flex items-center space-x-1.5">
             <Info className="w-3 h-3" />
@@ -48,12 +51,12 @@ export const InstrumentCard: React.FC<InstrumentCardProps> = ({ item }) => {
         </section>
       </div>
 
-      <footer className="mt-8 pt-6 border-t border-white/5">
+      <footer className="mt-8 pt-6 border-t border-white/5 w-full">
         <h4 className="text-[9px] font-mono text-white/40 uppercase tracking-[0.3em] mb-2">Stop-and-Think</h4>
         <p className="text-[11px] font-mono text-zinc-600 leading-relaxed group-hover:text-zinc-400 transition-colors">
           "{item.stopAndThink}"
         </p>
       </footer>
-    </article>
+    </button>
   );
 };
