@@ -8,6 +8,7 @@ import Contact from './components/Contact';
 import UserJourney from './components/UserJourney';
 import LabNotes from './components/LabNotes';
 import ChatBot from './components/ChatBot';
+import PrivacyPolicy from './components/PrivacyPolicy';
 import { INSTRUMENTS } from './data/instruments';
 
 // Detail View Components
@@ -65,9 +66,9 @@ const App: React.FC = () => {
   const [view, setView] = useState<'home' | 'clos' | 'lab-notes'>('home');
 
   useEffect(() => {
-    const handleHashChange = () => {
+      const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
-      const validViews = ['home', 'clos', 'lab-notes', 'catalog', 'philosophy', 'contact'];
+      const validViews = ['home', 'clos', 'lab-notes', 'catalog', 'philosophy', 'contact', 'privacy-policy'];
       
       if (validViews.includes(hash) || !hash) {
         if (hash === 'clos') setView('clos');
@@ -120,6 +121,7 @@ const App: React.FC = () => {
             <UserJourney />
             <PrinciplesAccordion />
             <Contact />
+            <PrivacyPolicy />
           </div>
         )}
 
