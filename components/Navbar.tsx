@@ -10,6 +10,7 @@ const Navbar: React.FC = () => {
     { name: 'Philosophy', href: '#philosophy' },
     { name: 'Lab Notes', href: '#lab-notes' },
     { name: 'Systems', href: '#systems' },
+    { name: 'Privacy', href: '#privacy-policy' },
   ];
 
   const handleNavClick = (href: string) => {
