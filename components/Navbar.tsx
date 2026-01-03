@@ -9,19 +9,31 @@ const Navbar: React.FC = () => {
     { name: 'CLOS', href: '#clos' },
     { name: 'Philosophy', href: '#philosophy' },
     { name: 'Lab Notes', href: '#lab-notes' },
-    { name: 'Systems', href: '#systems' },
+    { name: 'Timeline', href: '#timeline' },
+    { name: 'Systems', href: '#catalog' },
   ];
 
-  const handleNavClick = (href: string) => {
-    window.location.hash = href.replace('#', '');
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>, href: string) => {
+    e.preventDefault();
+    const hash = href.replace('#', '');
+    window.location.hash = hash;
     setIsMobileMenuOpen(false);
+    
+    // Fallback: if we're already on that hash, manually trigger scroll
+    if (window.location.hash === `#${hash}`) {
+      const el = document.getElementById(hash);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/5">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <div className="flex items-center space-x-2 cursor-pointer" onClick={() => handleNavClick('home')}>
-          <div className="w-8 h-8 bg-white rounded-sm flex items-center justify-center">
+        <div 
+          className="flex items-center space-x-2 cursor-pointer group" 
+          onClick={(e) => handleNavClick(e as any, '#home')}
+        >
+          <div className="w-8 h-8 bg-white rounded-sm flex items-center justify-center group-hover:bg-zinc-200 transition-colors">
             <span className="text-black font-bold text-xs">CS</span>
           </div>
           <span className="font-mono text-sm tracking-tighter uppercase font-medium">Celaya Solutions</span>
@@ -33,6 +45,7 @@ const Navbar: React.FC = () => {
             <a 
               key={link.name}
               href={link.href} 
+              onClick={(e) => handleNavClick(e, link.href)}
               className="text-xs font-mono uppercase text-zinc-400 hover:text-white transition-colors"
             >
               {link.name}
@@ -40,6 +53,7 @@ const Navbar: React.FC = () => {
           ))}
           <a 
             href="#contact" 
+            onClick={(e) => handleNavClick(e, '#contact')}
             className="px-4 py-2 border border-white/20 text-xs font-mono uppercase hover:bg-white hover:text-black transition-all"
           >
             Connect
@@ -63,7 +77,7 @@ const Navbar: React.FC = () => {
               <a 
                 key={link.name}
                 href={link.href} 
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="text-lg font-mono uppercase text-zinc-400 hover:text-white transition-colors"
               >
                 {link.name}
@@ -71,7 +85,7 @@ const Navbar: React.FC = () => {
             ))}
             <a 
               href="#contact" 
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={(e) => handleNavClick(e, '#contact')}
               className="w-full text-center px-4 py-3 border border-white/20 text-sm font-mono uppercase hover:bg-white hover:text-black transition-all"
             >
               Connect

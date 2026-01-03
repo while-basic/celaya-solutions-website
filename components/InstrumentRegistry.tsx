@@ -1,8 +1,8 @@
 import React, { useMemo, useState, useRef } from "react";
 import { Search } from "lucide-react";
-import type { Instrument } from "../data/instruments";
-import { InstrumentCard } from "./InstrumentCard";
-import { InstrumentModal } from "./InstrumentModal";
+import type { Instrument } from "../data/instruments.ts";
+import { InstrumentCard } from "./InstrumentCard.tsx";
+import { InstrumentModal } from "./InstrumentModal.tsx";
 
 export function InstrumentRegistry({ instruments }: { instruments: Instrument[] }) {
   const [activeTag, setActiveTag] = useState<string>("All");
@@ -44,7 +44,7 @@ export function InstrumentRegistry({ instruments }: { instruments: Instrument[] 
             </p>
           </div>
           
-          <div className="w-full md:w-auto flex flex-col sm:flex-row gap-4">
+          <div className="w-full md:auto flex flex-col sm:flex-row gap-4">
              <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600" />
               <input

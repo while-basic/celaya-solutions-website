@@ -1,6 +1,6 @@
 import React from "react";
 import { Info, Zap, ArrowUpRight } from "lucide-react";
-import type { Instrument } from "../data/instruments";
+import type { Instrument } from "../data/instruments.ts";
 
 interface InstrumentCardProps {
   item: Instrument;

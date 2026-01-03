@@ -4,7 +4,7 @@ import { ArrowRight, Info, BookOpen } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative pt-48 pb-32 overflow-hidden px-6 border-b border-white/5">
+    <section id="home" className="relative pt-48 pb-32 overflow-hidden px-6 border-b border-white/5">
       {/* Background Grid Pattern */}
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px]"></div>
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black via-transparent to-transparent"></div>

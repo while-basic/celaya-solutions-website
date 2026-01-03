@@ -1,7 +1,6 @@
-
 import React, { useEffect, useId, useMemo, useRef } from "react";
 import { X } from "lucide-react";
-import type { Instrument } from "../data/instruments";
+import type { Instrument } from "../data/instruments.ts";
 
 // Helper component for detail sections
 // Defined at the top to ensure availability and using optional children to satisfy strict TSX checks in some environments
@@ -71,7 +70,7 @@ export function InstrumentModal({ open, item, onClose, returnFocusRef }: Props) 
       }
     };
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    return () => window.addEventListener("keydown", onKeyDown);
   }, [open, onClose]);
 
   // Autofocus first focusable on open; return focus on close
