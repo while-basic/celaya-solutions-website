@@ -133,7 +133,8 @@ const Contact: React.FC = () => {
             <p>A Cognitive Systems Lab.</p>
           </div>
           <div className="flex space-x-12">
-            <a href="#privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#privacy" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-white transition-colors">Lab Protocol</a>
             <a href="#" className="hover:text-white transition-colors">System Status</a>
             <p className="text-zinc-500">El Paso, TX</p>
           </div>

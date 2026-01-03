@@ -1,6 +1,6 @@
 
 import React, { useState, useMemo } from 'react';
-import { Microscope, Activity, Cpu, Shield, Brain, ArrowUpRight, Search, Terminal, Zap } from 'lucide-react';
+import { Microscope, Activity, Cpu, Shield, Brain, ArrowUpRight, Search, Terminal, Zap, Info } from 'lucide-react';
 
 interface Note {
   id: string;
@@ -10,6 +10,7 @@ interface Note {
   finding: string;
   impact: 'low' | 'medium' | 'high';
   tags: string[];
+  status: string;
 }
 
 const LabNotes: React.FC = () => {
@@ -18,40 +19,44 @@ const LabNotes: React.FC = () => {
 
   const notes: Note[] = [
     {
+      id: "FIND-001",
+      date: "2024.12.02",
+      category: "Cognitive",
+      title: "Voice Journaling & Decision Fatigue",
+      finding: "Observed 22% reduction in cognitive load (mean daily rating: 6.8 → 5.3). HRV features used as exploratory proxy only (not primary outcome). N=1 longitudinal comparison.",
+      impact: "high",
+      tags: ["Cognitive Load", "Voice Journal", "N=1"],
+      status: "Exploratory, not pre-registered"
+    },
+    {
+      id: "FIND-002",
+      date: "2024.11.15",
+      category: "Cognitive",
+      title: "Local-First Insight Generation",
+      finding: "Hypothesis-generating only: 3x increase in unsolicited insights (aha moments) noted when transitioning from cloud tools to local-first stack.",
+      impact: "high",
+      tags: ["Local-First", "Insights", "Inference"],
+      status: "Exploratory, not pre-registered"
+    },
+    {
+      id: "FIND-003",
+      date: "2024.10.20",
+      category: "Inference",
+      title: "Provenance UI Verification",
+      finding: "68% of decisions included trace check when UI available (574/847 sessions). Status: Preliminary (estimated completion Feb 2026).",
+      impact: "medium",
+      tags: ["Provenance", "UI", "Verification"],
+      status: "Observational Study"
+    },
+    {
       id: "OBS-045",
       date: "2024.12.02",
       category: "Industrial",
       title: "PLC Logic vs. Neural Net Latency",
       finding: "Synchronizing deterministic PLC cycle times with stochastic LLM inference requires a 50ms buffer to prevent actuator jitter.",
       impact: "high",
-      tags: ["Industrial", "Latency", "PLC"]
-    },
-    {
-      id: "OBS-042",
-      date: "2024.11.12",
-      category: "Cognitive",
-      title: "HRV vs. Context Switching",
-      finding: "Sustained high-frequency heart rate variability correlates with a 40% reduction in executive drift during deep-work sprints.",
-      impact: "high",
-      tags: ["HealthKit", "Attention", "CLOS"]
-    },
-    {
-      id: "OBS-039",
-      date: "2024.10.28",
-      category: "Inference",
-      title: "Local Llama 3.2 Performance",
-      finding: "Quantized 8-bit weights on M3 Max achieve sub-20ms first-token latency in air-gapped environments.",
-      impact: "high",
-      tags: ["Apple Silicon", "Llama", "Edge AI"]
-    },
-    {
-      id: "OBS-035",
-      date: "2024.10.15",
-      category: "Privacy",
-      title: "Differential Privacy Decay",
-      finding: "Observed semantic loss in knowledge graph retrieval when noise injections exceed 0.15 epsilon thresholds.",
-      impact: "medium",
-      tags: ["Encryption", "RAG", "Privacy"]
+      tags: ["Industrial", "Latency", "PLC"],
+      status: "Validated"
     }
   ];
 
@@ -82,10 +87,10 @@ const LabNotes: React.FC = () => {
     <div id="lab-notes-container" className="pt-32 pb-20 px-6 max-w-7xl mx-auto min-h-screen">
       {/* Header */}
       <div className="mb-16 border-l border-white/10 pl-8">
-        <span className="text-xs font-mono text-white/40 uppercase tracking-[0.3em] block mb-4">Internal Repository</span>
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-4">Lab Notes</h1>
+        <span className="text-xs font-mono text-white/40 uppercase tracking-[0.3em] block mb-4">Internal Findings Repository</span>
+        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-4">Early Findings</h1>
         <p className="text-xl text-zinc-400 font-light max-w-3xl">
-          A persistent log of raw observations, technical benchmarks, and cross-domain findings emerging from our research labs.
+          A persistent log of raw observations, technical benchmarks, and exploratory results emerging from our research.
         </p>
       </div>
 
@@ -119,7 +124,7 @@ const LabNotes: React.FC = () => {
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
         {filteredNotes.map((note) => (
           <div key={note.id} className="group glass-card border-white/5 p-8 rounded-sm hover:border-white/20 transition-all flex flex-col justify-between relative overflow-hidden h-full">
             <div>
@@ -137,12 +142,20 @@ const LabNotes: React.FC = () => {
               <p className="text-sm text-zinc-500 leading-relaxed group-hover:text-zinc-400 transition-colors mb-6">
                 {note.finding}
               </p>
+              
+              <div className="p-4 bg-zinc-950/50 rounded-sm mb-6 border border-white/5">
+                <div className="flex items-center space-x-2 text-[9px] font-mono text-zinc-600 uppercase tracking-widest mb-1">
+                  <Info className="w-3 h-3" />
+                  <span>Research Status</span>
+                </div>
+                <p className="text-[10px] font-mono text-zinc-400">{note.status}</p>
+              </div>
             </div>
 
             <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
               <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-600 font-bold">{note.id}</span>
               <div className="flex items-center space-x-2">
-                <span className="text-[9px] font-mono text-zinc-800 uppercase font-bold">Signal:</span>
+                <span className="text-[9px] font-mono text-zinc-800 uppercase font-bold">Impact:</span>
                 <div className="flex space-x-0.5">
                   {[1, 2, 3].map(i => (
                     <div 
@@ -157,12 +170,15 @@ const LabNotes: React.FC = () => {
                 </div>
               </div>
             </div>
-            
-            <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
-              <ArrowUpRight className="w-4 h-4 text-zinc-600" />
-            </div>
           </div>
         ))}
+      </div>
+
+      <div className="mt-20 p-8 glass-card border-dashed border-white/10 rounded-sm text-center">
+        <h4 className="text-xs font-mono uppercase text-zinc-500 tracking-[0.3em] mb-4">Negative Results Disclosure</h4>
+        <p className="text-sm text-zinc-600 max-w-2xl mx-auto italic">
+          We document failed approaches with the same rigor as successes. Abandoned: Real-time HRV-based flow alerts (found distracting, reduced flow) and Fully automated decision logging (missed 40% of implicit choices).
+        </p>
       </div>
     </div>
   );

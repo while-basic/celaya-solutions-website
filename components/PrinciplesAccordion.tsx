@@ -1,5 +1,6 @@
+
 import React, { useState } from 'react';
-import { ChevronDown, CheckCircle2, XCircle, Info, Shield, Clock, Zap } from 'lucide-react';
+import { ChevronDown, CheckCircle2, XCircle, Info, Shield, Clock, Zap, ShieldAlert } from 'lucide-react';
 
 const PrinciplesAccordion: React.FC = () => {
   const [openSection, setOpenSection] = useState<'principles' | 'boundaries' | 'evidence' | null>(null);
@@ -75,8 +76,8 @@ const PrinciplesAccordion: React.FC = () => {
                     </h4>
                     <ul className="space-y-3 text-xs text-zinc-400 font-mono">
                       <li>— Local-first by default</li>
-                      <li>— Preserve human judgment</li>
-                      <li>— Auditable trail</li>
+                      <li>— Explicit & Logged Decision Points</li>
+                      <li>— Irreversible Action Gating (Fix #4)</li>
                       <li>— Cognition-safe mechanics</li>
                     </ul>
                   </div>
@@ -86,9 +87,9 @@ const PrinciplesAccordion: React.FC = () => {
                       <span>Must Not Have</span>
                     </h4>
                     <ul className="space-y-3 text-xs text-zinc-400 font-mono">
-                      <li>— Generic SaaS framing</li>
+                      <li>— Automated Irreversible Actions</li>
                       <li>— Silent data uploads</li>
-                      <li>— Surprise cloud dependencies</li>
+                      <li>— Decision point removal (Fix #5)</li>
                       <li>— Replacement narratives</li>
                     </ul>
                   </div>
@@ -98,16 +99,16 @@ const PrinciplesAccordion: React.FC = () => {
                       <span>Safety Boundary</span>
                     </h4>
                     <ul className="space-y-3 text-xs text-zinc-400 font-mono">
-                      <li>— No deception/harassment</li>
-                      <li>— No surveillance-by-default</li>
                       <li>— No high-stakes autonomy</li>
+                      <li>— No surveillance-by-default</li>
+                      <li>— Local Enclave Key Management</li>
                     </ul>
                   </div>
               </div>
             </div>
           </div>
 
-          {/* Evidence Section (Always visible header-like if desired, but here as toggle) */}
+          {/* Evidence Section */}
           <div className="border border-white/5 bg-black rounded-sm overflow-hidden transition-all">
             <button 
               onClick={() => toggle('evidence')}
@@ -123,16 +124,16 @@ const PrinciplesAccordion: React.FC = () => {
               <div className="p-8 grid md:grid-cols-2 gap-8 items-center">
                 <div className="space-y-6">
                    <p className="text-sm text-zinc-500 italic leading-relaxed">
-                     "We don't pitch; we ship. Collaboration in this lab is gated by the quality of the delta, not the volume of the hype."
+                     "We don't pitch; we ship. Every hypothesis requires a runnable artifact and a provenance trace."
                    </p>
                    <div className="grid grid-cols-2 gap-4">
                       <div className="p-4 border border-white/5 bg-white/[0.01] rounded-sm">
                         <span className="text-[10px] font-mono text-zinc-600 block mb-2 uppercase tracking-widest">Primary Metric</span>
-                        <span className="text-lg font-bold text-white">Runnable Artifacts</span>
+                        <span className="text-lg font-bold text-white">Runnable Proofs</span>
                       </div>
                       <div className="p-4 border border-white/5 bg-white/[0.01] rounded-sm">
                         <span className="text-[10px] font-mono text-zinc-600 block mb-2 uppercase tracking-widest">Secondary Metric</span>
-                        <span className="text-lg font-bold text-white">Provenance Logs</span>
+                        <span className="text-lg font-bold text-white">Signed Trace Logs</span>
                       </div>
                    </div>
                 </div>
@@ -140,16 +141,16 @@ const PrinciplesAccordion: React.FC = () => {
                   <h4 className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest mb-4">Verification Checkpoints</h4>
                    <ul className="space-y-3 text-xs text-zinc-400 font-mono">
                     <li className="flex items-center space-x-2">
-                      <Info className="w-3 h-3 text-zinc-700" />
-                      <span>Reproducible Proofs of Concept</span>
+                      <ShieldAlert className="w-3 h-3 text-zinc-700" />
+                      <span>Manual Frame-by-Frame Behavioral Coding</span>
                     </li>
                     <li className="flex items-center space-x-2">
                       <Clock className="w-3 h-3 text-zinc-700" />
-                      <span>Long-term Sustainability Analysis</span>
+                      <span>Longitudinal HRV features (Exploratory)</span>
                     </li>
                     <li className="flex items-center space-x-2">
                       <Zap className="w-3 h-3 text-zinc-700" />
-                      <span>Failure mode Fallback scenarios</span>
+                      <span>Failure mode Disclosure (Failures Logged)</span>
                     </li>
                   </ul>
                 </div>

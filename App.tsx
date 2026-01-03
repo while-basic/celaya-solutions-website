@@ -63,19 +63,20 @@ const ClosPage = () => (
 );
 
 const App: React.FC = () => {
-  const [view, setView] = useState<'home' | 'clos' | 'lab-notes'>('home');
+  const [view, setView] = useState<'home' | 'clos' | 'lab-notes' | 'privacy'>('home');
 
   useEffect(() => {
-      const handleHashChange = () => {
+    const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
-      const validViews = ['home', 'clos', 'lab-notes', 'catalog', 'philosophy', 'contact', 'privacy-policy'];
+      const validViews = ['home', 'clos', 'lab-notes', 'catalog', 'philosophy', 'contact', 'privacy'];
       
       if (validViews.includes(hash) || !hash) {
         if (hash === 'clos') setView('clos');
         else if (hash === 'lab-notes') setView('lab-notes');
+        else if (hash === 'privacy') setView('privacy');
         else setView('home');
 
-        if (hash && hash !== 'home') {
+        if (hash && hash !== 'home' && hash !== 'clos' && hash !== 'lab-notes' && hash !== 'privacy') {
           const element = document.getElementById(hash);
           if (element) element.scrollIntoView({ behavior: 'smooth' });
           else window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -121,12 +122,12 @@ const App: React.FC = () => {
             <UserJourney />
             <PrinciplesAccordion />
             <Contact />
-            <PrivacyPolicy />
           </div>
         )}
 
         {view === 'clos' && <ClosPage />}
         {view === 'lab-notes' && <LabNotes />}
+        {view === 'privacy' && <PrivacyPolicy />}
         
         {view !== 'home' && (
           <div className="max-w-7xl mx-auto px-6 pb-20 border-t border-white/5 pt-10">

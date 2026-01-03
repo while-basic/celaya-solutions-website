@@ -1,3 +1,4 @@
+
 export type Instrument = {
   slug: string;
   title: string;
@@ -25,16 +26,26 @@ export const INSTRUMENTS: Instrument[] = [
     title: "CLOS",
     subtitle: "Cognitive Life Operating System",
     whatItIs:
-      "A local-first cognitive observer that fuses voice, self-reports, biometrics, location, audio analysis, and context to detect patterns, flag risk, and trigger small, evidence-based interventions.",
+      "A local-first cognitive observer that fuses voice, self-reports, biometrics, location, and context to detect patterns and trigger evidence-based interventions.",
     exampleUseCase:
-      "CLOS notices elevated heart rate + fragmented speech + late-night hours and suggests a pause or reframing before cognitive overload happens.",
+      "CLOS identifies patterns in self-reported cognitive load and behavioral markers, suggesting a pause or reframing before executive fatigue sets in.",
     stopAndThink:
-      "Like a flight data recorder for your mind — it doesn’t fly the plane, it helps you understand why turbulence happened.",
+      "Like a flight data recorder for your mind — it doesn’t fly the plane, it helps you understand the conditions of flight.",
     tags: ["Cognitive", "Biometrics", "Local-first"],
-    longForm: "CLOS represents our flagship integration of agentic AI and biometric telemetry. It operates on the principle that many cognitive failures (burnout, executive dysfunction, loop rumination) have physiological and behavioral signatures that can be detected before the user is consciously aware of them.",
-    inputs: ["Apple HealthKit (HRV, Heart Rate, Activity)", "Voice-to-Text (Local Whisper/CoreML)", "Geolocation (Pattern detection)", "Calendar/Task metadata"],
+    longForm: "CLOS represents our flagship integration of agentic AI and biometric telemetry. It functions as a metacognitive mirror, observing patterns to reduce executive load while strictly preserving user agency.",
+    inputs: [
+      "Daily self-assessment (0-10 scale)",
+      "HRV-derived features (Exploratory Physiological Proxy)",
+      "Voice-to-Text (Local Whisper/CoreML)",
+      "Behavioral logs (App usage, decision points)"
+    ],
     outputs: ["Ambient Interventions", "Cognitive Trace Logs", "Longitudinal Trend Reports"],
-    guardrails: ["Zero cloud dependency for biometric data", "User must explicitly confirm intervention triggers", "No autonomy over primary communication channels"],
+    guardrails: [
+      "System cannot execute irreversible actions without user-confirm step",
+      "HRV used as exploratory proxy only (not primary outcome)",
+      "Zero cloud dependency for raw biometric data",
+      "No autonomy over primary communication channels"
+    ],
     evidenceRequired: ["Longitudinal biometric correlation study", "Privacy audit of on-device enclave"],
     links: [{ label: "Technical Dossier", href: "#clos" }]
   },
@@ -43,13 +54,13 @@ export const INSTRUMENTS: Instrument[] = [
     title: "LMU",
     subtitle: "Language Model Unit",
     whatItIs:
-      "A research direction spanning (1) software utility for private on-device inference today, and (2) a proposed Language Model Unit: dedicated silicon for private, always-on, consumer-grade LLM inference.",
+      "A research direction spanning (1) software utility for private on-device inference today, and (2) a proposed dedicated silicon for private LLM inference.",
     exampleUseCase:
-      "Run a local assistant at interactive speeds without hijacking GPU/CPU or sending data to the cloud; benchmark bottlenecks to inform LMU requirements.",
+      "Run a local assistant at interactive speeds without hijacking GPU/CPU or sending data to the cloud.",
     stopAndThink:
       "NVIDIA gave graphics a home. LMU argues language deserves one too.",
     tags: ["Infrastructure", "Local-first"],
-    longForm: "Today's LLM landscape is bifurcated between high-performance cloud GPUs and compromised on-device performance. LMU proposes a third path: specialized, low-power silicon optimized specifically for transformer architecture inference at the edge.",
+    longForm: "Today's LLM landscape is bifurcated between cloud performance and on-device compromise. LMU proposes specialized, low-power silicon optimized for edge transformer architecture.",
     inputs: ["Model Weight Shards", "User Prompt Context", "Hardware Telemetry"],
     outputs: ["Private Inference Stream", "Energy Efficiency Reports"],
     guardrails: ["Air-gapped by default", "Hardware-level kill switch for inference loops"],
@@ -59,9 +70,9 @@ export const INSTRUMENTS: Instrument[] = [
     slug: "synapse",
     title: "Synapse",
     whatItIs:
-      "A deterministic execution layer that routes cognition between humans, models, and tools while enforcing hard boundaries, provenance, and auditability.",
+      "A deterministic execution layer that routes cognition between humans, models, and tools while enforcing hard boundaries and auditability.",
     exampleUseCase:
-      "A model requests a filesystem action → Synapse validates intent → executes or denies → records the outcome as semantic truth (including denial).",
+      "A model requests a filesystem action → Synapse validates intent → executes or denies → records the outcome as semantic truth.",
     stopAndThink:
       "A nervous system: signals move safely, reflexes fire, but control stays distributed.",
     tags: ["Infrastructure", "Provenance", "Safety"],
@@ -92,7 +103,7 @@ export const INSTRUMENTS: Instrument[] = [
     whatItIs:
       "A research model exploring how physiological signals (heart rate, motion, time-of-day) become context, not commands.",
     exampleUseCase:
-      "Detect which physiological states correlate with insight or overload and adapt responses/interventions accordingly.",
+      "Detect which physiological states correlate with insight or overload and adapt responses accordingly.",
     stopAndThink:
       "Weather reports for the body—so the mind can plan.",
     tags: ["Biometrics", "Cognitive"],
