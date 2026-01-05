@@ -10,11 +10,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+      :root {
+        font-size: 16px;
+      }
       body {
         font-family: 'Inter', sans-serif;
         background-color: #000;
         color: #fff;
         scroll-behavior: smooth;
+        font-size: clamp(16px, 1vw + 15px, 18px);
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
       }
       .font-mono {
         font-family: 'JetBrains Mono', monospace;
@@ -41,6 +48,17 @@
         -ms-overflow-style: none;  /* IE and Edge */
         scrollbar-width: none;  /* Firefox */
       }
+      /* Normalize micro text to more readable sizes */
+      .text-\[8px\],
+      .text-\[9px\] {
+        font-size: 0.8rem !important; /* ~13px */
+      }
+      .text-\[10px\] {
+        font-size: 0.9rem !important; /* ~14.4px */
+      }
+      .text-\[11px\] {
+        font-size: 1rem !important; /* 16px */
+      }
     </style>
   <script type="importmap">
 {
@@ -54,8 +72,9 @@
   }
 }
 </script>
-</head>
+  </head>
   <body class="bg-black text-white selection:bg-white selection:text-black">
     <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>
