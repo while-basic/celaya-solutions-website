@@ -10,7 +10,8 @@ const Navbar: React.FC = () => {
     { name: 'Philosophy', href: '#philosophy' },
     { name: 'Lab Notes', href: '#lab-notes' },
     { name: 'Timeline', href: '#timeline' },
-    { name: 'Systems', href: '#catalog' },
+    { name: 'Instruments', href: '#catalog' },
+    { name: 'GPTS', href: '#gpts' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>, href: string) => {

@@ -73,7 +73,7 @@ const App: React.FC = () => {
     const handleHashChange = () => {
       setCurrentHash(window.location.hash || '#home');
       // Scroll to top when hash changes to a "page" state
-      if (['#clos', '#privacy', '#lab-notes', '#catalog', '#timeline', '#philosophy'].includes(window.location.hash)) {
+      if (['#clos', '#privacy', '#lab-notes', '#catalog', '#timeline', '#philosophy', '#gpts'].includes(window.location.hash)) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     };
@@ -94,6 +94,8 @@ const App: React.FC = () => {
         return <Timeline />;
       case '#catalog':
         return <InstrumentRegistry instruments={INSTRUMENTS} />;
+      case '#gpts':
+        return <GptRegistry />;
       case '#philosophy':
         return (
           <>
@@ -138,5 +140,4 @@ const App: React.FC = () => {
   );
 };
 
-// Fixed: Added default export to resolve index.tsx compilation error
 export default App;
