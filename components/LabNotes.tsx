@@ -1,172 +1,245 @@
 
 import React, { useState, useMemo } from 'react';
-import { Microscope, Activity, Cpu, Shield, Brain, ArrowUpRight, Search, Terminal, Zap, Info } from 'lucide-react';
+import { Microscope, Activity, Cpu, Shield, Brain, Terminal, Zap, Info, FileText, AlertOctagon, History, Anchor } from 'lucide-react';
 
-interface Note {
+type EntryType = 'Observation' | 'Constraint Added' | 'Instrument Introduced' | 'Revision' | 'Failure / Boundary';
+
+interface LabNote {
   id: string;
   date: string;
+  type: EntryType;
   category: 'Cognitive' | 'Industrial' | 'Inference' | 'Privacy' | 'Biometrics' | 'Hardware';
   title: string;
-  finding: string;
-  impact: 'low' | 'medium' | 'high';
-  tags: string[];
-  status: string;
+  evidence: string; // The raw observation
+  significance: string; // Why it matters for inspection/audit
+  hypothesis?: string; // Working theory/speculation (Thinking)
+  artifacts?: string[];
+  instruments?: string[]; // Primary instrument(s) involved
+  timelineLinked?: boolean;
 }
 
 const LabNotes: React.FC = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [activeCategory, setActiveCategory] = useState<string>('All');
+  const [activeType, setActiveType] = useState<EntryType | 'All'>('All');
 
-  const notes: Note[] = [
+  const notes: LabNote[] = [
     {
-      id: "FIND-001",
-      date: "2024.12.02",
-      category: "Cognitive",
-      title: "Voice Journaling & Decision Fatigue",
-      finding: "Observed 22% reduction in cognitive load (mean daily rating: 6.8 → 5.3). HRV features used as exploratory proxy only (not primary outcome). N=1 longitudinal comparison.",
-      impact: "high",
-      tags: ["Cognitive Load", "Voice Journal", "N=1"],
-      status: "Exploratory, not pre-registered"
+      id: "LOG-2025.01.05-01",
+      date: "2025.01.05",
+      type: "Constraint Added",
+      category: "Hardware",
+      title: "ISO-Standard Audit Logging Protocol",
+      evidence: "Defined mandatory logging schema for all prompt-instrument interactions. System now enforces immutable trace recording at the gRPC layer.",
+      significance: "Establishes the minimum evidence required for independent verification and reproducibility of system behaviors.",
+      hypothesis: "Standardized logging will likely reveal hidden state transitions between modular agents that were previously opaque.",
+      instruments: ["Synapse", "Artifacts"],
+      timelineLinked: true,
+      artifacts: ["ISO-23894-L1"]
     },
     {
-      id: "FIND-002",
-      date: "2024.11.15",
+      id: "LOG-2024.12.15-01",
+      date: "2024.12.15",
+      type: "Observation",
       category: "Cognitive",
-      title: "Local-First Insight Generation",
-      finding: "Hypothesis-generating only: 3x increase in unsolicited insights (aha moments) noted when transitioning from cloud tools to local-first stack.",
-      impact: "high",
-      tags: ["Local-First", "Insights", "Inference"],
-      status: "Exploratory, not pre-registered"
+      title: "Voice Fragment Capture Latency",
+      evidence: "A 22% delta in reported cognitive load was recorded during N=1 trials. HRV-derived features were logged as exploratory proxies; no correlation was claimed.",
+      significance: "Indicates that the presence of a 'reflection gap'—even if brief—was recorded alongside lower subjective fatigue scores.",
+      hypothesis: "The act of verbalization itself may be the load-reducer, independent of the AI's subsequent processing.",
+      instruments: ["CLOS", "Volt"],
+      timelineLinked: true
     },
     {
-      id: "FIND-003",
-      date: "2024.10.20",
+      id: "LOG-2024.11.30-02",
+      date: "2024.11.30",
+      type: "Failure / Boundary",
       category: "Inference",
-      title: "Provenance UI Verification",
-      finding: "68% of decisions included trace check when UI available (574/847 sessions). Status: Preliminary (estimated completion Feb 2026).",
-      impact: "medium",
-      tags: ["Provenance", "UI", "Verification"],
-      status: "Observational Study"
+      title: "Real-time HRV Flow Alerts",
+      evidence: "Alerting mechanism was found to interrupt deep work cycles. User interaction logs showed a decrease in sustained focus markers following notification triggers.",
+      significance: "Determined that proactive interruption for 'flow protection' is counter-productive; state change must be passive and user-queried.",
+      hypothesis: "Internal states are too fragile for external feedback loops; the 'Mirror' must remain silent until invoked.",
+      instruments: ["Volt", "CLOS"],
+      timelineLinked: false
     },
     {
-      id: "OBS-045",
-      date: "2024.12.02",
-      category: "Industrial",
-      title: "PLC Logic vs. Neural Net Latency",
-      finding: "Synchronizing deterministic PLC cycle times with stochastic LLM inference requires a 50ms buffer to prevent actuator jitter.",
-      impact: "high",
-      tags: ["Industrial", "Latency", "PLC"],
-      status: "Validated"
+      id: "LOG-2024.11.12-01",
+      date: "2024.11.12",
+      type: "Revision",
+      category: "Privacy",
+      title: "Enclave Key Rotation logic",
+      evidence: "Transitioned from session-based keys to hardware-bound secure enclave identities for local RAG storage.",
+      significance: "Removes dependencies on software-level key management, ensuring privacy is anchored in physical silicon.",
+      hypothesis: "This migration should reduce the attack surface for local-first context snapshots.",
+      instruments: ["LMU", "Synapse"],
+      timelineLinked: true,
+      artifacts: ["PRIV-v1.2"]
+    },
+    {
+      id: "LOG-2024.10.05-03",
+      date: "2024.10.05",
+      type: "Instrument Introduced",
+      category: "Hardware",
+      title: "LMU (Language Module Unit)",
+      evidence: "The LMU was introduced to partition compute resources for edge-based inference. First execution traces were successfully captured.",
+      significance: "Allows for the isolation of cognitive telemetry from general-purpose OS processes.",
+      instruments: ["LMU"],
+      timelineLinked: true
     }
   ];
 
-  const categories = ['All', ...Array.from(new Set(notes.map(n => n.category)))];
+  const types: (EntryType | 'All')[] = ['All', 'Observation', 'Constraint Added', 'Instrument Introduced', 'Revision', 'Failure / Boundary'];
 
   const filteredNotes = useMemo(() => {
-    return notes.filter(note => {
-      const matchesSearch = note.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                           note.finding.toLowerCase().includes(searchQuery.toLowerCase());
-      const matchesCategory = activeCategory === 'All' || note.category === activeCategory;
-      return matchesSearch && matchesCategory;
-    });
-  }, [searchQuery, activeCategory]);
+    return notes.filter(n => activeType === 'All' || n.type === activeType);
+  }, [activeType]);
 
-  const getIcon = (category: string) => {
-    switch (category) {
-      case 'Cognitive': return <Brain className="w-4 h-4" />;
-      case 'Industrial': return <Zap className="w-4 h-4" />;
-      case 'Inference': return <Cpu className="w-4 h-4" />;
-      case 'Privacy': return <Shield className="w-4 h-4" />;
-      case 'Biometrics': return <Activity className="w-4 h-4" />;
-      case 'Hardware': return <Microscope className="w-4 h-4" />;
-      default: return <Terminal className="w-4 h-4" />;
+  const getTypeStyles = (type: EntryType) => {
+    switch (type) {
+      case 'Observation': return 'border-zinc-500/20 text-zinc-400 bg-zinc-500/5';
+      case 'Constraint Added': return 'border-blue-500/20 text-blue-500/80 bg-blue-500/5';
+      case 'Instrument Introduced': return 'border-emerald-500/20 text-emerald-500/80 bg-emerald-500/5';
+      case 'Revision': return 'border-amber-500/20 text-amber-500/80 bg-amber-500/5';
+      case 'Failure / Boundary': return 'border-red-500/20 text-red-500/80 bg-red-500/5';
     }
   };
 
   return (
     <div id="lab-notes-container" className="pt-32 pb-20 px-6 max-w-7xl mx-auto min-h-screen">
+      {/* Framing Block */}
+      <div className="mb-20 p-8 border border-white/10 bg-zinc-950/50 rounded-sm">
+        <div className="flex items-center space-x-3 mb-6">
+          <Terminal className="w-5 h-5 text-white/40" />
+          <h2 className="text-xs font-mono uppercase tracking-[0.3em] text-white/60">Research Log Framing</h2>
+        </div>
+        <div className="grid md:grid-cols-3 gap-12">
+          <div className="space-y-2">
+            <h4 className="text-[10px] font-mono uppercase text-zinc-500 tracking-widest">Purpose</h4>
+            <p className="text-xs text-zinc-400 leading-relaxed">Lab Notes serve as a raw research log, not marketing commentary. They record empirical observations as they occur.</p>
+          </div>
+          <div className="space-y-2">
+            <h4 className="text-[10px] font-mono uppercase text-zinc-500 tracking-widest">Rule</h4>
+            <p className="text-xs text-zinc-400 leading-relaxed">Entries must declare a standardized type and separate verifiable evidence from working hypotheses.</p>
+          </div>
+          <div className="space-y-2">
+            <h4 className="text-[10px] font-mono uppercase text-zinc-500 tracking-widest">Scope</h4>
+            <p className="text-xs text-zinc-400 leading-relaxed">Notes may be partial, unresolved, or superseded by later revisions. Transparency is prioritized over narrative.</p>
+          </div>
+        </div>
+      </div>
+
       {/* Header */}
       <div className="mb-16 border-l border-white/10 pl-8">
-        <span className="text-xs font-mono text-white/40 uppercase tracking-[0.3em] block mb-4">Internal Findings Repository</span>
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-4">Early Findings</h1>
-        <p className="text-xl text-zinc-400 font-light max-w-3xl">
-          A persistent log of raw observations, technical benchmarks, and exploratory results emerging from our research.
+        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-4">Lab Notes</h1>
+        <p className="text-xl text-zinc-500 font-light max-w-3xl italic">
+          Evidence-grade AI discovery and systems architecture log.
         </p>
       </div>
 
       {/* Controls */}
-      <div className="flex flex-col md:flex-row gap-6 mb-12 items-start md:items-center justify-between">
-        <div className="flex flex-wrap gap-2">
-          {categories.map(cat => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-1.5 text-[10px] font-mono uppercase tracking-widest border transition-all rounded-sm
-                ${activeCategory === cat 
-                  ? 'bg-white text-black border-white' 
-                  : 'bg-transparent text-zinc-500 border-white/10 hover:border-white/30'}`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-        
-        <div className="relative w-full md:w-64">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600" />
-          <input
-            type="text"
-            placeholder="Search observations..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-zinc-950 border border-white/10 rounded-sm py-2 pl-10 pr-4 text-xs font-mono text-zinc-300 focus:outline-none focus:border-white/30 transition-all"
-          />
-        </div>
+      <div className="flex flex-wrap gap-2 mb-12">
+        {types.map(t => (
+          <button
+            key={t}
+            onClick={() => setActiveType(t)}
+            className={`px-4 py-1.5 text-[10px] font-mono uppercase tracking-widest border transition-all rounded-sm
+              ${activeType === t 
+                ? 'bg-white text-black border-white' 
+                : 'bg-transparent text-zinc-500 border-white/10 hover:border-white/30'}`}
+          >
+            {t}
+          </button>
+        ))}
       </div>
 
-      {/* Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+      {/* Log List */}
+      <div className="space-y-8">
         {filteredNotes.map((note) => (
-          <div key={note.id} className="group glass-card border-white/5 p-8 rounded-sm hover:border-white/20 transition-all flex flex-col justify-between relative overflow-hidden h-full">
-            <div>
-              <div className="flex items-center justify-between mb-8">
-                <div className="flex items-center space-x-3 text-zinc-500">
-                  <div className="p-2 bg-zinc-900 rounded-sm border border-white/5">
-                    {getIcon(note.category)}
-                  </div>
-                  <span className="text-[10px] font-mono uppercase tracking-widest">{note.category}</span>
+          <div key={note.id} className="group grid md:grid-cols-12 gap-8 p-8 border border-white/5 hover:border-white/10 bg-zinc-950/20 transition-all rounded-sm">
+            {/* Metadata Sidebar */}
+            <div className="md:col-span-3 space-y-4">
+              <div className="flex flex-col space-y-2">
+                <span className="text-[10px] font-mono text-zinc-600 tracking-widest">{note.date}</span>
+                <div className={`px-2 py-1 text-[9px] font-mono uppercase tracking-widest border rounded-sm inline-block w-fit ${getTypeStyles(note.type)}`}>
+                  {note.type}
                 </div>
-                <div className="text-[10px] font-mono text-zinc-700">{note.date}</div>
               </div>
-
-              <h3 className="text-xl font-bold mb-4 tracking-tight group-hover:text-white transition-colors">{note.title}</h3>
-              <p className="text-sm text-zinc-500 leading-relaxed group-hover:text-zinc-400 transition-colors mb-6">
-                {note.finding}
-              </p>
               
-              <div className="p-4 bg-zinc-950/50 rounded-sm mb-6 border border-white/5">
-                <div className="flex items-center space-x-2 text-[9px] font-mono text-zinc-600 uppercase tracking-widest mb-1">
-                  <Info className="w-3 h-3" />
-                  <span>Research Status</span>
+              <div className="pt-4 border-t border-white/5 space-y-3">
+                <div>
+                  <span className="text-[9px] font-mono text-zinc-800 uppercase tracking-widest block mb-1">Entry ID</span>
+                  <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-tighter">{note.id}</span>
                 </div>
-                <p className="text-[10px] font-mono text-zinc-400">{note.status}</p>
+
+                {note.instruments && (
+                  <div>
+                    <span className="text-[9px] font-mono text-zinc-800 uppercase tracking-widest block mb-1">Instruments</span>
+                    <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-tighter">
+                      {note.instruments.join(", ")}
+                    </span>
+                  </div>
+                )}
+
+                {note.timelineLinked && (
+                  <div className="flex items-center space-x-2 text-blue-500/40 group-hover:text-blue-500/70 transition-colors">
+                    <Anchor className="w-3 h-3" />
+                    <span className="text-[9px] font-mono uppercase tracking-widest">Timeline Anchor</span>
+                  </div>
+                )}
               </div>
             </div>
 
-            <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-600 font-bold">{note.id}</span>
-              <div className="flex items-center space-x-2">
-                <span className="text-[9px] font-mono text-zinc-800 uppercase font-bold">Impact:</span>
-                <div className="flex space-x-0.5">
-                  {[1, 2, 3].map(i => (
-                    <div 
-                      key={i} 
-                      className={`w-1 h-3 rounded-full ${
-                        note.impact === 'high' ? 'bg-emerald-500' : 
-                        note.impact === 'medium' && i < 3 ? 'bg-blue-500' : 
-                        note.impact === 'low' && i < 2 ? 'bg-zinc-600' : 'bg-zinc-900'
-                      }`}
-                    ></div>
-                  ))}
+            {/* Content Area */}
+            <div className="md:col-span-9 space-y-8">
+              <header>
+                <h3 className="text-2xl font-bold tracking-tight mb-2">{note.title}</h3>
+                <div className="flex items-center space-x-2 text-zinc-600">
+                  <span className="text-[10px] font-mono uppercase tracking-widest">{note.category} Node</span>
+                </div>
+              </header>
+
+              <div className="grid lg:grid-cols-2 gap-12">
+                {/* Evidence Section */}
+                <div className="space-y-4">
+                  <h4 className="flex items-center space-x-2 text-zinc-400 text-[10px] font-mono uppercase tracking-widest">
+                    <Microscope className="w-3 h-3" />
+                    <span>Observation (Evidence)</span>
+                  </h4>
+                  <p className="text-sm text-zinc-300 leading-relaxed font-light">
+                    {note.evidence}
+                  </p>
+                  
+                  <div className="pt-4 space-y-3">
+                    <h4 className="flex items-center space-x-2 text-zinc-600 text-[10px] font-mono uppercase tracking-widest">
+                      <Shield className="w-3 h-3" />
+                      <span>Technical Significance</span>
+                    </h4>
+                    <p className="text-[11px] font-mono text-zinc-500 leading-relaxed">
+                      {note.significance}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Thinking Section */}
+                <div className="space-y-4 border-l border-white/5 pl-8 lg:pl-12">
+                  <h4 className="flex items-center space-x-2 text-zinc-600 text-[10px] font-mono uppercase tracking-widest">
+                    <Brain className="w-3 h-3" />
+                    <span>Working Hypothesis (Thinking)</span>
+                  </h4>
+                  <p className="text-sm text-zinc-500 italic leading-relaxed font-light">
+                    "{note.hypothesis || 'No speculative analysis recorded for this entry.'}"
+                  </p>
+                  
+                  {note.artifacts && (
+                    <div className="pt-4">
+                      <h4 className="text-[9px] font-mono text-zinc-700 uppercase tracking-widest mb-3">Linked Artifacts</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {note.artifacts.map(art => (
+                          <div key={art} className="flex items-center space-x-2 px-2 py-1 bg-white/5 border border-white/5 rounded-sm">
+                            <FileText className="w-3 h-3 text-zinc-600" />
+                            <span className="text-[9px] font-mono text-zinc-400">{art}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -174,12 +247,18 @@ const LabNotes: React.FC = () => {
         ))}
       </div>
 
-      <div className="mt-20 p-8 glass-card border-dashed border-white/10 rounded-sm text-center">
-        <h4 className="text-xs font-mono uppercase text-zinc-500 tracking-[0.3em] mb-4">Negative Results Disclosure</h4>
-        <p className="text-sm text-zinc-600 max-w-2xl mx-auto italic">
-          We document failed approaches with the same rigor as successes. Abandoned: Real-time HRV-based flow alerts (found distracting, reduced flow) and Fully automated decision logging (missed 40% of implicit choices).
+      {/* Footer Rule */}
+      <footer className="mt-32 pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="flex items-center space-x-3 text-zinc-700">
+          <AlertOctagon className="w-4 h-4" />
+          <p className="text-[10px] font-mono uppercase tracking-widest">
+            Log Persistence: Integrity Locked. 
+          </p>
+        </div>
+        <p className="text-[10px] font-mono text-zinc-800 uppercase tracking-[0.4em] italic text-right max-w-lg leading-relaxed">
+          These notes record research state at time of writing. They are not commitments, conclusions, or guarantees.
         </p>
-      </div>
+      </footer>
     </div>
   );
 };

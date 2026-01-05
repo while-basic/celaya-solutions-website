@@ -1,6 +1,6 @@
 {
   "name": "Celaya Solutions",
-  "description": "El Paso-based AI innovation lab focusing on systems-level thinking and novel cognitive operating systems.",
+  "description": "El Paso-based independent AI research lab focusing on cognitive systems, reproducibility, and human-in-the-loop auditing.",
   "requestFramePermissions": [
     "geolocation"
   ]
