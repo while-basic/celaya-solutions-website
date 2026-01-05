@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { Box, ExternalLink, ChevronRight, Activity, Terminal, Shield, Brain, X, Cpu, Globe, Database, Code, ArrowRight, Mic, Layout, Music, Bot, Share2 } from 'lucide-react';
+import { Box, ExternalLink, ChevronRight, Activity, Terminal, Shield, Brain, X, Cpu, Globe, Database, Code, ArrowRight, Mic, Layout, Music, Bot, Share2, Users } from 'lucide-react';
 import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 interface ProjectEntry {
@@ -27,8 +26,16 @@ const chartData = [
   { time: '23:59', load: 15, awareness: 40 },
 ];
 
+const founders = [
+  "Turing", "Lovelace", "Babbage", "Von Neumann", "Shannon", "Gödel", "McCarthy", "Minsky", "Hopper", "Dijkstra",
+  "Ritchie", "Thompson", "Engelbart", "Kay", "Sutherland", "Knuth", "Codd", "Lamport", "Hinton", "LeCun",
+  "Bengio", "Wiener", "Ashby", "Beer", "Pascal", "Leibniz", "Chomsky", "Diffie", "Hellman", "Rivest",
+  "Shamir", "Adleman", "Berners-Lee", "Cerf", "Kahn", "Liskov", "Brooks"
+];
+
 const ProjectCatalog: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<ProjectEntry | null>(null);
+  const [showFounders, setShowFounders] = useState(false);
 
   const projects: ProjectEntry[] = [
     { 
@@ -99,6 +106,11 @@ const ProjectCatalog: React.FC = () => {
     },
   ];
 
+  const handleClose = () => {
+    setSelectedProject(null);
+    setShowFounders(false);
+  };
+
   return (
     <section id="catalog" className="py-32 px-6 bg-black relative">
       <div className="max-w-7xl mx-auto">
@@ -168,11 +180,11 @@ const ProjectCatalog: React.FC = () => {
       {/* Product Detail Overlay */}
       {selectedProject && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-12 animate-in fade-in duration-300">
-          <div className="absolute inset-0 bg-black/95 backdrop-blur-xl" onClick={() => setSelectedProject(null)} />
+          <div className="absolute inset-0 bg-black/95 backdrop-blur-xl" onClick={handleClose} />
           
           <div className="relative w-full max-w-6xl h-full max-h-[90vh] glass-card border-white/10 rounded-sm overflow-hidden flex flex-col md:flex-row shadow-[0_0_100px_rgba(255,255,255,0.05)] animate-in zoom-in-95 duration-500">
             <button 
-              onClick={() => setSelectedProject(null)}
+              onClick={handleClose}
               className="absolute top-6 right-6 z-10 p-2 text-zinc-500 hover:text-white transition-colors bg-white/5 rounded-full"
             >
               <X className="w-5 h-5" />
@@ -204,30 +216,60 @@ const ProjectCatalog: React.FC = () => {
 
                 {/* Specific Visuals for CLOS */}
                 {selectedProject.name === 'CLOS' && (
-                  <section className="p-8 border border-white/5 bg-zinc-900/30 rounded-sm">
-                    <div className="flex justify-between items-center mb-6">
-                      <h4 className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest">Cognitive Load Simulation</h4>
-                      <span className="text-[10px] font-mono text-emerald-500 uppercase tracking-widest">Active Mirroring</span>
-                    </div>
-                    <div className="h-48 w-full">
-                      <ResponsiveContainer width="100%" height="100%">
-                        <AreaChart data={chartData}>
-                          <defs>
-                            <linearGradient id="colorAware" x1="0" y1="0" x2="0" y2="1">
-                              <stop offset="5%" stopColor="#ffffff" stopOpacity={0.1}/>
-                              <stop offset="95%" stopColor="#ffffff" stopOpacity={0}/>
-                            </linearGradient>
-                          </defs>
-                          <XAxis dataKey="time" stroke="#333" fontSize={10} axisLine={false} tickLine={false} />
-                          <Tooltip 
-                            contentStyle={{ background: '#000', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '4px', fontSize: '10px' }}
-                            itemStyle={{ color: '#fff' }}
-                          />
-                          <Area type="monotone" dataKey="awareness" stroke="#fff" fillOpacity={1} fill="url(#colorAware)" />
-                        </AreaChart>
-                      </ResponsiveContainer>
-                    </div>
-                  </section>
+                  <>
+                    <section className="p-8 border border-white/5 bg-zinc-900/30 rounded-sm">
+                      <div className="flex justify-between items-center mb-6">
+                        <h4 className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest">Cognitive Load Simulation</h4>
+                        <span className="text-[10px] font-mono text-emerald-500 uppercase tracking-widest">Active Mirroring</span>
+                      </div>
+                      <div className="h-48 w-full">
+                        <ResponsiveContainer width="100%" height="100%">
+                          <AreaChart data={chartData}>
+                            <defs>
+                              <linearGradient id="colorAware" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="5%" stopColor="#ffffff" stopOpacity={0.1}/>
+                                <stop offset="95%" stopColor="#ffffff" stopOpacity={0}/>
+                              </linearGradient>
+                            </defs>
+                            <XAxis dataKey="time" stroke="#333" fontSize={10} axisLine={false} tickLine={false} />
+                            <Tooltip 
+                              contentStyle={{ background: '#000', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '4px', fontSize: '10px' }}
+                              itemStyle={{ color: '#fff' }}
+                            />
+                            <Area type="monotone" dataKey="awareness" stroke="#fff" fillOpacity={1} fill="url(#colorAware)" />
+                          </AreaChart>
+                        </ResponsiveContainer>
+                      </div>
+                    </section>
+
+                    <section>
+                      <div className="flex justify-between items-center mb-6">
+                        <h4 className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest">Founder Series Registry</h4>
+                        <button 
+                          onClick={() => setShowFounders(!showFounders)}
+                          className="text-[9px] font-mono text-white border border-white/10 px-2 py-1 rounded-sm hover:bg-white hover:text-black transition-all"
+                        >
+                          {showFounders ? 'Minimize Registry' : 'View All 37 Nodes'}
+                        </button>
+                      </div>
+                      
+                      {showFounders ? (
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 animate-in fade-in slide-in-from-top-4 duration-500">
+                          {founders.map((name, i) => (
+                            <div key={i} className="p-3 border border-white/5 bg-white/[0.01] rounded-sm text-[10px] font-mono text-zinc-500 flex flex-col justify-between group hover:border-white/20 transition-all">
+                              <span className="text-zinc-700 mb-2">Node-{(i+1).toString().padStart(2, '0')}</span>
+                              <span className="text-zinc-300 group-hover:text-white">{name}</span>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="p-6 border border-white/5 bg-zinc-900/20 rounded-sm flex items-center justify-between">
+                          <p className="text-xs text-zinc-500 italic">"37 specialized inference loops for modular cognition."</p>
+                          <Users className="w-4 h-4 text-zinc-800" />
+                        </div>
+                      )}
+                    </section>
+                  </>
                 )}
 
                 {selectedProject.features && (
