@@ -1,6 +1,6 @@
-
+/* Brand tokens: cs-orange, cs-green, cs-yellow, cs-gray-700, cs-font-mono, cs-font-display, cs-font-body */
 import React, { useState, useMemo } from 'react';
-import { Microscope, Activity, Cpu, Shield, Brain, Terminal, Zap, Info, FileText, AlertOctagon, History, Anchor } from 'lucide-react';
+import { Microscope, Shield, Brain, FileText, AlertOctagon, Anchor } from 'lucide-react';
 
 type EntryType = 'Observation' | 'Constraint Added' | 'Instrument Introduced' | 'Revision' | 'Failure / Boundary';
 
@@ -10,11 +10,11 @@ interface LabNote {
   type: EntryType;
   category: 'Cognitive' | 'Industrial' | 'Inference' | 'Privacy' | 'Biometrics' | 'Hardware';
   title: string;
-  evidence: string; // The raw observation
-  significance: string; // Why it matters for inspection/audit
-  hypothesis?: string; // Working theory/speculation (Thinking)
+  evidence: string;
+  significance: string;
+  hypothesis?: string;
   artifacts?: string[];
-  instruments?: string[]; // Primary instrument(s) involved
+  instruments?: string[];
   timelineLinked?: boolean;
 }
 
@@ -42,7 +42,7 @@ const LabNotes: React.FC = () => {
       category: "Cognitive",
       title: "Voice Fragment Capture Latency",
       evidence: "A 22% delta in reported cognitive load was recorded during N=1 trials. HRV-derived features were logged as exploratory proxies; no correlation was claimed.",
-      significance: "Indicates that the presence of a 'reflection gap'—even if brief—was recorded alongside lower subjective fatigue scores.",
+      significance: "Indicates that the presence of a 'reflection gap' (even if brief) was recorded alongside lower subjective fatigue scores.",
       hypothesis: "The act of verbalization itself may be the load-reducer, independent of the AI's subsequent processing.",
       instruments: ["CLOS", "Volt"],
       timelineLinked: true
@@ -64,7 +64,7 @@ const LabNotes: React.FC = () => {
       date: "2024.11.12",
       type: "Revision",
       category: "Privacy",
-      title: "Enclave Key Rotation logic",
+      title: "Enclave Key Rotation Logic",
       evidence: "Transitioned from session-based keys to hardware-bound secure enclave identities for local RAG storage.",
       significance: "Removes dependencies on software-level key management, ensuring privacy is anchored in physical silicon.",
       hypothesis: "This migration should reduce the attack surface for local-first context snapshots.",
@@ -93,172 +93,166 @@ const LabNotes: React.FC = () => {
 
   const getTypeStyles = (type: EntryType) => {
     switch (type) {
-      case 'Observation': return 'border-zinc-500/20 text-zinc-400 bg-zinc-500/5';
-      case 'Constraint Added': return 'border-blue-500/20 text-blue-500/80 bg-blue-500/5';
-      case 'Instrument Introduced': return 'border-emerald-500/20 text-emerald-500/80 bg-emerald-500/5';
-      case 'Revision': return 'border-amber-500/20 text-amber-500/80 bg-amber-500/5';
-      case 'Failure / Boundary': return 'border-red-500/20 text-red-500/80 bg-red-500/5';
+      case 'Observation': return 'bg-cs-yellow/10 text-cs-yellow border-cs-yellow/25';
+      case 'Constraint Added': return 'bg-cs-orange/10 text-cs-orange border-cs-orange/30';
+      case 'Instrument Introduced': return 'bg-cs-green/10 text-cs-green border-cs-green/25';
+      case 'Revision': return 'bg-cs-gray-600 text-cs-gray-300 border-cs-gray-500';
+      case 'Failure / Boundary': return 'bg-red-500/10 text-red-400 border-red-500/20';
     }
   };
 
   return (
-    <div id="lab-notes-container" className="pt-32 pb-20 px-6 max-w-7xl mx-auto min-h-screen">
-      {/* Framing Block */}
-      <div className="mb-20 p-8 border border-white/10 bg-zinc-950/50 rounded-sm">
-        <div className="flex items-center space-x-3 mb-6">
-          <Terminal className="w-5 h-5 text-white/40" />
-          <h2 className="text-xs font-mono uppercase tracking-[0.3em] text-white/60">Research Log Framing</h2>
+    <div id="lab-notes-container" className="py-24">
+      <div className="max-w-[1100px] mx-auto px-10">
+        {/* Framing Block */}
+        <div className="mb-16 p-6 border border-cs-gray-700 bg-cs-gray-900 rounded">
+          <h3 className="font-mono text-[0.875rem] uppercase tracking-[0.15em] text-cs-gray-400 mb-4">Research Log Framing</h3>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div>
+              <h4 className="font-mono text-[0.875rem] uppercase text-cs-gray-500 tracking-widest mb-2">Purpose</h4>
+              <p className="font-body text-[0.875rem] text-cs-gray-400 leading-relaxed">Lab Notes serve as a raw research log, not marketing commentary. They record empirical observations as they occur.</p>
+            </div>
+            <div>
+              <h4 className="font-mono text-[0.875rem] uppercase text-cs-gray-500 tracking-widest mb-2">Rule</h4>
+              <p className="font-body text-[0.875rem] text-cs-gray-400 leading-relaxed">Entries must declare a standardized type and separate verifiable evidence from working hypotheses.</p>
+            </div>
+            <div>
+              <h4 className="font-mono text-[0.875rem] uppercase text-cs-gray-500 tracking-widest mb-2">Scope</h4>
+              <p className="font-body text-[0.875rem] text-cs-gray-400 leading-relaxed">Notes may be partial, unresolved, or superseded by later revisions. Transparency is prioritized over narrative.</p>
+            </div>
+          </div>
         </div>
-        <div className="grid md:grid-cols-3 gap-12">
-          <div className="space-y-2">
-            <h4 className="text-[10px] font-mono uppercase text-zinc-500 tracking-widest">Purpose</h4>
-            <p className="text-xs text-zinc-400 leading-relaxed">Lab Notes serve as a raw research log, not marketing commentary. They record empirical observations as they occur.</p>
+
+        {/* Header */}
+        <div className="mb-12">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="font-mono text-[0.875rem] font-medium tracking-[0.2em] uppercase text-cs-orange">
+              Research Log
+            </span>
+            <span className="block w-10 h-px bg-cs-orange opacity-50" />
           </div>
-          <div className="space-y-2">
-            <h4 className="text-[10px] font-mono uppercase text-zinc-500 tracking-widest">Rule</h4>
-            <p className="text-xs text-zinc-400 leading-relaxed">Entries must declare a standardized type and separate verifiable evidence from working hypotheses.</p>
-          </div>
-          <div className="space-y-2">
-            <h4 className="text-[10px] font-mono uppercase text-zinc-500 tracking-widest">Scope</h4>
-            <p className="text-xs text-zinc-400 leading-relaxed">Notes may be partial, unresolved, or superseded by later revisions. Transparency is prioritized over narrative.</p>
-          </div>
+          <h2 className="font-display text-[2.5rem] font-extrabold tracking-[-0.03em] leading-[1.05] mb-4">
+            Lab Notes
+          </h2>
+          <p className="font-body text-lg text-cs-gray-400 italic max-w-3xl">
+            Evidence-grade AI discovery and systems architecture log.
+          </p>
         </div>
-      </div>
 
-      {/* Header */}
-      <div className="mb-16 border-l border-white/10 pl-8">
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-4">Lab Notes</h1>
-        <p className="text-xl text-zinc-500 font-light max-w-3xl italic">
-          Evidence-grade AI discovery and systems architecture log.
-        </p>
-      </div>
+        {/* Controls */}
+        <div className="flex flex-wrap gap-2 mb-12">
+          {types.map(t => (
+            <button
+              key={t}
+              onClick={() => setActiveType(t)}
+              className={`px-4 py-2 font-mono text-[0.875rem] uppercase tracking-[0.1em] border rounded transition-all
+                ${activeType === t
+                  ? 'bg-cs-orange text-cs-black border-cs-orange'
+                  : 'bg-transparent text-cs-gray-400 border-cs-gray-700 hover:border-cs-orange hover:text-cs-orange'}`}
+            >
+              {t}
+            </button>
+          ))}
+        </div>
 
-      {/* Controls */}
-      <div className="flex flex-wrap gap-2 mb-12">
-        {types.map(t => (
-          <button
-            key={t}
-            onClick={() => setActiveType(t)}
-            className={`px-4 py-1.5 text-[10px] font-mono uppercase tracking-widest border transition-all rounded-sm
-              ${activeType === t 
-                ? 'bg-white text-black border-white' 
-                : 'bg-transparent text-zinc-500 border-white/10 hover:border-white/30'}`}
-          >
-            {t}
-          </button>
-        ))}
-      </div>
-
-      {/* Log List */}
-      <div className="space-y-8">
-        {filteredNotes.map((note) => (
-          <div key={note.id} className="group grid md:grid-cols-12 gap-8 p-8 border border-white/5 hover:border-white/10 bg-zinc-950/20 transition-all rounded-sm">
-            {/* Metadata Sidebar */}
-            <div className="md:col-span-3 space-y-4">
-              <div className="flex flex-col space-y-2">
-                <span className="text-[10px] font-mono text-zinc-600 tracking-widest">{note.date}</span>
-                <div className={`px-2 py-1 text-[9px] font-mono uppercase tracking-widest border rounded-sm inline-block w-fit ${getTypeStyles(note.type)}`}>
+        {/* Log List */}
+        <div className="space-y-4">
+          {filteredNotes.map((note) => (
+            <div key={note.id} className="border border-cs-gray-700 bg-cs-gray-900 rounded p-6 hover:bg-cs-gray-800 transition-colors grid md:grid-cols-12 gap-6">
+              {/* Metadata */}
+              <div className="md:col-span-3 space-y-3">
+                <span className="font-mono text-[0.875rem] text-cs-gray-500 block">{note.date}</span>
+                <div className={`px-2 py-1 font-mono text-[0.875rem] uppercase tracking-[0.1em] border rounded-sm inline-block ${getTypeStyles(note.type)}`}>
                   {note.type}
                 </div>
-              </div>
-              
-              <div className="pt-4 border-t border-white/5 space-y-3">
-                <div>
-                  <span className="text-[9px] font-mono text-zinc-800 uppercase tracking-widest block mb-1">Entry ID</span>
-                  <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-tighter">{note.id}</span>
-                </div>
-
-                {note.instruments && (
+                <div className="pt-3 border-t border-cs-gray-700 space-y-2">
                   <div>
-                    <span className="text-[9px] font-mono text-zinc-800 uppercase tracking-widest block mb-1">Instruments</span>
-                    <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-tighter">
-                      {note.instruments.join(", ")}
-                    </span>
+                    <span className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-widest block mb-1">Entry ID</span>
+                    <span className="font-mono text-[0.875rem] text-cs-gray-400">{note.id}</span>
                   </div>
-                )}
-
-                {note.timelineLinked && (
-                  <div className="flex items-center space-x-2 text-blue-500/40 group-hover:text-blue-500/70 transition-colors">
-                    <Anchor className="w-3 h-3" />
-                    <span className="text-[9px] font-mono uppercase tracking-widest">Timeline Anchor</span>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Content Area */}
-            <div className="md:col-span-9 space-y-8">
-              <header>
-                <h3 className="text-2xl font-bold tracking-tight mb-2">{note.title}</h3>
-                <div className="flex items-center space-x-2 text-zinc-600">
-                  <span className="text-[10px] font-mono uppercase tracking-widest">{note.category} Node</span>
-                </div>
-              </header>
-
-              <div className="grid lg:grid-cols-2 gap-12">
-                {/* Evidence Section */}
-                <div className="space-y-4">
-                  <h4 className="flex items-center space-x-2 text-zinc-400 text-[10px] font-mono uppercase tracking-widest">
-                    <Microscope className="w-3 h-3" />
-                    <span>Observation (Evidence)</span>
-                  </h4>
-                  <p className="text-sm text-zinc-300 leading-relaxed font-light">
-                    {note.evidence}
-                  </p>
-                  
-                  <div className="pt-4 space-y-3">
-                    <h4 className="flex items-center space-x-2 text-zinc-600 text-[10px] font-mono uppercase tracking-widest">
-                      <Shield className="w-3 h-3" />
-                      <span>Technical Significance</span>
-                    </h4>
-                    <p className="text-[11px] font-mono text-zinc-500 leading-relaxed">
-                      {note.significance}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Thinking Section */}
-                <div className="space-y-4 border-l border-white/5 pl-8 lg:pl-12">
-                  <h4 className="flex items-center space-x-2 text-zinc-600 text-[10px] font-mono uppercase tracking-widest">
-                    <Brain className="w-3 h-3" />
-                    <span>Working Hypothesis (Thinking)</span>
-                  </h4>
-                  <p className="text-sm text-zinc-500 italic leading-relaxed font-light">
-                    "{note.hypothesis || 'No speculative analysis recorded for this entry.'}"
-                  </p>
-                  
-                  {note.artifacts && (
-                    <div className="pt-4">
-                      <h4 className="text-[9px] font-mono text-zinc-700 uppercase tracking-widest mb-3">Linked Artifacts</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {note.artifacts.map(art => (
-                          <div key={art} className="flex items-center space-x-2 px-2 py-1 bg-white/5 border border-white/5 rounded-sm">
-                            <FileText className="w-3 h-3 text-zinc-600" />
-                            <span className="text-[9px] font-mono text-zinc-400">{art}</span>
-                          </div>
-                        ))}
-                      </div>
+                  {note.instruments && (
+                    <div>
+                      <span className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-widest block mb-1">Instruments</span>
+                      <span className="font-mono text-[0.875rem] text-cs-gray-400">{note.instruments.join(", ")}</span>
+                    </div>
+                  )}
+                  {note.timelineLinked && (
+                    <div className="flex items-center gap-2 text-cs-orange/50">
+                      <Anchor className="w-3 h-3" />
+                      <span className="font-mono text-[0.875rem] uppercase tracking-widest">Timeline Anchor</span>
                     </div>
                   )}
                 </div>
               </div>
-            </div>
-          </div>
-        ))}
-      </div>
 
-      {/* Footer Rule */}
-      <footer className="mt-32 pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="flex items-center space-x-3 text-zinc-700">
-          <AlertOctagon className="w-4 h-4" />
-          <p className="text-[10px] font-mono uppercase tracking-widest">
-            Log Persistence: Integrity Locked. 
-          </p>
+              {/* Content */}
+              <div className="md:col-span-9 space-y-6">
+                <header>
+                  <h3 className="font-display text-xl font-bold tracking-tight mb-1">{note.title}</h3>
+                  <span className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-widest">{note.category} Node</span>
+                </header>
+
+                <div className="grid lg:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <h4 className="flex items-center gap-2 text-cs-gray-400 font-mono text-[0.875rem] uppercase tracking-widest">
+                      <Microscope className="w-3 h-3" />
+                      <span>Observation (Evidence)</span>
+                    </h4>
+                    <p className="font-body text-base text-cs-gray-300 leading-relaxed">
+                      {note.evidence}
+                    </p>
+                    <div className="pt-3">
+                      <h4 className="flex items-center gap-2 text-cs-gray-500 font-mono text-[0.875rem] uppercase tracking-widest mb-2">
+                        <Shield className="w-3 h-3" />
+                        <span>Technical Significance</span>
+                      </h4>
+                      <p className="font-mono text-[0.875rem] text-cs-gray-400 leading-relaxed">
+                        {note.significance}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4 border-l border-cs-gray-700 pl-6">
+                    <h4 className="flex items-center gap-2 text-cs-gray-500 font-mono text-[0.875rem] uppercase tracking-widest">
+                      <Brain className="w-3 h-3" />
+                      <span>Working Hypothesis</span>
+                    </h4>
+                    <p className="font-body text-base text-cs-gray-400 italic leading-relaxed">
+                      "{note.hypothesis || 'No speculative analysis recorded for this entry.'}"
+                    </p>
+                    {note.artifacts && (
+                      <div className="pt-3">
+                        <h4 className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-widest mb-2">Linked Artifacts</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {note.artifacts.map(art => (
+                            <div key={art} className="flex items-center gap-2 px-2 py-1 bg-cs-gray-800 border border-cs-gray-700 rounded-sm">
+                              <FileText className="w-3 h-3 text-cs-gray-500" />
+                              <span className="font-mono text-[0.875rem] text-cs-gray-400">{art}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-        <p className="text-[10px] font-mono text-zinc-800 uppercase tracking-[0.4em] italic text-right max-w-lg leading-relaxed">
-          These notes record research state at time of writing. They are not commitments, conclusions, or guarantees.
-        </p>
-      </footer>
+
+        {/* Footer */}
+        <footer className="mt-16 pt-8 border-t border-cs-gray-700 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-2 text-cs-gray-500">
+            <AlertOctagon className="w-4 h-4" />
+            <p className="font-mono text-[0.875rem] uppercase tracking-widest">
+              Log Persistence: Integrity Locked.
+            </p>
+          </div>
+          <p className="font-mono text-[0.875rem] text-cs-gray-500 italic text-right max-w-lg leading-relaxed">
+            These notes record research state at time of writing. They are not commitments, conclusions, or guarantees.
+          </p>
+        </footer>
+      </div>
     </div>
   );
 };

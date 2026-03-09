@@ -1,63 +1,180 @@
-
 <!DOCTYPE html>
-<html lang="en" style="scroll-padding-top: 5rem;">
+<html lang="en" style="scroll-padding-top: 4rem;">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Celaya Solutions | Cognitive Research Lab</title>
+    <title>Celaya Solutions: Make Coherence Visible</title>
+    <meta name="description" content="Independent AI research lab. El Paso, Texas. Building infrastructure for coherence to examine itself." />
+    <meta property="og:title" content="Celaya Solutions" />
+    <meta property="og:description" content="31+ research instruments. Cross-domain AI architecture. Civic accountability tools." />
+    <meta name="theme-color" content="#000000" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'cs-black':   '#000000',
+              'cs-white':   '#FFFFFF',
+              'cs-orange':  '#FF6B35',
+              'cs-green':   '#06D6A0',
+              'cs-yellow':  '#FFBE0B',
+              'cs-gray': {
+                900: '#0A0A0A',
+                800: '#111111',
+                700: '#1A1A1A',
+                600: '#242424',
+                500: '#3A3A3A',
+                400: '#6B6B6B',
+                300: '#9A9A9A',
+                200: '#CCCCCC',
+              }
+            },
+            fontFamily: {
+              mono:    ['JetBrains Mono', 'monospace'],
+              display: ['Syne', 'sans-serif'],
+              body:    ['DM Sans', 'sans-serif'],
+            },
+            borderRadius: {
+              'sm': '2px',
+              'DEFAULT': '4px',
+            },
+          }
+        }
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+      /* === CELAYA SOLUTIONS DESIGN TOKENS v1.0.0 === */
       :root {
-        font-size: 16px;
+        /* Brand Colors */
+        --cs-black:        #000000;
+        --cs-white:        #FFFFFF;
+        --cs-orange:       #FF6B35;
+        --cs-green:        #06D6A0;
+        --cs-yellow:       #FFBE0B;
+
+        /* Neutral Scale */
+        --cs-gray-900:     #0A0A0A;
+        --cs-gray-800:     #111111;
+        --cs-gray-700:     #1A1A1A;
+        --cs-gray-600:     #242424;
+        --cs-gray-500:     #3A3A3A;
+        --cs-gray-400:     #6B6B6B;
+        --cs-gray-300:     #9A9A9A;
+        --cs-gray-200:     #CCCCCC;
+
+        /* Typography */
+        --cs-font-mono:    'JetBrains Mono', monospace;
+        --cs-font-display: 'Syne', sans-serif;
+        --cs-font-body:    'DM Sans', sans-serif;
+
+        /* Type Scale */
+        --cs-text-xs:      0.875rem;
+        --cs-text-sm:      0.875rem;
+        --cs-text-base:    1rem;
+        --cs-text-lg:      1.25rem;
+        --cs-text-xl:      2rem;
+        --cs-text-2xl:     3.5rem;
+        --cs-text-3xl:     clamp(3rem, 8vw, 7rem);
+
+        /* Spacing (base 4px) */
+        --cs-space-1:  4px;
+        --cs-space-2:  8px;
+        --cs-space-3:  12px;
+        --cs-space-4:  16px;
+        --cs-space-6:  24px;
+        --cs-space-8:  32px;
+        --cs-space-12: 48px;
+        --cs-space-16: 64px;
+        --cs-space-20: 80px;
+
+        /* Borders */
+        --cs-border:        1px solid #242424;
+        --cs-border-accent: 1px solid #FF6B35;
+        --cs-border-green:  1px solid rgba(6,214,160,0.3);
+        --cs-radius:        4px;
+        --cs-radius-sm:     2px;
+
+        /* Motion */
+        --cs-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+        --cs-ease-spring:   cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        --cs-duration-fast: 0.2s;
+        --cs-duration-base: 0.3s;
+        --cs-duration-slow: 0.5s;
+
+        /* Shadows */
+        --cs-shadow-sm: 0 1px 3px rgba(0,0,0,0.6);
+        --cs-shadow-md: 0 4px 16px rgba(0,0,0,0.8);
+        --cs-shadow-glow-orange: 0 0 20px rgba(255,107,53,0.15);
+        --cs-shadow-glow-green:  0 0 20px rgba(6,214,160,0.1);
       }
-      body {
-        font-family: 'Inter', sans-serif;
-        background-color: #000;
-        color: #fff;
+
+      /* Global resets and base */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      html {
         scroll-behavior: smooth;
-        font-size: clamp(16px, 1vw + 15px, 18px);
-        line-height: 1.7;
         -webkit-font-smoothing: antialiased;
-        text-rendering: optimizeLegibility;
+        -moz-osx-font-smoothing: grayscale;
       }
-      .font-mono {
-        font-family: 'JetBrains Mono', monospace;
+
+      body {
+        background-color: var(--cs-black);
+        color: var(--cs-white);
+        font-family: var(--cs-font-body);
+        font-size: var(--cs-text-base);
+        line-height: 1.6;
+        overflow-x: hidden;
       }
+
+      /* Font family utility overrides */
+      .font-mono { font-family: var(--cs-font-mono); }
+      .font-display { font-family: var(--cs-font-display); }
+      .font-body { font-family: var(--cs-font-body); }
+
+      /* Accessibility: focus ring */
+      :focus-visible {
+        outline: 2px solid var(--cs-orange);
+        outline-offset: 3px;
+        border-radius: var(--cs-radius-sm);
+      }
+
+      /* Reduced motion compliance */
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      /* Selection */
       ::selection {
-        background-color: #ffffff;
-        color: #000000;
+        background: rgba(255, 107, 53, 0.25);
+        color: var(--cs-white);
       }
-      .glass-card {
-        background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-      }
-      .glow-border:hover {
-        border-color: rgba(255, 255, 255, 0.2);
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
-      }
-      /* Hide scrollbar for Chrome, Safari and Opera */
-      .scrollbar-hide::-webkit-scrollbar {
-        display: none;
-      }
-      /* Hide scrollbar for IE, Edge and Firefox */
-      .scrollbar-hide {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
-      }
-      /* Normalize micro text to more readable sizes */
-      .text-\[8px\],
-      .text-\[9px\] {
-        font-size: 0.8rem !important; /* ~13px */
-      }
-      .text-\[10px\] {
-        font-size: 0.9rem !important; /* ~14.4px */
-      }
-      .text-\[11px\] {
-        font-size: 1rem !important; /* 16px */
+
+      /* Scrollbar (webkit) */
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: var(--cs-black); }
+      ::-webkit-scrollbar-thumb { background: var(--cs-gray-600); border-radius: 3px; }
+      ::-webkit-scrollbar-thumb:hover { background: var(--cs-orange); }
+
+      /* Hide scrollbar utility */
+      .scrollbar-hide::-webkit-scrollbar { display: none; }
+      .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+      /* Scroll progress bar */
+      #scroll-progress {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        height: 2px;
+        background: var(--cs-orange);
+        z-index: 60;
+        transition: width 0.1s linear;
       }
     </style>
   <script type="importmap">
@@ -67,14 +184,23 @@
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
     "react/": "https://esm.sh/react@^19.2.3/",
     "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
-    "recharts": "https://esm.sh/recharts@^3.6.0",
-    "@google/genai": "https://esm.sh/@google/genai@^1.34.0"
+    "recharts": "https://esm.sh/recharts@^3.6.0"
   }
 }
 </script>
   </head>
-  <body class="bg-black text-white selection:bg-white selection:text-black">
+  <body>
+    <div id="scroll-progress" style="width: 0%;"></div>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
+    <script>
+      // Scroll progress bar
+      window.addEventListener('scroll', function() {
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var progress = (scrollTop / scrollHeight) * 100;
+        document.getElementById('scroll-progress').style.width = progress + '%';
+      });
+    </script>
   </body>
 </html>

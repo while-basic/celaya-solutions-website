@@ -12,9 +12,3 @@ export interface Capability {
   items: string[];
   icon: string;
 }
-
-export interface FormState {
-  name: string;
-  email: string;
-  message: string;
-}

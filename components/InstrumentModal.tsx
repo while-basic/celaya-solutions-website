@@ -1,4 +1,4 @@
-
+/* Brand tokens: cs-orange, cs-gray-500, cs-gray-700, cs-font-mono, cs-font-display, cs-font-body */
 import React, { useEffect, useId, useRef } from "react";
 import { X } from "lucide-react";
 import type { Instrument } from "../data/instruments.ts";
@@ -28,55 +28,57 @@ export function InstrumentModal({ open, item, onClose }: Props) {
     <div
       role="presentation"
       onMouseDown={(e) => e.target === e.currentTarget && onClose()}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+      style={{ background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(12px)' }}
     >
       <div
         ref={panelRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-sm border border-white/10 bg-black p-10 md:p-14 shadow-2xl scrollbar-hide"
+        className="w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded border border-cs-gray-700 bg-cs-black p-10 md:p-14 scrollbar-hide"
+        style={{ boxShadow: 'var(--cs-shadow-md)' }}
       >
-        <div className="flex justify-between items-start mb-12">
-          <h2 id={titleId} className="text-4xl font-bold tracking-tighter">
+        <div className="flex justify-between items-start mb-10">
+          <h2 id={titleId} className="font-display text-4xl font-extrabold tracking-[-0.03em]">
             {item.title}
           </h2>
-          <button onClick={onClose} className="p-2 text-zinc-600 hover:text-white transition-colors">
+          <button onClick={onClose} className="p-2 text-cs-gray-400 hover:text-cs-orange transition-colors">
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <div className="space-y-10">
+        <div className="space-y-8">
           <section>
-            <h4 className="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.3em] mb-3">Classification</h4>
-            <p className="text-sm text-zinc-300">{item.classification}</p>
+            <h4 className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em] mb-2">Classification</h4>
+            <p className="font-body text-base text-cs-gray-300">{item.classification}</p>
           </section>
 
           <section>
-            <h4 className="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.3em] mb-3">Role</h4>
-            <p className="text-sm text-zinc-400 leading-relaxed">{item.role}</p>
+            <h4 className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em] mb-2">Role</h4>
+            <p className="font-body text-base text-cs-gray-400 leading-relaxed">{item.role}</p>
           </section>
 
           <section>
-            <h4 className="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.3em] mb-3">Observed Inputs</h4>
-            <p className="text-[11px] font-mono text-zinc-500 uppercase tracking-widest leading-relaxed">
+            <h4 className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em] mb-2">Observed Inputs</h4>
+            <p className="font-mono text-[0.875rem] text-cs-gray-400 uppercase tracking-widest leading-relaxed">
               {item.inputs.join(", ")}
             </p>
           </section>
 
           <section>
-            <h4 className="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.3em] mb-3">Produced Artifacts</h4>
-            <p className="text-sm text-zinc-400">
+            <h4 className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em] mb-2">Produced Artifacts</h4>
+            <p className="font-body text-base text-cs-gray-400">
               {item.artifacts.join(", ")}
             </p>
           </section>
 
           <section>
-            <h4 className="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.3em] mb-3">Failure Boundaries</h4>
+            <h4 className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em] mb-2">Failure Boundaries</h4>
             <ul className="space-y-2">
               {item.failureBoundaries.map((boundary, i) => (
-                <li key={i} className="text-xs text-zinc-500 flex items-start space-x-3">
-                  <span className="text-zinc-800 mt-1">•</span>
+                <li key={i} className="font-body text-[0.875rem] text-cs-gray-400 flex items-start gap-2">
+                  <span className="text-cs-gray-600 mt-0.5">&#8226;</span>
                   <span>{boundary}</span>
                 </li>
               ))}
@@ -84,12 +86,12 @@ export function InstrumentModal({ open, item, onClose }: Props) {
           </section>
 
           <section>
-            <h4 className="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.3em] mb-3">Research Status</h4>
-            <p className="text-xs font-mono text-zinc-400 uppercase tracking-widest">{item.status}</p>
+            <h4 className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em] mb-2">Research Status</h4>
+            <p className="font-mono text-base text-cs-gray-400 uppercase tracking-widest">{item.status}</p>
           </section>
 
-          <div className="pt-10 border-t border-white/5">
-            <p className="text-[10px] font-mono text-zinc-700 uppercase leading-relaxed tracking-wider italic">
+          <div className="pt-8 border-t border-cs-gray-700">
+            <p className="font-mono text-[0.875rem] text-cs-gray-500 italic leading-relaxed">
               Constraint statement: This instrument is an analytical component. It is not a service, product, or guarantee.
             </p>
           </div>

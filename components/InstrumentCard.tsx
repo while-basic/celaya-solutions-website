@@ -1,4 +1,4 @@
-
+/* Brand tokens: cs-orange, cs-green, cs-yellow, cs-gray-700, cs-gray-900, cs-font-mono, cs-font-body */
 import React from "react";
 import type { Instrument } from "../data/instruments.ts";
 
@@ -7,26 +7,29 @@ interface InstrumentCardProps {
   onClick: () => void;
 }
 
+const classificationColor: Record<string, string> = {
+  Cognition: 'text-cs-orange',
+  Infrastructure: 'text-cs-green',
+  Oversight: 'text-cs-yellow',
+};
+
 export const InstrumentCard: React.FC<InstrumentCardProps> = ({ item, onClick }) => {
   return (
-    <button 
+    <button
       onClick={onClick}
-      className="group text-left border border-white/5 p-8 rounded-sm bg-zinc-950/30 hover:bg-zinc-900/40 transition-all flex flex-col h-full relative w-full"
+      className="group text-left border border-cs-gray-700 p-6 rounded bg-cs-gray-900 hover:bg-cs-gray-800 transition-colors duration-300 flex flex-col h-full w-full"
     >
-      <header className="mb-6 w-full">
-        <span className="text-[9px] font-mono text-zinc-600 uppercase tracking-[0.3em] block mb-2">
+      <header className="mb-4 w-full">
+        <span className={`font-mono text-[0.875rem] uppercase tracking-[0.15em] block mb-2 ${classificationColor[item.classification] || 'text-cs-gray-400'}`}>
           {item.classification}
         </span>
-        <h3 className="text-xl font-bold tracking-tight text-white">
+        <h3 className="font-display text-xl font-bold tracking-tight text-white">
           {item.title}
         </h3>
       </header>
-
-      <div className="flex-grow w-full">
-        <p className="text-sm text-zinc-500 leading-relaxed font-light">
-          {item.role}
-        </p>
-      </div>
+      <p className="font-body text-[0.875rem] text-cs-gray-400 leading-relaxed">
+        {item.role}
+      </p>
     </button>
   );
 };
