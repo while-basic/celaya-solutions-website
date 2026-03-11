@@ -1,0 +1,10 @@
+{
+  "name": "celaya-solutions-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Celaya Solutions — Instrument Showcase",
+  "scripts": {
+    "dev": "npx serve . -p 3000",
+    "start": "npx serve ."
+  }
+}

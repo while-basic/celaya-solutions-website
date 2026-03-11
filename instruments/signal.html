@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIGNAL — Celaya Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--black:#000;--white:#fff;--g900:#0A0A0A;--g800:#111;--g700:#1A1A1A;--g600:#242424;--g500:#3A3A3A;--g400:#6B6B6B;--g300:#9A9A9A;
+  --accent:#FF2D78;--accent-dim:rgba(255,45,120,.07);
+  --mono:'JetBrains Mono',monospace;--display:'Syne',sans-serif;--body:'DM Sans',sans-serif}
+html{scroll-behavior:smooth}body{background:var(--black);color:var(--white);font-family:var(--body);overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased}
+::selection{background:rgba(255,45,120,.25);color:var(--black)}
+.cursor{position:fixed;width:8px;height:8px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen}
+.cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(255,45,120,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s}
+body:has(a:hover,button:hover) .cursor{transform:translate(-50%,-50%) scale(3)}
+body:has(a:hover,button:hover) .cursor-ring{width:52px;height:52px}
+.progress{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--accent);z-index:300}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;background:rgba(0,0,0,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.04)}
+.nav-left{font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--g500)}
+.nav-left .cur{color:var(--accent)}
+.nav-right{display:flex;gap:2.5rem;list-style:none}
+.nav-right a{font-family:var(--mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--g400);text-decoration:none;transition:color .2s}
+.nav-right a:hover{color:var(--accent)}
+#hero{height:100vh;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:0 3rem 5rem;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% 10%,rgba(255,45,120,.09) 0%,transparent 55%),radial-gradient(ellipse 100% 40% at 50% 100%,rgba(0,0,0,.95) 0%,transparent 55%)}
+.hero-scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(255,255,255,.006) 3px,rgba(255,255,255,.006) 4px);pointer-events:none}
+.hero-viz{position:absolute;top:50%;left:50%;transform:translate(-50%,-54%);width:560px;height:560px;opacity:0;animation:vizIn 1.4s cubic-bezier(.16,1,.3,1) .3s forwards}
+@keyframes vizIn{from{opacity:0;transform:translate(-50%,-62%)}to{opacity:1;transform:translate(-50%,-54%)}}
+.hero-viz svg{width:100%;height:100%;overflow:visible}
+.hero-content{position:relative;z-index:2;opacity:0;animation:slideUp 1s cubic-bezier(.16,1,.3,1) .9s forwards}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.hero-eyebrow{font-family:var(--mono);font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:flex;align-items:center;gap:1rem}
+.hero-eyebrow::before{content:'';width:40px;height:1px;background:var(--accent)}
+.hero-name{font-family:var(--display);font-size:clamp(4rem,14vw,11rem);font-weight:800;letter-spacing:-.05em;line-height:.88;margin-bottom:1rem}
+.hero-tagline{font-family:var(--display);font-size:clamp(.9rem,2vw,1.3rem);font-weight:400;color:var(--g300);max-width:480px;margin-bottom:2.5rem;line-height:1.5}
+.hero-cta-row{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.btn-primary{font-family:var(--mono);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;padding:.9rem 2.2rem;background:var(--accent);color:var(--black);border:none;cursor:none;transition:all .2s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
+.btn-ghost{font-family:var(--mono);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;padding:.9rem 1.8rem;background:transparent;color:var(--g300);border:1px solid var(--g600);cursor:none;transition:all .2s}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.status-badge{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:#FF2D78;padding:.3rem .8rem;background:rgba(255,45,120,.08);border:1px solid rgba(255,45,120,.25)}
+.status-dot{width:5px;height:5px;background:#FF2D78;border-radius:50%;animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-specs{position:absolute;right:3rem;bottom:5.5rem;display:flex;flex-direction:column;gap:1.5rem;opacity:0;animation:slideUp 1s cubic-bezier(.16,1,.3,1) 1.2s forwards}
+.spec-item{text-align:right;border-right:2px solid var(--accent);padding-right:1rem}
+.spec-value{font-family:var(--display);font-size:1.6rem;font-weight:800;line-height:1}
+.spec-label{font-family:var(--mono);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--g400);margin-top:.2rem}
+.scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--g600);animation:floatY 2s ease-in-out infinite}
+@keyframes floatY{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+.scroll-line{width:1px;height:35px;background:linear-gradient(to bottom,var(--g600),transparent)}
+#ticker{padding:3.5rem 0;border-top:1px solid var(--g700);border-bottom:1px solid var(--g700);overflow:hidden}
+.ticker-label{font-family:var(--mono);font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--g600);text-align:center;margin-bottom:1.2rem}
+.ticker-track{display:flex;width:max-content;animation:scrollLeft 22s linear infinite}
+@keyframes scrollLeft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-item{font-family:var(--mono);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--g600);padding:0 2.5rem;border-right:1px solid var(--g700);white-space:nowrap}
+.ticker-item.cur{color:var(--accent)}
+section{padding:8rem 0;position:relative}
+.container{max-width:1200px;margin:0 auto;padding:0 3rem}
+.section-label{font-family:var(--mono);font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
+.section-label::after{content:'';height:1px;width:40px;background:var(--accent);opacity:.5}
+.section-title{font-family:var(--display);font-size:clamp(2rem,4vw,3.5rem);font-weight:800;letter-spacing:-.03em;line-height:1}
+#specs{background:var(--g900);border-top:1px solid var(--g700);border-bottom:1px solid var(--g700)}
+.specs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--g700);margin-top:4rem}
+.spec-cell{padding:2.5rem 2rem;border-right:1px solid var(--g700);border-bottom:1px solid var(--g700);transition:background .3s}
+.spec-cell:hover{background:var(--g800)}
+.spec-cell:nth-child(3n){border-right:none}
+.spec-cell:nth-last-child(-n+3){border-bottom:none}
+.spec-cell-num{font-family:var(--display);font-size:2.8rem;font-weight:800;color:var(--accent);line-height:1;margin-bottom:.5rem}
+.spec-cell-label{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--g400);margin-bottom:.75rem}
+.spec-cell-desc{font-size:.85rem;color:var(--g300);line-height:1.6}
+#statement{padding:9rem 0;position:relative;overflow:hidden}
+.statement-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(255,45,120,.06) 0%,transparent 60%)}
+.statement-body{position:relative;z-index:1;text-align:center;max-width:800px;margin:0 auto;padding:0 3rem}
+.statement-quote{font-family:var(--display);font-size:clamp(1.8rem,4.5vw,4rem);font-weight:800;letter-spacing:-.04em;line-height:1.15;margin-bottom:2rem}
+.statement-quote .a{color:var(--accent)}
+.statement-sub{font-size:1.05rem;color:var(--g300);line-height:1.75;max-width:560px;margin:0 auto}
+#configure{background:var(--g900);border-top:1px solid var(--g700);border-bottom:1px solid var(--g700)}
+.configure-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+.configure-headline{font-family:var(--display);font-size:clamp(2rem,4vw,3.5rem);font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:1.5rem}
+.configure-body{font-size:1rem;color:var(--g300);line-height:1.75;margin-bottom:2.5rem}
+.action-stack{display:flex;flex-direction:column;gap:.75rem}
+.action-card{border:1px solid var(--g700);padding:1.4rem 1.5rem;display:flex;align-items:center;gap:1.25rem;cursor:none;transition:all .2s;background:var(--black);position:relative;overflow:hidden}
+.action-card::before{content:'';position:absolute;inset:0;background:var(--accent-dim);opacity:0;transition:opacity .2s}
+.action-card:hover{border-color:var(--accent)}
+.action-card:hover::before{opacity:1}
+.action-num{font-family:var(--mono);font-size:.65rem;color:var(--accent);width:32px;height:32px;border:1px solid rgba(255,45,120,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.action-info{flex:1}
+.action-title{font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--white);margin-bottom:.15rem}
+.action-desc{font-size:.8rem;color:var(--g400)}
+.action-arrow{font-family:var(--mono);font-size:.8rem;color:var(--g600);transition:color .2s,transform .2s}
+.action-card:hover .action-arrow{color:var(--accent);transform:translateX(4px)}
+.info-panel{border:1px solid var(--g700);overflow:hidden}
+.info-panel-header{padding:1rem 1.5rem;background:rgba(255,45,120,.05);border-bottom:1px solid var(--g700);display:flex;align-items:center;justify-content:space-between}
+.info-panel-title{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent)}
+.info-row{padding:1.2rem 1.5rem;border-bottom:1px solid var(--g700);display:flex;justify-content:space-between;align-items:center}
+.info-row:last-child{border-bottom:none}
+.info-row-label{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--g400)}
+.info-row-value{font-family:var(--mono);font-size:.72rem;color:var(--white)}
+.info-row-value.a{color:var(--accent)}
+#history{border-top:1px solid var(--g700)}
+.timeline{position:relative;padding-left:2rem;max-width:720px}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--accent),transparent)}
+.timeline-item{position:relative;padding:0 0 3rem 3rem;opacity:0;transform:translateX(-10px);transition:all .5s}
+.timeline-item.visible{opacity:1;transform:translateX(0)}
+.timeline-item::before{content:'';position:absolute;left:-4px;top:6px;width:9px;height:9px;background:var(--accent);border-radius:50%;border:2px solid var(--black)}
+.timeline-date{font-family:var(--mono);font-size:.6rem;letter-spacing:.15em;color:var(--accent);text-transform:uppercase;margin-bottom:.5rem}
+.timeline-title{font-family:var(--display);font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:.5rem}
+.timeline-body{font-size:.88rem;color:var(--g400);line-height:1.65}
+#browse{border-top:1px solid var(--g700);background:var(--g900)}
+.browse-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--g700);margin-top:2.5rem}
+.browse-card{padding:1.5rem;border-right:1px solid var(--g700);border-bottom:1px solid var(--g700);cursor:none;transition:background .2s;text-decoration:none;display:block}
+.browse-card:hover{background:var(--g800)}
+.browse-card:nth-child(4n){border-right:none}
+.browse-card:nth-last-child(-n+4){border-bottom:none}
+.browse-card.cur{background:rgba(255,45,120,.04)}
+.browse-num{font-family:var(--mono);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.6rem}
+.browse-name{font-family:var(--mono);font-size:.8rem;font-weight:500;color:var(--white);letter-spacing:.05em;margin-bottom:.3rem}
+.browse-desc{font-size:.75rem;color:var(--g500);line-height:1.4}
+.browse-card.cur .browse-name{color:var(--accent)}
+.browse-yah{font-family:var(--mono);font-size:.5rem;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-top:.5rem}
+footer{padding:4rem 3rem;border-top:1px solid var(--g800);display:grid;grid-template-columns:1fr 1fr 1fr;gap:3rem;align-items:end}
+.footer-brand{font-family:var(--display);font-size:1.4rem;font-weight:800;letter-spacing:-.03em}
+.footer-brand span{color:var(--accent)}
+.footer-sub{font-family:var(--mono);font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--g500);margin-top:.4rem}
+.footer-links{display:flex;flex-direction:column;gap:.7rem}
+.footer-link{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--g400);text-decoration:none;transition:color .2s}
+.footer-link:hover{color:var(--accent)}
+.footer-meta{text-align:right;font-family:var(--mono);font-size:.52rem;color:var(--g600);letter-spacing:.1em;line-height:2.3}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}.reveal-delay-3{transition-delay:.3s}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="progress" id="progress"></div>
+<nav>
+  <div class="nav-left">Celaya Solutions / <span class="cur">SIGNAL</span></div>
+  <ul class="nav-right"><li><a href="#specs">Specs</a></li><li><a href="#configure">Research</a></li><li><a href="#history">History</a></li></ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg"></div><div class="hero-scan"></div>
+  <div class="hero-viz"><svg viewBox="0 0 560 360" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <filter id="gf"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<!-- Three layered sine waves at different frequencies -->
+<!-- Wave 1 - low freq, orange -->
+<path d="M0,180 C40,140 80,220 120,180 C160,140 200,220 240,180 C280,140 320,220 360,180 C400,140 440,220 480,180 C520,140 560,220 560,180"
+  fill="none" stroke="#FF9500" stroke-width="1.5" opacity=".5" filter="url(#gf)"/>
+<!-- Wave 2 - mid freq, magenta -->
+<path d="M0,180 C20,140 40,220 60,180 C80,140 100,220 120,180 C140,140 160,220 180,180 C200,140 220,220 240,180 C260,140 280,220 300,180 C320,140 340,220 360,180 C380,140 400,220 420,180 C440,140 460,220 480,180 C500,140 520,220 540,180 C550,160 555,200 560,180"
+  fill="none" stroke="#FF2D78" stroke-width="1.5" opacity=".6" filter="url(#gf)"/>
+<!-- Wave 3 - high freq, white -->
+<path d="M0,180 C10,155 20,205 30,180 C40,155 50,205 60,180 C70,155 80,205 90,180 C100,155 110,205 120,180 C130,155 140,205 150,180 C160,155 170,205 180,180 C190,155 200,205 210,180 C220,155 230,205 240,180 C250,155 260,205 270,180 C280,155 290,205 300,180 C310,155 320,205 330,180 C340,155 350,205 360,180 C370,155 380,205 390,180 C400,155 410,205 420,180 C430,155 440,205 450,180 C460,155 470,205 480,180 C490,155 500,205 510,180 C520,155 530,205 540,180 C550,165 555,195 560,180"
+  fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1"/>
+<!-- Frisson spike - the key moment -->
+<path d="M230,180 L238,180 L242,120 L246,50 L250,200 L254,260 L258,200 L262,155 L270,180"
+  fill="none" stroke="#FF2D78" stroke-width="2.5" filter="url(#gf)"/>
+<!-- Frisson glow -->
+<circle cx="250" cy="50" r="15" fill="rgba(255,45,120,.15)" filter="url(#gf)">
+  <animate attributeName="r" values="10;22;10" dur="2s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values=".4;0;.4" dur="2s" repeatCount="indefinite"/>
+</circle>
+<text x="250" y="38" text-anchor="middle" fill="rgba(255,45,120,.6)" font-family="JetBrains Mono" font-size="8" letter-spacing="1">FRISSON</text>
+<!-- FFT spectrum at bottom -->
+<text x="20" y="315" fill="rgba(255,255,255,.15)" font-family="JetBrains Mono" font-size="8" letter-spacing="2">FFT SPECTRUM</text>
+<g fill="rgba(255,45,120,.4)">
+<rect x="20" y="310" width="4" height="10"/><rect x="28" y="304" width="4" height="16"/><rect x="36" y="298" width="4" height="22"/>
+<rect x="44" y="292" width="4" height="28"/><rect x="52" y="288" width="4" height="32"/><rect x="60" y="282" width="4" height="38"/>
+<rect x="68" y="278" width="4" height="42"/><rect x="76" y="285" width="4" height="35"/><rect x="84" y="292" width="4" height="28"/>
+<rect x="92" y="298" width="4" height="22"/><rect x="100" y="303" width="4" height="17"/><rect x="108" y="307" width="4" height="13"/>
+<rect x="116" y="310" width="4" height="10"/><rect x="124" y="312" width="4" height="8"/><rect x="132" y="311" width="4" height="9"/>
+</g>
+<line x1="0" y1="320" x2="560" y2="320" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+</svg></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Psychoacoustic Pattern Detection</div>
+    <div class="hero-name">SIGNAL</div>
+    <div class="hero-tagline">172,000+ sample library. Frisson analyzer. REAPER DAW MCP integration. Audio as a cognitive research instrument.</div>
+    <div class="hero-cta-row">
+      <button class="btn-primary">Research Notes</button>
+      <button class="btn-ghost">Architecture Docs</button>
+      <div class="status-badge"><span class="status-dot"></span>Active Research</div>
+    </div>
+  </div>
+  <div class="hero-specs"><div class="spec-item"><div class="spec-value">172k+</div><div class="spec-label">Sample library</div></div>
+<div class="spec-item"><div class="spec-value">Local</div><div class="spec-label">Processing</div></div>
+<div class="spec-item"><div class="spec-value">MCP</div><div class="spec-label">DAW integration</div></div>
+</div>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<div id="ticker">
+  <div class="ticker-label">Celaya Solutions / Research Ecosystem</div>
+  <div class="ticker-track"><span class="ticker-item">CORTEX</span><span class="ticker-item">CLOS</span><span class="ticker-item">EPPE</span><span class="ticker-item">MORTEM</span><span class="ticker-item">Project Jupiter</span><span class="ticker-item">Neural Child</span><span class="ticker-item">Celaya Chain Protocol</span><span class="ticker-item">Juniper</span><span class="ticker-item">MERIDIAN</span><span class="ticker-item cur">SIGNAL</span><span class="ticker-item">VERDICT</span><span class="ticker-item">SENTINEL</span><span class="ticker-item">CORTEX</span><span class="ticker-item">CLOS</span><span class="ticker-item">EPPE</span><span class="ticker-item">MORTEM</span><span class="ticker-item">Project Jupiter</span><span class="ticker-item">Neural Child</span><span class="ticker-item">Celaya Chain Protocol</span><span class="ticker-item">Juniper</span><span class="ticker-item">MERIDIAN</span><span class="ticker-item cur">SIGNAL</span><span class="ticker-item">VERDICT</span><span class="ticker-item">SENTINEL</span></div>
+</div>
+
+<section id="specs">
+  <div class="container">
+    <div class="reveal"><div class="section-label">Technical Specification</div><div class="section-title">SIGNAL.<br>In detail.</div></div>
+    <div class="specs-grid"><div class="spec-cell reveal"><div class="spec-cell-num">172k+</div><div class="spec-cell-label">Audio Sample Library</div><div class="spec-cell-desc">Over 172,000 audio samples as a research corpus. Not a production sample library — a psychoacoustic research database. Patterns, frequencies, emotional triggers, and their correlations are indexed.</div></div>
+<div class="spec-cell reveal-delay-2"><div class="spec-cell-num">Frisson</div><div class="spec-cell-label">Analyzer Architecture</div><div class="spec-cell-desc">The frisson analyzer detects psychoacoustic triggers for involuntary emotional responses. Local processing only. No API cost. The analysis runs on device.</div></div>
+<div class="spec-cell reveal-delay-3"><div class="spec-cell-num">Local</div><div class="spec-cell-label">Processing</div><div class="spec-cell-desc">All signal processing runs locally. The psychoacoustic analysis pipeline does not require internet access. Research data stays in the research environment.</div></div>
+<div class="spec-cell reveal"><div class="spec-cell-num">MCP</div><div class="spec-cell-label">REAPER Integration</div><div class="spec-cell-desc">A REAPER DAW MCP server concept that allows the DAW to be driven by AI agents. Audio production as a programmable research instrument.</div></div>
+<div class="spec-cell reveal-delay-2"><div class="spec-cell-num">Research</div><div class="spec-cell-label">Stage</div><div class="spec-cell-desc">SIGNAL is an active research investigation. The relationship between audio patterns, cognitive states, and biometric responses is the open question.</div></div>
+<div class="spec-cell reveal-delay-3"><div class="spec-cell-num">CLOS</div><div class="spec-cell-label">Integration</div><div class="spec-cell-desc">SIGNAL feeds into the CLOS architecture via the Frisson agent. Psychoacoustic triggers that produce measurable biometric responses are logged and analyzed.</div></div>
+</div>
+  </div>
+</section>
+
+<section id="statement">
+  <div class="statement-bg"></div>
+  <div class="statement-body reveal">
+    <div class="statement-quote">The body <span class="a">responds</span><br>before the mind explains why.</div>
+    <p class="statement-sub">SIGNAL is the formalization of Christopher's audio production work as a research instrument. The 172,000+ sample library is a corpus. The frisson analyzer detects the moments when audio triggers involuntary physiological responses.</p>
+  </div>
+</section>
+
+<section id="configure">
+  <div class="container">
+    <div class="configure-grid">
+      <div class="reveal">
+        <div class="section-label">Research Access</div>
+        <div class="configure-headline">Engage the research.</div>
+        <p class="configure-body">This is an active research instrument, not a commercial product. Collaboration on the framework, methodology, and architecture is open.</p>
+        <div class="action-stack">
+          <div class="action-card"><div class="action-num">01</div><div class="action-info"><div class="action-title">Research Collaboration</div><div class="action-desc">Architecture, methodology, open questions</div></div><div class="action-arrow">→</div></div>
+          <div class="action-card"><div class="action-num">02</div><div class="action-info"><div class="action-title">Architecture Notes</div><div class="action-desc">Technical documentation and system design</div></div><div class="action-arrow">→</div></div>
+          <div class="action-card"><div class="action-num">03</div><div class="action-info"><div class="action-title">Contact Research Lab</div><div class="action-desc"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1f777a7373705f7c7a737e667e6c70736a6b7670716c317c7072">[email&#160;protected]</a></div></div><div class="action-arrow">→</div></div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="info-panel">
+          <div class="info-panel-header"><div class="info-panel-title">System Status</div><span style="font-family:var(--mono);font-size:.55rem;color:var(--accent)">Active Research</span></div>
+          <div class="info-row"><div class="info-row-label">Status</div><div class="info-row-value a">Active Research</div></div>
+          <div class="info-row"><div class="info-row-label">Lab</div><div class="info-row-value">Celaya Solutions</div></div>
+          <div class="info-row"><div class="info-row-label">Location</div><div class="info-row-value">El Paso, TX</div></div>
+          <div class="info-row"><div class="info-row-label">Contact</div><div class="info-row-value" style="font-size:.6rem"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7b131e1717143b181e171a021a0814170e0f1214150855181416">[email&#160;protected]</a></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="history">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:4rem"><div class="section-label">Build History</div><div class="section-title">The record.</div></div>
+    <div class="timeline"><div class="timeline-item"><div class="timeline-date">Library</div><div class="timeline-title">172,000+ samples.</div><div class="timeline-body">The audio sample library grew organically through production work. At some point it became large enough to be a research corpus rather than just a workflow resource.</div></div>
+<div class="timeline-item"><div class="timeline-date">Frisson</div><div class="timeline-title">The phenomenon named.</div><div class="timeline-body">Frisson: the involuntary physiological response to audio. Chills, goosebumps, elevated heart rate. SIGNAL is designed to detect the psychoacoustic patterns that reliably trigger it.</div></div>
+<div class="timeline-item"><div class="timeline-date">MCP</div><div class="timeline-title">DAW integration.</div><div class="timeline-body">The REAPER MCP server concept: programming audio production workflows through AI agents. The DAW becomes a research instrument that can be scripted and analyzed.</div></div>
+<div class="timeline-item"><div class="timeline-date">Now</div><div class="timeline-title">Active investigation.</div><div class="timeline-body">SIGNAL is running. The relationship between audio patterns, cognitive states (monitored by CLOS), and biometric responses (monitored by MORTEM) is the open research question.</div></div>
+</div>
+  </div>
+</section>
+
+<section id="browse"><div class="container">
+  <div class="section-label reveal">All Instruments</div>
+  <div class="browse-grid reveal"><div class="browse-card"><div class="browse-num" style="color:#FF6B35">01</div><div class="browse-name">CORTEX</div><div class="browse-desc">14-agent manufacturing intelligence</div></div>
+<div class="browse-card"><div class="browse-num" style="color:#06D6A0">02</div><div class="browse-name">CLOS</div><div class="browse-desc">37-agent cognitive life OS</div></div>
+<div class="browse-card"><div class="browse-num" style="color:#FFFFFF">03</div><div class="browse-name">EPPE</div><div class="browse-desc">El Paso Proof Engine</div></div>
+<div class="browse-card"><div class="browse-num" style="color:#FF3366">04</div><div class="browse-name">MORTEM</div><div class="browse-desc">Biometric blockchain lifecycle</div></div>
+<div class="browse-card"><div class="browse-num" style="color:#FFBE0B">05</div><div class="browse-name">Project Jupiter</div><div class="browse-desc">Civic water and grid analysis</div></div>
+<div class="browse-card"><div class="browse-num" style="color:#00C2FF">06</div><div class="browse-name">Neural Child</div><div class="browse-desc">Developmental AI, emotional memory</div></div>
+<div class="browse-card"><div class="browse-num" style="color:#3D7EFF">07</div><div class="browse-name">Celaya Chain Protocol</div><div class="browse-desc">L3 blockchain, Proof of Coherence</div></div>
+<div class="browse-card"><div class="browse-num" style="color:#2ECC71">08</div><div class="browse-name">Juniper</div><div class="browse-desc">7-agent OpenClaw, local-first</div></div>
+<div class="browse-card"><div class="browse-num" style="color:#FF9500">09</div><div class="browse-name">MERIDIAN</div><div class="browse-desc">Cross-domain meta-framework</div></div>
+<div class="browse-card cur"><div class="browse-num" style="color:#FF2D78">10</div><div class="browse-name">SIGNAL</div><div class="browse-desc">Psychoacoustic pattern detection</div><div class="browse-yah">You are here</div></div>
+<div class="browse-card"><div class="browse-num" style="color:#E8F4FF">11</div><div class="browse-name">VERDICT</div><div class="browse-desc">Structured reasoning instrument</div></div>
+<div class="browse-card"><div class="browse-num" style="color:#00FF88">12</div><div class="browse-name">SENTINEL</div><div class="browse-desc">Always-on monitoring agent</div></div>
+</div>
+</div></section>
+
+<footer>
+  <div><div class="footer-brand">Celaya <span>Solutions</span></div><div class="footer-sub">/ SIGNAL</div><div style="font-family:var(--mono);font-size:.52rem;color:var(--g600);margin-top:1.5rem;letter-spacing:.1em;line-height:2.2">El Paso, Texas<br><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5038353c3c3f1033353c312931233f3c2524393f3e237e333f3d">[email&#160;protected]</a></div></div>
+  <div class="footer-links"><a href="#" class="footer-link">Research Collaboration</a><a href="/instruments" class="footer-link">All Instruments</a><a href="/cdn-cgi/l/email-protection#ec8489808083ac8f89808d958d9f838099988583829fc28f8381" class="footer-link">Contact Lab</a></div>
+  <div class="footer-meta">SIGNAL v1.0<br>Celaya Solutions v1.0.0<br><br>All rights reserved</div>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px'});
+(function t(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(t)})();
+window.addEventListener('scroll',()=>{const m=document.documentElem

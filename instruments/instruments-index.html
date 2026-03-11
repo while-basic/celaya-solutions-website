@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instruments — Celaya Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black: #000;
+  --white: #fff;
+  --g900: #0A0A0A;
+  --g800: #111;
+  --g700: #1A1A1A;
+  --g600: #242424;
+  --g500: #3A3A3A;
+  --g400: #6B6B6B;
+  --g300: #9A9A9A;
+  --mono:    'JetBrains Mono', monospace;
+  --display: 'Syne', sans-serif;
+  --body:    'DM Sans', sans-serif;
+}
+
+/* Instrument accent palette */
+--i01: #FF6B35; --i02: #06D6A0; --i03: #FFFFFF;
+--i04: #FF3366; --i05: #FFBE0B; --i06: #00C2FF;
+--i07: #3D7EFF; --i08: #2ECC71; --i09: #FF9500;
+--i10: #FF2D78; --i11: #E8F4FF; --i12: #00FF88;
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--body);
+  overflow-x: hidden;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── CURSOR ── */
+.cursor {
+  position: fixed; width: 8px; height: 8px;
+  background: var(--white); border-radius: 50%;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: background .2s, transform .15s, width .2s, height .2s;
+  mix-blend-mode: difference;
+}
+.cursor-ring {
+  position: fixed; width: 32px; height: 32px;
+  border: 1px solid rgba(255,255,255,.25); border-radius: 50%;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: width .3s, height .3s, border-color .3s;
+}
+
+/* ── PROGRESS ── */
+.progress {
+  position: fixed; top: 0; left: 0;
+  height: 2px; width: 0%; background: var(--white);
+  z-index: 300; transition: width .1s;
+  mix-blend-mode: difference;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 60px; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 3rem;
+  background: rgba(0,0,0,.9); backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255,255,255,.05);
+}
+.nav-logo {
+  font-family: var(--display); font-size: 1.1rem; font-weight: 800;
+  letter-spacing: -.03em; color: var(--white); text-decoration: none;
+}
+.nav-logo span { color: #FF6B35; }
+.nav-meta {
+  font-family: var(--mono); font-size: .58rem;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--g400);
+}
+
+/* ── HERO ── */
+#hero {
+  height: 100vh; position: relative;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: flex-start;
+  padding: 0 3rem;
+  overflow: hidden;
+}
+
+/* Large number watermark */
+.hero-watermark {
+  position: absolute; right: -2rem; top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--display); font-size: clamp(18rem, 30vw, 28rem);
+  font-weight: 800; letter-spacing: -.1em;
+  color: rgba(255,255,255,.025);
+  line-height: 1; pointer-events: none; user-select: none;
+  animation: watermarkDrift 20s ease-in-out infinite alternate;
+}
+@keyframes watermarkDrift {
+  from { transform: translateY(-50%) translateX(0); }
+  to   { transform: translateY(-50%) translateX(-2rem); }
+}
+
+/* Thin vertical lines — showroom atmosphere */
+.hero-lines {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(255,255,255,.018) 0px, rgba(255,255,255,.018) 1px,
+    transparent 1px, transparent 100px
+  );
+}
+
+.hero-eyebrow {
+  font-family: var(--mono); font-size: .65rem;
+  letter-spacing: .3em; text-transform: uppercase;
+  color: var(--g400); margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  opacity: 0; animation: slideUp .8s cubic-bezier(.16,1,.3,1) .2s forwards;
+}
+.hero-eyebrow::before { content: ''; width: 40px; height: 1px; background: var(--g500); }
+
+.hero-title {
+  font-family: var(--display);
+  font-size: clamp(4rem, 12vw, 10rem);
+  font-weight: 800; letter-spacing: -.05em; line-height: .9;
+  color: var(--white); margin-bottom: 2rem;
+  opacity: 0; animation: slideUp .9s cubic-bezier(.16,1,.3,1) .35s forwards;
+}
+.hero-title em {
+  font-style: normal; display: block;
+  background: linear-gradient(135deg, #FF6B35 0%, #FFBE0B 35%, #06D6A0 70%, #3D7EFF 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-family: var(--body); font-size: clamp(.9rem, 1.5vw, 1.15rem);
+  color: var(--g300); max-width: 480px; line-height: 1.7;
+  opacity: 0; animation: slideUp .9s cubic-bezier(.16,1,.3,1) .5s forwards;
+  margin-bottom: 3rem;
+}
+
+/* Count strip */
+.hero-counts {
+  display: flex; gap: 3rem;
+  opacity: 0; animation: slideUp .9s cubic-bezier(.16,1,.3,1) .65s forwards;
+}
+.count-item { border-left: 2px solid var(--g600); padding-left: 1rem; }
+.count-num {
+  font-family: var(--display); font-size: 2.2rem;
+  font-weight: 800; color: var(--white); line-height: 1;
+}
+.count-label {
+  font-family: var(--mono); font-size: .55rem;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--g400); margin-top: .2rem;
+}
+
+/* Scroll hint */
+.scroll-hint {
+  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+  font-family: var(--mono); font-size: .52rem;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--g600);
+  animation: floatY 2.5s ease-in-out infinite;
+}
+@keyframes floatY { 0%,100%{transform:translateX(-50%) translateY(0);} 50%{transform:translateX(-50%) translateY(7px);} }
+.scroll-line { width: 1px; height: 36px; background: linear-gradient(to bottom, var(--g600), transparent); }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── INSTRUMENTS GRID ── */
+#instruments {
+  padding: 6rem 3rem;
+  position: relative;
+}
+
+.instruments-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 4rem; padding-bottom: 2rem;
+  border-bottom: 1px solid var(--g700);
+}
+.instruments-label {
+  font-family: var(--mono); font-size: .62rem;
+  letter-spacing: .25em; text-transform: uppercase;
+  color: var(--g400);
+}
+.instruments-filter {
+  display: flex; gap: 0;
+}
+.filter-btn {
+  font-family: var(--mono); font-size: .58rem;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--g500); padding: .5rem 1.2rem;
+  background: none; border: 1px solid var(--g700);
+  border-right: none; cursor: none;
+  transition: color .2s, background .2s;
+}
+.filter-btn:last-child { border-right: 1px solid var(--g700); }
+.filter-btn.active, .filter-btn:hover { background: var(--g800); color: var(--white); }
+
+/* The grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  gap: 1px;
+  background: var(--g700);
+  border: 1px solid var(--g700);
+}
+
+/* Base card */
+.card {
+  background: var(--black);
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  cursor: none;
+  transition: background .3s;
+  text-decoration: none;
+  display: flex; flex-direction: column;
+  min-height: 320px;
+}
+
+/* Grid spanning — magazine-style asymmetric layout */
+.card-01 { grid-column: span 5; grid-row: span 2; min-height: 480px; }
+.card-02 { grid-column: span 4; }
+.card-03 { grid-column: span 3; }
+.card-04 { grid-column: span 4; }
+.card-05 { grid-column: span 3; }
+.card-06 { grid-column: span 5; }
+.card-07 { grid-column: span 4; }
+.card-08 { grid-column: span 3; }
+.card-09 { grid-column: span 5; }
+.card-10 { grid-column: span 4; }
+.card-11 { grid-column: span 3; }
+.card-12 { grid-column: span 7; }
+
+/* Accent color per card — CSS variable set inline */
+.card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--c, #FF6B35);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .4s cubic-bezier(.16,1,.3,1);
+}
+
+/* Big ghost number — automotive heritage number */
+.card-ghost {
+  position: absolute;
+  bottom: -1.5rem; right: -1rem;
+  font-family: var(--display); font-size: 8rem;
+  font-weight: 800; letter-spacing: -.08em;
+  color: rgba(255,255,255,.025);
+  line-height: 1; pointer-events: none; user-select: none;
+  transition: color .3s, transform .4s cubic-bezier(.16,1,.3,1);
+}
+
+/* Glow blob on hover */
+.card-glow {
+  position: absolute; inset: 0;
+  opacity: 0;
+  transition: opacity .4s;
+  pointer-events: none;
+  border-radius: 0;
+}
+
+.card:hover { background: var(--g900); }
+.card:hover::before { transform: scaleX(1); }
+.card:hover .card-ghost {
+  color: var(--c-ghost, rgba(255,107,53,.12));
+  transform: translateX(-4px) translateY(-4px) scale(1.05);
+}
+.card:hover .card-glow { opacity: 1; }
+
+/* Card content */
+.card-num {
+  font-family: var(--mono); font-size: .58rem;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--g500); margin-bottom: 1.5rem;
+  transition: color .25s;
+}
+.card:hover .card-num { color: var(--c, #FF6B35); }
+
+.card-name {
+  font-family: var(--display);
+  font-weight: 800; letter-spacing: -.03em; line-height: 1;
+  color: var(--white);
+  margin-bottom: .75rem;
+  transition: color .2s;
+}
+
+.card-desc {
+  font-family: var(--body); font-size: .85rem;
+  color: var(--g400); line-height: 1.55;
+  transition: color .2s;
+}
+.card:hover .card-desc { color: var(--g300); }
+
+/* Status tag */
+.card-status {
+  margin-top: auto; padding-top: 1.5rem;
+  display: flex; align-items: center; gap: .5rem;
+  font-family: var(--mono); font-size: .55rem;
+  letter-spacing: .15em; text-transform: uppercase;
+  color: var(--g600);
+  transition: color .25s;
+}
+.card:hover .card-status { color: var(--g400); }
+
+.status-pip {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--g600); flex-shrink: 0;
+  transition: background .25s;
+}
+.card:hover .status-pip { background: var(--c, #FF6B35); }
+.status-pip.live { background: #06D6A0; animation: pipBlink 2s ease-in-out infinite; }
+@keyframes pipBlink { 0%,100%{opacity:1;} 50%{opacity:.3;} }
+
+/* Card arrow */
+.card-arrow {
+  position: absolute; bottom: 2.5rem; right: 2.5rem;
+  font-family: var(--mono); font-size: .75rem;
+  color: var(--g700);
+  transition: color .25s, transform .25s;
+}
+.card:hover .card-arrow { color: var(--c, #FF6B35); transform: translate(3px, -3px); }
+
+/* Size variants for font scaling */
+.card-01 .card-name { font-size: clamp(2.5rem, 4vw, 4rem); }
+.card-02 .card-name,
+.card-06 .card-name,
+.card-09 .card-name,
+.card-12 .card-name { font-size: clamp(1.6rem, 2.5vw, 2.2rem); }
+.card-03 .card-name,
+.card-04 .card-name,
+.card-05 .card-name,
+.card-07 .card-name,
+.card-08 .card-name,
+.card-10 .card-name,
+.card-11 .card-name { font-size: clamp(1.3rem, 2vw, 1.8rem); }
+
+/* ── MANIFESTO BAND ── */
+#manifesto {
+  padding: 8rem 3rem;
+  position: relative; overflow: hidden;
+  border-top: 1px solid var(--g700);
+}
+
+.manifesto-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(255,107,53,.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.manifesto-inner {
+  position: relative; z-index: 1;
+  max-width: 900px; margin: 0 auto; text-align: center;
+}
+
+.manifesto-kicker {
+  font-family: var(--mono); font-size: .62rem;
+  letter-spacing: .3em; text-transform: uppercase;
+  color: var(--g500); margin-bottom: 2rem;
+  display: flex; align-items: center; justify-content: center; gap: 1rem;
+}
+.manifesto-kicker::before,
+.manifesto-kicker::after { content: ''; width: 40px; height: 1px; background: var(--g700); }
+
+.manifesto-text {
+  font-family: var(--display);
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
+  font-weight: 800; letter-spacing: -.04em; line-height: 1.15;
+  color: var(--white); margin-bottom: 2.5rem;
+}
+.manifesto-text .o { color: #FF6B35; }
+.manifesto-text .g { color: #06D6A0; }
+.manifesto-text .y { color: #FFBE0B; }
+.manifesto-text .b { color: #3D7EFF; }
+
+.manifesto-body {
+  font-size: 1.05rem; color: var(--g300);
+  line-height: 1.75; max-width: 580px; margin: 0 auto 3rem;
+}
+
+.manifesto-cta {
+  font-family: var(--mono); font-size: .7rem;
+  letter-spacing: .15em; text-transform: uppercase;
+  font-weight: 700; padding: 1rem 2.5rem;
+  background: var(--white); color: var(--black);
+  border: none; cursor: none; transition: all .2s;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  display: inline-block;
+}
+.manifesto-cta:hover { background: var(--g300); }
+
+/* ── FOOTER ── */
+footer {
+  padding: 4rem 3rem; border-top: 1px solid var(--g800);
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3rem; align-items: end;
+}
+.footer-brand {
+  font-family: var(--display); font-size: 1.5rem;
+  font-weight: 800; letter-spacing: -.03em;
+}
+.footer-brand span { color: #FF6B35; }
+.footer-tagline {
+  font-family: var(--mono); font-size: .55rem;
+  letter-spacing: .15em; text-transform: uppercase;
+  color: var(--g500); margin-top: .5rem;
+}
+.footer-contact {
+  font-family: var(--mono); font-size: .55rem;
+  letter-spacing: .1em; color: var(--g600); margin-top: 1.5rem; line-height: 2.2;
+}
+.footer-links { display: flex; flex-direction: column; gap: .7rem; }
+.footer-link {
+  font-family: var(--mono); font-size: .62rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--g400); text-decoration: none; transition: color .2s;
+}
+.footer-link:hover { color: var(--white); }
+.footer-meta {
+  text-align: right; font-family: var(--mono);
+  font-size: .52rem; color: var(--g600); letter-spacing: .1em; line-height: 2.3;
+}
+
+/* ── REVEAL ── */
+.reveal {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: .06s; }
+.reveal-delay-2 { transition-delay: .12s; }
+.reveal-delay-3 { transition-delay: .18s; }
+.reveal-delay-4 { transition-delay: .24s; }
+.reveal-delay-5 { transition-delay: .3s; }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="progress" id="progress"></div>
+
+<nav>
+  <a class="nav-logo" href="/">Celaya <span>Solutions</span></a>
+  <div class="nav-meta">Research Instruments / All 12</div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <div class="hero-lines"></div>
+  <div class="hero-watermark">12</div>
+
+  <div class="hero-eyebrow">Research Ecosystem</div>
+
+  <h1 class="hero-title">
+    Research
+    <em>Instruments.</em>
+  </h1>
+
+  <p class="hero-sub">Twelve systems built to make coherence visible. Manufacturing intelligence, biometric sovereignty, civic accountability, consciousness research. Each one a precision instrument for a domain others haven't formalized yet.</p>
+
+  <div class="hero-counts">
+    <div class="count-item">
+      <div class="count-num">12</div>
+      <div class="count-label">Instruments</div>
+    </div>
+    <div class="count-item">
+      <div class="count-num">5</div>
+      <div class="count-label">Deployed</div>
+    </div>
+    <div class="count-item">
+      <div class="count-num">31+</div>
+      <div class="count-label">Total agents</div>
+    </div>
+    <div class="count-item">
+      <div class="count-num">EP</div>
+      <div class="count-label">El Paso, TX</div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>All Instruments</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ─── INSTRUMENTS GRID ─── -->
+<section id="instruments">
+  <div class="instruments-header reveal">
+    <div class="instruments-label">All 12 Instruments — Select to explore</div>
+    <div class="instruments-filter">
+      <button class="filter-btn active" onclick="filterCards('all', this)">All</button>
+      <button class="filter-btn" onclick="filterCards('deployed', this)">Deployed</button>
+      <button class="filter-btn" onclick="filterCards('research', this)">Research</button>
+      <button class="filter-btn" onclick="filterCards('civic', this)">Civic</button>
+    </div>
+  </div>
+
+  <div class="grid" id="instrumentGrid">
+
+    <!-- 01 CORTEX -->
+    <a class="card card-01 reveal"
+       href="/instruments/cortex"
+       style="--c:#FF6B35; --c-ghost:rgba(255,107,53,.13);"
+       data-tags="deployed">
+      <div class="card-glow" style="background:radial-gradient(ellipse 70% 60% at 30% 80%, rgba(255,107,53,.08) 0%, transparent 70%);"></div>
+      <div class="card-ghost">01</div>
+      <div class="card-num">01</div>
+      <div class="card-name">CORTEX</div>
+      <div class="card-desc">14-agent manufacturing intelligence platform. Built and deployed at Schneider Electric EP44 in approximately 6 hours. Domain separation architecture. 90-day data gravity protocol.</div>
+      <div class="card-status">
+        <span class="status-pip live"></span>
+        Operational — EP44
+      </div>
+      <div class="card-arrow">↗</div>
+    </a>
+
+    <!-- 02 CLOS -->
+    <a class="card card-02 reveal reveal-delay-1"
+       href="/instruments/clos"
+       style="--c:#06D6A0; --c-ghost:rgba(6,214,160,.12);"
+       data-tags="research">
+      <div class="card-glow" style="background:radial-gradient(ellipse 70% 60% at 70% 80%, rgba(6,214,160,.07) 0%, transparent 70%);"></div>
+      <div class="card-ghost">02</div>
+      <div class="card-num">02</div>
+      <div class="card-name">CLOS</div>
+      <div class="card-desc">37-agent cognitive life operating system. Apple Watch biometrics, HRV, sleep, voice journaling. Consciousness as infrastructure.</div>
+      <div class="card-status">
+        <span class="status-pip"></span>
+        Active Research
+      </div>
+      <div class="card-arrow">↗</div>
+    </a>
+
+    <!-- 03 EPPE -->
+    <a class="card card-03 reveal reveal-delay-2"
+       href="/instruments/eppe"
+       style="--c:#FFFFFF; --c-ghost:rgba(255,255,255,.07);"
+       data-tags="deployed civic">
+      <div class="card-glow" style="background:radial-gradient(ellipse 60% 50% at 50% 80%, rgba(255,255,255,.04) 0%, transparent 70%);"></div>
+      <div class="card-ghost">03</div>
+      <div class="card-num">03</div>
+      <div class="card-name">EPPE</div>
+      <div class="card-desc">El Paso Proof Engine. SHA-256 civic accountability. Zero sign-up. Files never leave the device.</div>
+      <div class="card-status">
+        <span class="status-pip live"></span>
+        Live
+      </div>
+      <div class="card-arrow">↗</div>
+    </a>
+
+    <!-- 04 MORTEM -->
+    <a class="card card-04 reveal reveal-delay-1"
+       href="/instruments/mortem"
+       style="--c:#FF3366; --c-ghost:rgba(255,51,102,.12);"
+       data-tags="deployed">
+      <div class="card-glow" style="background:radial-gradient(ellipse 70% 60% at 30% 80%, rgba(255,51,102,.08) 0%, transparent 70%);"></div>
+      <div class="card-ghost">04</div>
+      <div class="card-num">04</div>
+      <div class="card-name">MORTEM</div>
+      <div class="card-desc">Pacemaker heartbeat relayed to Solana every 60 seconds. 86,400-beat lifecycle. Biometric sovereignty on-chain.</div>
+      <div class="card-status">
+        <span class="status-pip live"></span>
+        Devnet Active
+      </div>
+      <div class="card-arrow">↗</div>
+    </a>
+
+    <!-- 05 PROJECT JUPITER -->
+    <a class="card card-05 reveal reveal-delay-2"
+       href="/instruments/jupiter"
+       style="--c:#FFBE0B; --c-ghost:rgba(255,190,11,.11);"
+       data-tags="deployed civic">
+      <div class="card-glow" style="background:radial-gradient(ellipse 60% 50% at 50% 80%, rgba(255,190,11,.06) 0%, transparent 70%);"></div>
+      <div class="card-ghost">05</div>
+      <div class="card-num">05</div>
+      <div class="card-name">Project Jupiter</div>
+      <div class="card-desc">El Paso water and grid analysis. 197% demand finding. Sealed Envelope Protocol. Active litigation reference D-307-CV-2025-02766.</div>
+      <div class="card-status">
+        <span class="status-pip live"></span>
+        Case Active
+      </div>
+      <div class="card-arrow">↗</div>
+    </a>
+
+    <!-- 06 NEURAL CHILD -->
+    <a class="card card-06 reveal"
+       href="/instruments/neural-child"
+       style="--c:#00C2FF; --c-ghost:rgba(0,194,255,.11);"
+       data-tags="research">
+      <div class="card-glow" style="background:radial-gradient(ellipse 70% 60% at 40% 80%, rgba(0,194,255,.07) 0%, transparent 70%);"></div>
+      <div class="card-ghost">06</div>
+      <div class="card-num">06</div>
+      <div class="card-name">Neural Child</div>
+      <div class="card-desc">Developmental AI with emotional memory. Five interacting neural networks modeling growth stages and context-weighted recall. Pure research curiosity.</div>
+      <div class="card-status">
+        <span class="status-pip"></span>
+        Active Research
+      </div>
+      <div class="card-arrow">↗</div>
+    </a>
+
+    <!-- 07 CELAYA CHAIN PROTOCOL -->
+    <a class="card card-07 reveal reveal-delay-1"
+       href="/instruments/celaya-chain"
+       style="--c:#3D7EFF; --c-ghost:rgba(61,126,255,.12);"
+       data-tags="research">
+      <div class="card-glow" style="background:radial-gradient(ellipse 70% 50% at 50% 80%, rgba(61,126,255,.07) 0%, transparent 70%);"></div>
+      <div class="card-ghost">07</div>
+      <div class="card-num">07</div>
+      <div class="card-name">Celaya Chain Protocol</div>
+      <div class="card-desc">L3 blockchain. Proof of Coherence consensus. Authority decay: A(t) = C(t) × e<sup>-an</sup> × e<sup>-lt</sup>. Whitepaper on ethresear.ch.</div>
+      <div class="card-status">
+        <span class="status-pip"></span>
+        Research / Published
+      </div>
+      <div class="card-arrow">↗</div>
+    </a>
+
+    <!-- 08 JUNIPER -->
+    <a class="card card-08 reveal reveal-delay-2"
+       href="/instruments/juniper"
+       style="--c:#2ECC71; --c-ghost:rgba(46,204,113,.11);"
+       data-tags="deployed">
+      <div class="card-glow" style="background:radial-gradient(ellipse 60% 50% at 50% 80%, rgba(46,204,113,.06) 0%, transparent 70%);"></div>
+      <div class="card-ghost">08</div>
+      <div class="card-num">08</div>
+      <div class="card-name">Juniper</div>
+      <div class="card-desc">7-agent OpenClaw architecture. 9 cron jobs running. Local Ollama models only. Escalates to cloud when attention is required.</div>
+      <div class="card-status">
+        <span class="status-pip live"></span>
+        Deployed / 9 Crons Active
+      </div>
+      <div class="card-arrow">↗</div>
+    </a>
+
+    <!-- 09 MERIDIAN -->
+    <a class="card card-09 reveal"
+       href="/instruments/meridian"
+       style="--c:#FF9500; --c-ghost:rgba(255,149,0,.11);"
+       data-tags="research">
+      <div class="card-glow" style="background:radial-gradient(ellipse 80% 60% at 40% 80%, rgba(255,149,0,.07) 0%, transparent 70%);"></div>
+      <div class="card-ghost">09</div>
+      <div class="card-num">09</div>
+      <div class="card-name">MERIDIAN</div>
+      <div class="card-desc">Cross-domain cognitive pattern meta-framework. Electrical, AI, audio, civic, cognitive. The operating layer above all other instruments. Patterns others miss because they stay in one domain.</div>
+      <div class="card-status">
+        <span class="status-pip"></span>
+        Active Research
+      </div>
+      <div class="card-arrow">↗</div>
+    </a>
+
+    <!-- 10 SIGNAL -->
+    <a class="card card-10 reveal reveal-delay-1"
+       href="/instruments/signal"
+       style="--c:#FF2D78; --c-ghost:rgba(255,45,120,.11);"
+       data-tags="research">
+      <div class="card-glow" style="background:radial-gradient(ellipse 70% 50% at 50% 80%, rgba(255,45,120,.07) 0%, transparent 70%);"></div>
+      <div class="card-ghost">10</div>
+      <div class="card-num">10</div>
+      <div class="card-name">SIGNAL</div>
+      <div class="card-desc">Psychoacoustic pattern detection. 172k+ sample library. Frisson analyzer, local processing. REAPER DAW MCP integration.</div>
+      <div class="card-status">
+        <span class="status-pip"></span>
+        Active Research
+      </div>
+      <div class="card-arrow">↗</div>
+    </a>
+
+    <!-- 11 VERDICT -->
+    <a class="card card-11 reveal reveal-delay-2"
+       href="/instruments/verdict"
+       style="--c:#E8F4FF; --c-ghost:rgba(232,244,255,.07);"
+       data-tags="research">
+      <div class="card-glow" style="background:radial-gradient(ellipse 60% 50% at 50% 80%, rgba(232,244,255,.04) 0%, transparent 70%);"></div>
+      <div class="card-ghost">11</div>
+      <div class="card-num">11</div>
+      <div class="card-name">VERDICT</div>
+      <div class="card-desc">Structured reasoning instrument. Multi-step claim chains. Verifiable outputs linkable to blockchain proof.</div>
+      <div class="card-status">
+        <span class="status-pip"></span>
+        In Development
+      </div>
+      <div class="card-arrow">↗</div>
+    </a>
+
+    <!-- 12 SENTINEL -->
+    <a class="card card-12 reveal"
+       href="/instruments/sentinel"
+       style="--c:#00FF88; --c-ghost:rgba(0,255,136,.1);"
+       data-tags="deployed">
+      <div class="card-glow" style="background:radial-gradient(ellipse 80% 60% at 35% 80%, rgba(0,255,136,.06) 0%, transparent 60%);"></div>
+      <div class="card-ghost">12</div>
+      <div class="card-num">12</div>
+      <div class="card-name">SENTINEL</div>
+      <div class="card-desc">Always-on monitoring agent. Deployed simultaneously in CORTEX and Juniper. Threshold-based escalation. Two live deployments running in parallel across separate systems.</div>
+      <div class="card-status">
+        <span class="status-pip live"></span>
+        Live — 2 Deployments
+      </div>
+      <div class="card-arrow">↗</div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ─── MANIFESTO ─── -->
+<section id="manifesto">
+  <div class="manifesto-bg"></div>
+  <div class="manifesto-inner">
+    <div class="manifesto-kicker reveal">The Research Lab</div>
+    <div class="manifesto-text reveal reveal-delay-1">
+      <span class="o">Manufacturing</span> intelligence.<br>
+      <span class="g">Biometric</span> sovereignty.<br>
+      <span class="y">Civic</span> accountability.<br>
+      <span class="b">Consciousness</span> research.
+    </div>
+    <p class="manifesto-body reveal reveal-delay-2">Celaya Solutions is an independent AI research lab operating out of El Paso, TX. These instruments are not products. They are research infrastructure. Each one built to make a specific kind of coherence visible, verifiable, and impossible to ignore.</p>
+    <a class="manifesto-cta reveal reveal-delay-3" href="/cdn-cgi/l/email-protection#a1c9c4cdcdcee1c2c4cdc0d8c0d2cecdd4d5c8cecfd28fc2cecc">Contact the Lab</a>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div>
+    <div class="footer-brand">Celaya <span>Solutions</span></div>
+    <div class="footer-tagline">Independent AI Research Lab</div>
+    <div class="footer-contact">
+      El Paso, Texas<br>
+      <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b6ded3dadad9f6d5d3dad7cfd7c5d9dac3c2dfd9d8c598d5d9db">[email&#160;protected]</a><br>
+      <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ec8f849e859fac8f849e859f8f89808d958dc28f8381">[email&#160;protected]</a>
+    </div>
+  </div>
+  <div class="footer-links">
+    <a href="#instruments" class="footer-link">All Instruments</a>
+    <a href="/instruments/eppe" class="footer-link">EPPE: Submit Evidence</a>
+    <a href="/instruments/jupiter" class="footer-link">Project Jupiter</a>
+    <a href="/cdn-cgi/l/email-protection#79111c151516391a1c151800180a16150c0d1016170a571a1614" class="footer-link">Research Collaboration</a>
+  </div>
+  <div class="footer-meta">
+    Instruments Index v1.0<br>
+    Celaya Solutions v1.0.0<br>
+    Brand Guidelines v1.0.0<br><br>
+    All rights reserved
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Cursor
+  const cursor = document.getElementById('cursor')
+  const ring   = document.getElementById('cursorRing')
+  let mx=0,my=0,rx=0,ry=0
+  let activeColor = null
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY
+    cursor.style.left = mx+'px'; cursor.style.top = my+'px'
+  })
+
+  ;(function tick(){
+    rx += (mx-rx)*.1; ry += (my-ry)*.1
+    ring.style.left = rx+'px'; ring.style.top = ry+'px'
+    requestAnimationFrame(tick)
+  })()
+
+  // Cursor changes color to match hovered instrument
+  document.querySelectorAll('.card').forEach(card => {
+    const c = getComputedStyle(card).getPropertyValue('--c').trim()
+    card.addEventListener('mouseenter', () => {
+      cursor.style.background = c
+      ring.style.borderColor = c.replace(')', ', .4)')
+        .replace('rgb', 'rgba').replace('#', '')
+      ring.style.width = '48px'
+      ring.style.height = '48px'
+    })
+    card.addEventListener('mouseleave', () => {
+      cursor.style.background = '#fff'
+      ring.style.borderColor = 'rgba(255,255,255,.25)'
+      ring.style.width = '32px'
+      ring.style.height = '32px'
+    })
+  })
+
+  // Progress
+  window.addEventListener('scroll', () => {
+    const max = document.documentElement.scrollHeight - innerHeight
+    document.getElementById('progress').style.width = (scrollY/max*100)+'%'
+  })
+
+  // Reveal
+  const io = new IntersectionObserver(
+    entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') }),
+    { threshold: .08 }
+  )
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el))
+
+  //
