@@ -313,18 +313,38 @@ footer .right a:hover { color: var(--white); }
 .rd3 { transition-delay: .24s; }
 
 /* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .featured-grid { grid-template-columns: 1fr 1fr; }
+}
 @media (max-width: 768px) {
   body { cursor: auto; }
   .cursor, .cursor-ring { display: none; }
-  nav { padding: 0 1.5rem; }
-  .hero { padding: 0 1.5rem; }
+  nav { padding: 0 1.25rem; }
+  .nav-links { gap: 1rem; }
+  .nav-links a { font-size: .55rem; }
+  .hero { padding: 0 1.25rem; min-height: 85vh; }
+  .hero h1 { font-size: clamp(2rem, 8vw, 3.5rem); }
+  .hero p { font-size: .95rem; }
+  .hero-ctas { flex-direction: column; }
+  .hero-ctas .btn { width: 100%; justify-content: center; }
   .stats { flex-direction: column; }
-  .stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,.04); }
-  .domains, .featured, .lab { padding: 4rem 1.5rem; }
+  .stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,.04); padding: 1.5rem 1.25rem; }
+  .stat:last-child { border-bottom: none; }
+  .stat-num { font-size: 2rem; }
+  .domains, .featured, .lab { padding: 3rem 1.25rem; }
   .domain-grid { grid-template-columns: 1fr; }
+  .domain { padding: 2rem 1.25rem; }
   .featured-grid { grid-template-columns: 1fr; }
+  .featured-card { padding: 2rem 1.25rem; }
   .lab-grid { grid-template-columns: 1fr; gap: 2rem; }
-  footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+  footer { padding: 2rem 1.25rem; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+}
+@media (max-width: 480px) {
+  .nav-logo { font-size: .95rem; }
+  .nav-links { gap: .6rem; }
+  .nav-links a { font-size: .5rem; letter-spacing: .1em; }
+  .hero h1 { font-size: clamp(1.8rem, 9vw, 2.8rem); }
+  .hero-watermark { font-size: clamp(10rem, 50vw, 16rem); }
 }
 </style>
 </head>
