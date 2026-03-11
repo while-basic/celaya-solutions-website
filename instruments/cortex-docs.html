@@ -388,7 +388,7 @@ footer{padding:4rem 3rem;border-top:1px solid var(--g800);position:relative;z-in
         <div class="info-row"><div class="info-label">SEP Anchor</div><div class="info-val b">Solana — Active</div></div>
         <div class="info-row"><div class="info-label">Work-for-hire Coverage</div><div class="info-val o">Disputed</div></div>
         <div class="info-row"><div class="info-label">Lab</div><div class="info-val">Celaya Solutions</div></div>
-        <div class="info-row"><div class="info-label">Contact</div><div class="info-val" style="font-size:.6rem"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6b030e0707042b080e070a120a1804071e1f0204051845080406">[email&#160;protected]</a></div></div>
+        <div class="info-row"><div class="info-label">Contact</div><div class="info-val" style="font-size:.6rem"><a href="mailto:hello@celayasolutions.com">hello@celayasolutions.com</a></div></div>
       </div>
     </div>
   </div>
@@ -431,13 +431,21 @@ footer{padding:4rem 3rem;border-top:1px solid var(--g800);position:relative;z-in
   <div class="footer-brand">CORTEX <span class="o">Documentation</span> / Celaya Solutions</div>
   <div class="footer-meta">
     CORTEX v1.0 — Reference Documentation<br>
-    Celaya Solutions v1.0.0 / <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="325a575e5e5d7251575e534b53415d5e47465b5d5c411c515d5f">[email&#160;protected]</a>
+    Celaya Solutions v1.0.0 / <a href="mailto:hello@celayasolutions.com">hello@celayasolutions.com</a>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px'});
 (function t(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(t)})();
-window.addEventListe
+window.addEventListener('scroll',()=>{
+  const m=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('progress').style.width=(scrollY/m*100)+'%';
+},{passive:true});
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

@@ -487,9 +487,9 @@ footer{border-top:1px solid var(--g800);padding:3rem;position:relative;z-index:1
 </div>
 <footer>
   <div class="footer-brand">CORTEX <span class="o">Docs</span> / Celaya Solutions</div>
-  <div class="footer-meta">CORTEX v1.0 / <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="48202d242427082b2d242931293b27243d3c2127263b662b2725">[email&#160;protected]</a><br>Celaya Solutions v1.0.0 / El Paso, TX</div>
+  <div class="footer-meta">CORTEX v1.0 / <a href="mailto:hello@celayasolutions.com">hello@celayasolutions.com</a><br>Celaya Solutions v1.0.0 / El Paso, TX</div>
 </footer>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px'});
@@ -500,4 +500,11 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 // Active sidebar link on scroll
 const sections=document.querySelectorAll('section[id]');
 const sLinks=document.querySelectorAll('.sidebar-link[data-section]');
-window.addE
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{if(scrollY>=s.offsetTop-200)cur=s.id});
+  sLinks.forEach(l=>{l.classList.toggle('active',l.dataset.section===cur)});
+},{passive:true});
+</script>
+</body>
+</html>

@@ -766,13 +766,13 @@ footer{
         <div class="contact-block">
           <div class="cb-header">Contact / Direct</div>
           <div class="cb-row"><div class="cb-label">Lab</div><div class="cb-val">Celaya Solutions</div></div>
-          <div class="cb-row"><div class="cb-label">Email</div><div class="cb-val"><a href="/cdn-cgi/l/email-protection#cca4a9a0a0a38cafa9a0adb5adbfa3a0b9b8a5a3a2bfe2afa3a1"><span class="__cf_email__" data-cfemail="08606d646467486b6d646971697b67647d7c6167667b266b6765">[email&#160;protected]</span></a></div></div>
-          <div class="cb-row"><div class="cb-label">Personal</div><div class="cb-val"><a href="/cdn-cgi/l/email-protection#60030812091320030812091303050c0119014e030f0d"><span class="__cf_email__" data-cfemail="aac9c2d8c3d9eac9c2d8c3d9c9cfc6cbd3cb84c9c5c7">[email&#160;protected]</span></a></div></div>
+          <div class="cb-row"><div class="cb-label">Email</div><div class="cb-val"><a href="mailto:hello@celayasolutions.com">hello@celayasolutions.com</a></div></div>
+          <div class="cb-row"><div class="cb-label">Personal</div><div class="cb-val"><a href="mailto:chris@chriscelaya.com">chris@chriscelaya.com</a></div></div>
           <div class="cb-row"><div class="cb-label">Location</div><div class="cb-val">El Paso, TX</div></div>
           <div class="cb-row"><div class="cb-label">Response</div><div class="cb-val" style="color:var(--green)">Builder-direct. No queue.</div></div>
         </div>
 
-        <a href="/cdn-cgi/l/email-protection#ee868b828281ae8d8b828f978f9d81829b9a8781809dc08d8183d19d9b8c848b8d9ad3ada1bcbaabb6cea7809f9b879c97" class="big-cta">Start the Conversation →</a>
+        <a href="mailto:hello@celayasolutions.com?subject=CORTEX Inquiry" class="big-cta">Start the Conversation →</a>
       </div>
     </div>
   </div>
@@ -791,11 +791,21 @@ footer{
   <div class="footer-meta">
     CORTEX v1.0 / Celaya Solutions v1.0.0<br>
     IP claim active — architecture owned by Celaya Solutions<br>
-    <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e9818c858586a98a8c858890889a86859c9d8086879ac78a8684">[email&#160;protected]</a>
+    <a href="mailto:hello@celayasolutions.com">hello@celayasolutions.com</a>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
 let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px'});
+(function t(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(t)})();
+window.addEventListener('scroll',()=>{
+  const m=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('progress').style.width=(scrollY/m*100)+'%';
+},{passive:true});
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

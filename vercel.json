@@ -1,4 +1,5 @@
 {
+  "devCommand": "npx serve . -l 3000 --no-clipboard",
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
