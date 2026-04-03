@@ -108,7 +108,7 @@ const FeaturedInstruments: React.FC = () => {
             onClick={handleCatalogNav}
             className="inline-flex items-center gap-2 font-mono text-[0.75rem] uppercase tracking-[0.12em] text-cs-gray-400 hover:text-cs-orange transition-colors"
           >
-            View all 31 instruments
+            View all 45 instruments
             <ArrowRight className="w-3 h-3" />
           </a>
         </div>
@@ -205,7 +205,7 @@ const FeaturedInstruments: React.FC = () => {
         {/* Full catalog link */}
         <div className="mt-8 pt-8 border-t border-cs-gray-700 flex items-center justify-between">
           <p className="font-mono text-[0.75rem] text-cs-gray-500">
-            31 instruments total — spanning Cognition, Infrastructure, Oversight, Civic, Blockchain, Robotics, and Protocol.
+            45 instruments across Cognition, Infrastructure, Oversight, Civic, Blockchain, Robotics, Protocol, and Audio.
           </p>
           <a
             href="#catalog"

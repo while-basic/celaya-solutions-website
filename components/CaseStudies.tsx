@@ -11,7 +11,7 @@ const cases = [
     system: 'Multi-vector retrieval pipeline: PyMuPDF + Docling ingestion, FAISS indexing, Nomic AI embeddings (768-dim), Claude generation layer. Deployed on Railway with Stripe billing and Supabase auth.',
     dataConditions: '6,828 documents ingested. 500GB archive spanning 500 years. Mixed scan quality — approximately 30% required OCR via Docling. No cloud storage; vectors on-device.',
     measurementOutcome: 'Source citation accuracy validated on 200-query test set. Median query latency under 2 seconds. Zero hallucinated citations across validation set.',
-    deploymentResult: 'Live in production. Fully handed-off stack with source code, infrastructure configuration, and provenance documentation.',
+    deploymentResult: 'Live in production. Source code, infrastructure configuration, and provenance documentation archived in instrument record.',
     metrics: [
       { value: '6,828', label: 'Documents ingested' },
       { value: '500 GB', label: 'Archive size' },
@@ -29,7 +29,7 @@ const cases = [
     system: 'Nomic AI embeddings (768-dim), FAISS vector index, Ollama local inference (llama3.1:8b), custom query engine. Fully offline-capable. No data leaves the device.',
     dataConditions: '10,000+ vectors across personal research notes, session logs, and documents. Daily automated re-ingestion. No external API calls during inference.',
     measurementOutcome: '100% data locality maintained across 18 months of operation. Zero cloud calls logged. Median query latency 340ms on M-series MacBook Pro.',
-    deploymentResult: 'Continuous production deployment. Serves as the reference implementation for the Recall product line. All telemetry feeds into CLOS baseline calibration.',
+    deploymentResult: 'Continuous production deployment. Serves as the reference implementation for the Recall instrument. All telemetry feeds into CLOS baseline calibration.',
     metrics: [
       { value: '10,000+', label: 'Vectors indexed' },
       { value: '<340ms', label: 'Median latency' },

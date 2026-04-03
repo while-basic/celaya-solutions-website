@@ -7,11 +7,10 @@ const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: 'Research',     href: '#research' },
-    { name: 'Standards',    href: '#standards' },
-    { name: 'Philosophy',   href: '#philosophy' },
-    { name: 'Lab Notes',    href: '#lab-notes' },
     { name: 'Instruments',  href: '#catalog' },
+    { name: 'Lab Notes',    href: '#lab-notes' },
     { name: 'Papers',       href: '#ccp' },
+    { name: 'Applied',      href: '#applied' },
     { name: 'Recall',       href: '/recall', product: true },
     { name: 'Contact',      href: '#contact' },
   ];

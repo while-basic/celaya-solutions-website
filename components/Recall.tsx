@@ -299,7 +299,7 @@ const Recall: React.FC = () => {
           <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-zinc-900 border border-white/10 rounded-sm mb-8">
             <Cpu className="w-3 h-3 text-cs-orange" />
             <span className="font-mono text-[0.625rem] text-zinc-400 uppercase tracking-[0.25em]">
-              Celaya Solutions / AI Services
+              Celaya Solutions / Deployed Instrument
             </span>
           </div>
 
