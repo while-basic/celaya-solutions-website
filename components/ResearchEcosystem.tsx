@@ -133,7 +133,7 @@ const ResearchEcosystem: React.FC = () => {
           </a>
         </div>
         <p className="font-body text-cs-gray-400 text-base leading-relaxed mb-12 max-w-2xl">
-          31+ research instruments across Cognition, Infrastructure, Oversight, Civic, Blockchain, Robotics, and Protocol. VERDICT, CORTEX, and CLOS are the primary active instruments. All others are supporting nodes.
+          45+ research instruments across Cognition, Infrastructure, Oversight, Civic, Blockchain, Robotics, Protocol, and Audio. VERDICT, CORTEX, and CLOS are the primary active instruments. All others are supporting nodes.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

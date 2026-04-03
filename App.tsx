@@ -6,6 +6,7 @@ import ProofArchitecture from './components/ProofArchitecture.tsx';
 import ExampleTrace from './components/ExampleTrace.tsx';
 import FeaturedInstruments from './components/FeaturedInstruments.tsx';
 import ResearchOutputs from './components/ResearchOutputs.tsx';
+import ResearchPublications from './components/ResearchPublications.tsx';
 import ResearchEcosystem from './components/ResearchEcosystem.tsx';
 import BehavioralStandards from './components/BehavioralStandards.tsx';
 import { InstrumentRegistry } from './components/InstrumentRegistry.tsx';
@@ -22,6 +23,7 @@ import Process from './components/Process.tsx';
 import CaseStudies from './components/CaseStudies.tsx';
 import Pricing from './components/Pricing.tsx';
 import RecallFeature from './components/RecallFeature.tsx';
+import CCPPublication from './components/CCPPublication.tsx';
 import { INSTRUMENTS } from './data/instruments.ts';
 
 // Derive current "page" from both pathname (/recall) and hash (#catalog etc.)
@@ -37,7 +39,10 @@ const App: React.FC = () => {
     const handleHashChange = () => {
       setCurrentPage(getPage());
       const hash = window.location.hash || '#home';
-      const subPages = ['#privacy', '#catalog', '#timeline', '#philosophy', '#lab-notes', '#gpts'];
+      const subPages = [
+        '#privacy', '#catalog', '#timeline', '#philosophy',
+        '#lab-notes', '#gpts', '#ccp',
+      ];
       if (subPages.includes(hash)) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
@@ -72,48 +77,53 @@ const App: React.FC = () => {
         return <LabNotes />;
       case '#gpts':
         return <GptRegistry />;
+      case '#ccp':
+        return <CCPPublication />;
       // legacy hash route — fallback
       case '#recall':
         return <Recall />;
       default:
         return (
           <>
-            {/* ── Identity layer: What is this place ── */}
+            {/* ── 1. Identity: what this lab is ── */}
             <Introduction />
 
-            {/* ── Proof architecture: How coherence becomes visible ── */}
+            {/* ── 2. Proof architecture: how coherence is measured ── */}
             <ProofArchitecture />
 
-            {/* ── Concrete evidence: One actual trace receipt ── */}
+            {/* ── 3. Concrete evidence: one actual trace receipt ── */}
             <ExampleTrace />
 
-            {/* ── Instrument hierarchy: Primary 5 instruments ── */}
+            {/* ── 4. Primary instruments: the 5 flagship instruments ── */}
             <FeaturedInstruments />
 
-            {/* ── What the lab produces ── */}
+            {/* ── 5. Lab output: what the lab produces ── */}
             <ResearchOutputs />
 
-            {/* ── Full ecosystem overview (all 12 described systems) ── */}
+            {/* ── 6. Research publications: formal published work ── */}
+            <ResearchPublications />
+
+            {/* ── 7. Full ecosystem: all 45+ instruments (links to #catalog) ── */}
             <ResearchEcosystem />
 
-            {/* ── Operating standards ── */}
+            {/* ── 8. Operating standards ── */}
             <BehavioralStandards />
             <IsoFramework />
 
-            {/* ── Field results: Deployed instruments with research framing ── */}
+            {/* ── 9. Field results: deployed instruments with research framing ── */}
             <CaseStudies />
 
-            {/* ── Recall as deployed instrument ── */}
+            {/* ── 10. Recall as deployed instrument ── */}
             <RecallFeature />
 
-            {/* ── Applied work (commercial, pushed to bottom) ── */}
+            {/* ── 11. Applied work (commercial — pushed to bottom) ── */}
             <div id="applied-work">
               <Services />
               <Process />
               <Pricing />
             </div>
 
-            {/* ── Contact ── */}
+            {/* ── 12. Contact ── */}
             <Contact />
           </>
         );

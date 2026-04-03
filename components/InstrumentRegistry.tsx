@@ -4,7 +4,7 @@ import type { Instrument } from "../data/instruments.ts";
 import { InstrumentCard } from "./InstrumentCard.tsx";
 import { InstrumentModal } from "./InstrumentModal.tsx";
 
-const ALL_CLASSIFICATIONS = ['All', 'Cognition', 'Infrastructure', 'Oversight', 'Civic', 'Blockchain', 'Robotics', 'Protocol'] as const;
+const ALL_CLASSIFICATIONS = ['All', 'Cognition', 'Infrastructure', 'Oversight', 'Civic', 'Blockchain', 'Robotics', 'Protocol', 'Audio'] as const;
 type FilterOption = typeof ALL_CLASSIFICATIONS[number];
 
 const classFilterColors: Record<string, string> = {
@@ -16,6 +16,7 @@ const classFilterColors: Record<string, string> = {
   Blockchain:     'text-cs-orange    border-cs-orange/50',
   Robotics:       'text-cs-yellow    border-cs-yellow/50',
   Protocol:       'text-cs-gray-300  border-cs-gray-500',
+  Audio:          'text-purple-400   border-purple-400/50',
 };
 
 export function InstrumentRegistry({ instruments }: { instruments: Instrument[] }) {
@@ -45,7 +46,7 @@ export function InstrumentRegistry({ instruments }: { instruments: Instrument[] 
             Catalog of Research Instruments
           </h2>
           <p className="font-body text-lg text-cs-gray-400 leading-relaxed mb-2">
-            {instruments.length} instruments cataloged across Cognition, Infrastructure, Oversight, Civic, Blockchain, Robotics, and Protocol. Instruments are analytical probes — not products. Each exists to make a specific class of behavior visible, testable, or falsifiable.
+            {instruments.length} instruments cataloged across Cognition, Infrastructure, Oversight, Civic, Blockchain, Robotics, Protocol, and Audio. Instruments are analytical probes — not products. Each exists to make a specific class of behavior visible, testable, or falsifiable.
           </p>
         </div>
 

@@ -121,7 +121,7 @@ const Introduction: React.FC = () => {
 
           {/* Subhead */}
           <p className="font-display font-normal text-cs-gray-300 tracking-[-0.01em] text-xl md:text-2xl max-w-3xl mb-12">
-            An independent proof lab. We build instruments that translate system behavior into measurable coherence scores, inspectable traces, and versioned artifacts.
+            An independent proof lab. We build instruments that translate system behavior into measurable coherence scores, inspectable traces, and versioned artifacts. 45+ instruments deployed.
           </p>
 
           {/* CTA buttons */}
