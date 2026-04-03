@@ -14,6 +14,12 @@ import Timeline from './components/Timeline.tsx';
 import Philosophy from './components/Philosophy.tsx';
 import LabNotes from './components/LabNotes.tsx';
 import GptRegistry from './components/GptRegistry.tsx';
+import Recall from './components/Recall.tsx';
+import Services from './components/Services.tsx';
+import Process from './components/Process.tsx';
+import PullQuote from './components/PullQuote.tsx';
+import CaseStudies from './components/CaseStudies.tsx';
+import Pricing from './components/Pricing.tsx';
 import { INSTRUMENTS } from './data/instruments.ts';
 
 const App: React.FC = () => {
@@ -24,7 +30,7 @@ const App: React.FC = () => {
       const hash = window.location.hash || '#home';
       setCurrentHash(hash);
 
-      const subPages = ['#clos', '#privacy', '#catalog', '#timeline', '#philosophy', '#lab-notes', '#gpts'];
+      const subPages = ['#clos', '#privacy', '#catalog', '#timeline', '#philosophy', '#lab-notes', '#gpts', '#recall'];
       if (subPages.includes(hash)) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
@@ -48,6 +54,8 @@ const App: React.FC = () => {
         return <LabNotes />;
       case '#gpts':
         return <GptRegistry />;
+      case '#recall':
+        return <Recall />;
       default:
         return (
           <>
@@ -56,6 +64,11 @@ const App: React.FC = () => {
             <BehavioralStandards />
             <IsoFramework />
             <ResearchInstrumentsSummary />
+            <Services />
+            <Process />
+            <PullQuote />
+            <CaseStudies />
+            <Pricing />
             <Contact />
           </>
         );
