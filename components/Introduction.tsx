@@ -121,23 +121,22 @@ const Introduction: React.FC = () => {
 
           {/* Subhead */}
           <p className="font-display font-normal text-cs-gray-300 tracking-[-0.01em] text-xl md:text-2xl max-w-3xl mb-12">
-            Building infrastructure for coherence to examine itself.
-            31+ research instruments across cognition, civic accountability, and cross-domain AI architecture.
+            An independent proof lab. We build instruments that translate system behavior into measurable coherence scores, inspectable traces, and versioned artifacts.
           </p>
 
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mb-16">
             <a
-              href="#research"
+              href="#catalog"
               className="font-mono text-[0.875rem] font-medium tracking-[0.12em] uppercase px-6 py-3 rounded-sm bg-cs-orange text-cs-black hover:brightness-110 hover:-translate-y-px transition-all duration-200 inline-flex items-center gap-2 text-center justify-center"
             >
-              Explore Research
+              View Instruments
             </a>
             <a
-              href="#catalog"
+              href="#lab-notes"
               className="font-mono text-[0.875rem] font-medium tracking-[0.12em] uppercase px-6 py-3 rounded-sm bg-transparent text-white border border-cs-gray-600 hover:border-cs-orange hover:text-cs-orange transition-all duration-200 inline-flex items-center gap-2 text-center justify-center"
             >
-              View Instruments
+              Read Lab Notes
             </a>
           </div>
 
@@ -145,21 +144,21 @@ const Introduction: React.FC = () => {
           <div className="flex flex-wrap gap-8 pt-6 border-t border-cs-gray-700">
             <div>
               <span className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em] block mb-1">
-                Founded
+                Location
               </span>
               <span className="font-mono text-[0.875rem] text-cs-gray-300">El Paso, TX</span>
             </div>
             <div>
               <span className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em] block mb-1">
-                Primary Color
+                Flagship
               </span>
-              <span className="font-mono text-[0.875rem] text-cs-orange">#FF6B35</span>
+              <span className="font-mono text-[0.875rem] text-cs-orange">VERDICT · CORTEX · CLOS</span>
             </div>
             <div>
               <span className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em] block mb-1">
-                Mission
+                Output
               </span>
-              <span className="font-mono text-[0.875rem] text-cs-gray-300">Research Lab</span>
+              <span className="font-mono text-[0.875rem] text-cs-gray-300">Traces · Benchmarks · Audits</span>
             </div>
           </div>
         </div>

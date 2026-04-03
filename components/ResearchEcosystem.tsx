@@ -116,11 +116,24 @@ const ResearchEcosystem: React.FC = () => {
           <span className="block w-10 h-px bg-cs-orange opacity-50" />
         </div>
 
-        <h2 className="font-display text-[2.5rem] font-extrabold tracking-[-0.03em] leading-[1.05] mb-4">
-          Active Instruments
-        </h2>
+        <div className="flex items-end justify-between mb-4">
+          <h2 className="font-display text-[2.5rem] font-extrabold tracking-[-0.03em] leading-[1.05]">
+            Full Ecosystem
+          </h2>
+          <a
+            href="#catalog"
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.hash = 'catalog';
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="hidden sm:inline-flex items-center gap-1.5 font-mono text-[0.75rem] uppercase tracking-[0.12em] text-cs-gray-400 hover:text-cs-orange transition-colors pb-2"
+          >
+            View full registry →
+          </a>
+        </div>
         <p className="font-body text-cs-gray-400 text-base leading-relaxed mb-12 max-w-2xl">
-          31+ research instruments spanning cognitive architecture, civic accountability, blockchain consensus, and cross-domain AI coordination.
+          31+ research instruments across Cognition, Infrastructure, Oversight, Civic, Blockchain, Robotics, and Protocol. VERDICT, CORTEX, and CLOS are the primary active instruments. All others are supporting nodes.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -147,6 +160,24 @@ const ResearchEcosystem: React.FC = () => {
               )}
             </div>
           ))}
+        </div>
+
+        {/* Bottom link */}
+        <div className="mt-8 pt-6 border-t border-cs-gray-700 flex items-center justify-between">
+          <p className="font-mono text-[0.75rem] text-cs-gray-600 uppercase tracking-[0.1em]">
+            Instrument inclusion does not imply stability. Status reflects current operational mode.
+          </p>
+          <a
+            href="#catalog"
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.hash = 'catalog';
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="font-mono text-[0.75rem] uppercase tracking-[0.12em] text-cs-gray-400 hover:text-cs-orange transition-colors shrink-0 ml-4"
+          >
+            Full Registry →
+          </a>
         </div>
       </div>
     </section>

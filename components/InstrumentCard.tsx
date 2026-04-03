@@ -8,9 +8,13 @@ interface InstrumentCardProps {
 }
 
 const classificationColor: Record<string, string> = {
-  Cognition: 'text-cs-orange',
+  Cognition:      'text-cs-orange',
   Infrastructure: 'text-cs-green',
-  Oversight: 'text-cs-yellow',
+  Oversight:      'text-cs-yellow',
+  Civic:          'text-cs-green',
+  Blockchain:     'text-cs-orange',
+  Robotics:       'text-cs-yellow',
+  Protocol:       'text-cs-gray-300',
 };
 
 export const InstrumentCard: React.FC<InstrumentCardProps> = ({ item, onClick }) => {

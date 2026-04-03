@@ -2,14 +2,16 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Navbar from './components/Navbar.tsx';
 import Introduction from './components/Introduction.tsx';
+import ProofArchitecture from './components/ProofArchitecture.tsx';
+import ExampleTrace from './components/ExampleTrace.tsx';
+import FeaturedInstruments from './components/FeaturedInstruments.tsx';
+import ResearchOutputs from './components/ResearchOutputs.tsx';
 import ResearchEcosystem from './components/ResearchEcosystem.tsx';
 import BehavioralStandards from './components/BehavioralStandards.tsx';
 import { InstrumentRegistry } from './components/InstrumentRegistry.tsx';
 import Contact from './components/Contact.tsx';
 import PrivacyPolicy from './components/PrivacyPolicy.tsx';
-import ArchitectureDiagram from './components/ArchitectureDiagram.tsx';
 import IsoFramework from './components/IsoFramework.tsx';
-import ResearchInstrumentsSummary from './components/ResearchInstrumentsSummary.tsx';
 import Timeline from './components/Timeline.tsx';
 import Philosophy from './components/Philosophy.tsx';
 import LabNotes from './components/LabNotes.tsx';
@@ -17,7 +19,6 @@ import GptRegistry from './components/GptRegistry.tsx';
 import Recall from './components/Recall.tsx';
 import Services from './components/Services.tsx';
 import Process from './components/Process.tsx';
-import PullQuote from './components/PullQuote.tsx';
 import CaseStudies from './components/CaseStudies.tsx';
 import Pricing from './components/Pricing.tsx';
 import RecallFeature from './components/RecallFeature.tsx';
@@ -36,7 +37,7 @@ const App: React.FC = () => {
     const handleHashChange = () => {
       setCurrentPage(getPage());
       const hash = window.location.hash || '#home';
-      const subPages = ['#clos', '#privacy', '#catalog', '#timeline', '#philosophy', '#lab-notes', '#gpts'];
+      const subPages = ['#privacy', '#catalog', '#timeline', '#philosophy', '#lab-notes', '#gpts'];
       if (subPages.includes(hash)) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
@@ -71,23 +72,48 @@ const App: React.FC = () => {
         return <LabNotes />;
       case '#gpts':
         return <GptRegistry />;
-      // legacy hash route — redirect handled by popstate but keep as fallback
+      // legacy hash route — fallback
       case '#recall':
         return <Recall />;
       default:
         return (
           <>
+            {/* ── Identity layer: What is this place ── */}
             <Introduction />
-            <RecallFeature />
+
+            {/* ── Proof architecture: How coherence becomes visible ── */}
+            <ProofArchitecture />
+
+            {/* ── Concrete evidence: One actual trace receipt ── */}
+            <ExampleTrace />
+
+            {/* ── Instrument hierarchy: Primary 5 instruments ── */}
+            <FeaturedInstruments />
+
+            {/* ── What the lab produces ── */}
+            <ResearchOutputs />
+
+            {/* ── Full ecosystem overview (all 12 described systems) ── */}
             <ResearchEcosystem />
+
+            {/* ── Operating standards ── */}
             <BehavioralStandards />
             <IsoFramework />
-            <ResearchInstrumentsSummary />
-            <Services />
-            <Process />
-            <PullQuote />
+
+            {/* ── Field results: Deployed instruments with research framing ── */}
             <CaseStudies />
-            <Pricing />
+
+            {/* ── Recall as deployed instrument ── */}
+            <RecallFeature />
+
+            {/* ── Applied work (commercial, pushed to bottom) ── */}
+            <div id="applied-work">
+              <Services />
+              <Process />
+              <Pricing />
+            </div>
+
+            {/* ── Contact ── */}
             <Contact />
           </>
         );
@@ -112,8 +138,11 @@ const App: React.FC = () => {
                 Solutions
               </span>
             </div>
-            <p className="font-body text-[0.875rem] text-cs-gray-400">
+            <p className="font-body text-[0.875rem] text-cs-gray-400 mb-1">
               Independent AI Research Lab / El Paso, Texas
+            </p>
+            <p className="font-mono text-[0.75rem] text-cs-gray-600 uppercase tracking-[0.1em]">
+              Traces · Benchmarks · Audits · Protocols
             </p>
           </div>
 

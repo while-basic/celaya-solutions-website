@@ -105,10 +105,10 @@ const Philosophy: React.FC = () => {
                 </ul>
               </div>
               <div>
-                <h4 className="flex items-center gap-2 text-cs-gray-400 font-mono text-[0.875rem] uppercase tracking-widest mb-4">
+                <h4 className="flex items-center gap-2 text-cs-white font-mono text-[0.875rem] uppercase tracking-widest mb-4">
                   Time Horizon
                 </h4>
-                <p className="text-[0.875rem] text-cs-gray-500 font-mono leading-relaxed">
+                <p className="text-[0.875rem] text-cs-gray-400 font-mono leading-relaxed">
                   Intended to hold for 10+ years. Principles change only via postmortem analysis.
                 </p>
               </div>

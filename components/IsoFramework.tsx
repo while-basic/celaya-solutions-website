@@ -6,21 +6,25 @@ const IsoFramework: React.FC = () => {
     {
       id: 'ISO 9001',
       title: 'Research process integrity',
+      operational: 'Every instrument run is versioned. You can re-execute any historical run against its original inputs and expect identical outputs. Version drift triggers a DELTA alert.',
       items: ['Versioned experiments', 'Repeatable pipelines', 'Controlled change records', 'Traceable decisions']
     },
     {
       id: 'ISO/IEC 27001',
       title: 'Information security',
+      operational: 'Physiological data never leaves the device it was collected on. Cloud is an explicit opt-in — not a default. Every external data boundary is a logged permission event in Synapse.',
       items: ['Local-first data handling', 'Encrypted storage', 'Explicit access boundaries', 'No passive surveillance']
     },
     {
       id: 'ISO/IEC 23894',
       title: 'AI risk management',
+      operational: 'Every instrument has documented failure boundaries. When a boundary is approached, SENTINEL raises an alert. When it is crossed, the instrument is automatically suspended pending human review.',
       items: ['Hazard identification per system', 'Misuse and drift detection', 'Human override points', 'Safe failure modes']
     },
     {
       id: 'ISO/IEC 25010',
       title: 'System quality',
+      operational: 'Auditability is a first-class design requirement, not a post-hoc addition. Any output that cannot explain its provenance chain does not ship. VERDICT rejects outputs with CI < 0.3.',
       items: ['Reliability under iteration', 'Explainability as a metric', 'Maintainability over performance', 'Auditability by default']
     }
   ];
@@ -48,7 +52,10 @@ const IsoFramework: React.FC = () => {
               <div className="flex items-center justify-between mb-6">
                 <span className="font-mono text-[0.875rem] text-cs-gray-500 group-hover:text-cs-gray-300 tracking-widest">{s.id}</span>
               </div>
-              <h3 className="font-display text-lg font-bold mb-4 tracking-tight">{s.title}</h3>
+              <h3 className="font-display text-lg font-bold mb-3 tracking-tight">{s.title}</h3>
+              <p className="font-body text-[0.8rem] text-cs-orange leading-relaxed mb-4 border-l-2 border-cs-orange/30 pl-3">
+                {s.operational}
+              </p>
               <ul className="space-y-2">
                 {s.items.map((item, i) => (
                   <li key={i} className="font-mono text-[0.875rem] text-cs-gray-400 flex items-start gap-2">
