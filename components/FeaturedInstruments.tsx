@@ -143,7 +143,7 @@ const FeaturedInstruments: React.FC = () => {
                 </div>
                 <div className="flex flex-wrap gap-1.5 mt-4">
                   {featured[0].tags.map(t => (
-                    <span key={t} className="font-mono text-[0.6rem] uppercase tracking-[0.1em] px-2 py-0.5 border border-cs-gray-700 rounded-sm text-cs-gray-500">
+                    <span key={t} className="font-mono text-[0.6rem] uppercase tracking-[0.1em] px-2 py-0.5 border border-cs-gray-700 rounded-sm text-cs-gray-300">
                       {t}
                     </span>
                   ))}
@@ -152,11 +152,11 @@ const FeaturedInstruments: React.FC = () => {
               <div className="lg:col-span-2 space-y-4">
                 <p className="font-body text-cs-gray-300 text-base leading-relaxed">{featured[0].role}</p>
                 <div className="border-l-2 border-cs-orange/30 pl-4">
-                  <p className="font-mono text-[0.7rem] text-cs-gray-500 uppercase tracking-[0.1em] mb-1">CI Role</p>
+                  <p className="font-mono text-[0.7rem] text-cs-gray-300 uppercase tracking-[0.1em] mb-1">CI Role</p>
                   <p className="font-body text-sm text-cs-gray-400">{featured[0].ciRole}</p>
                 </div>
                 <div className="border border-cs-gray-700 rounded bg-cs-black px-4 py-2">
-                  <span className="font-mono text-[0.65rem] text-cs-gray-600 uppercase tracking-[0.1em] block mb-1">Example Output</span>
+                  <span className="font-mono text-[0.65rem] text-cs-gray-400 uppercase tracking-[0.1em] block mb-1">Example Output</span>
                   <span className="font-mono text-[0.75rem] text-cs-orange">{featured[0].exampleOutput}</span>
                 </div>
               </div>
@@ -187,12 +187,12 @@ const FeaturedInstruments: React.FC = () => {
                 </div>
                 <p className="font-body text-sm text-cs-gray-400 leading-relaxed mb-4">{inst.role}</p>
                 <div className="border border-cs-gray-700 rounded bg-cs-black px-3 py-2 mb-4">
-                  <span className="font-mono text-[0.6rem] text-cs-gray-600 uppercase tracking-[0.1em] block mb-0.5">Example Output</span>
+                  <span className="font-mono text-[0.6rem] text-cs-gray-400 uppercase tracking-[0.1em] block mb-0.5">Example Output</span>
                   <span className="font-mono text-[0.7rem] text-cs-orange">{inst.exampleOutput}</span>
                 </div>
                 <div className="flex flex-wrap gap-1">
                   {inst.tags.filter(t => t !== 'Flagship').map(t => (
-                    <span key={t} className="font-mono text-[0.55rem] uppercase tracking-[0.1em] px-1.5 py-0.5 border border-cs-gray-700 rounded-sm text-cs-gray-600">
+                    <span key={t} className="font-mono text-[0.55rem] uppercase tracking-[0.1em] px-1.5 py-0.5 border border-cs-gray-700 rounded-sm text-cs-gray-400">
                       {t}
                     </span>
                   ))}
@@ -204,7 +204,7 @@ const FeaturedInstruments: React.FC = () => {
 
         {/* Full catalog link */}
         <div className="mt-8 pt-8 border-t border-cs-gray-700 flex items-center justify-between">
-          <p className="font-mono text-[0.75rem] text-cs-gray-500">
+          <p className="font-mono text-[0.75rem] text-cs-gray-300">
             45 instruments across Cognition, Infrastructure, Oversight, Civic, Blockchain, Robotics, Protocol, and Audio.
           </p>
           <a

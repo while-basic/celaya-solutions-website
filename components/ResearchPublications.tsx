@@ -59,7 +59,7 @@ const ResearchPublications: React.FC = () => {
             {/* Left: paper info */}
             <div className="p-8 lg:border-r border-cs-gray-700">
               <div className="flex items-center gap-3 mb-4">
-                <span className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-cs-gray-500">
+                <span className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-cs-gray-300">
                   Ethereum Research Forum · February 2026
                 </span>
               </div>
@@ -81,7 +81,7 @@ const ResearchPublications: React.FC = () => {
                 ].map(({ label, value }) => (
                   <div key={label}>
                     <p className="font-mono text-lg font-bold text-cs-orange">{value}</p>
-                    <p className="font-mono text-[0.6rem] text-cs-gray-500 uppercase tracking-[0.1em]">{label}</p>
+                    <p className="font-mono text-[0.6rem] text-cs-gray-300 uppercase tracking-[0.1em]">{label}</p>
                   </div>
                 ))}
               </div>
@@ -109,13 +109,13 @@ const ResearchPublications: React.FC = () => {
 
             {/* Right: key equation preview */}
             <div className="p-8 flex flex-col justify-center">
-              <p className="font-mono text-[0.65rem] text-cs-gray-600 uppercase tracking-[0.15em] mb-4">
+              <p className="font-mono text-[0.65rem] text-cs-gray-400 uppercase tracking-[0.15em] mb-4">
                 Core Equations
               </p>
 
               <div className="space-y-6">
                 <div>
-                  <p className="font-mono text-[0.65rem] text-cs-gray-500 uppercase tracking-[0.1em] mb-2">
+                  <p className="font-mono text-[0.65rem] text-cs-gray-300 uppercase tracking-[0.1em] mb-2">
                     Authority Function
                   </p>
                   <div className="bg-cs-gray-900 rounded px-4 py-3 border border-cs-gray-700">
@@ -124,7 +124,7 @@ const ResearchPublications: React.FC = () => {
                 </div>
 
                 <div>
-                  <p className="font-mono text-[0.65rem] text-cs-gray-500 uppercase tracking-[0.1em] mb-2">
+                  <p className="font-mono text-[0.65rem] text-cs-gray-300 uppercase tracking-[0.1em] mb-2">
                     Coherence Composite
                   </p>
                   <div className="bg-cs-gray-900 rounded px-4 py-3 border border-cs-gray-700">
@@ -133,7 +133,7 @@ const ResearchPublications: React.FC = () => {
                 </div>
 
                 <div className="border border-cs-gray-700 rounded bg-cs-gray-900 p-4">
-                  <p className="font-mono text-[0.65rem] text-cs-gray-500 uppercase tracking-[0.1em] mb-2">Key Property</p>
+                  <p className="font-mono text-[0.65rem] text-cs-gray-300 uppercase tracking-[0.1em] mb-2">Key Property</p>
                   <p className="font-body text-sm text-cs-gray-400 leading-relaxed">
                     Zero in any axis (<InlineMath formula="I, R, P, X, B" />) collapses total authority to zero. No dimension compensates for another. Redundant intent verification enforced mathematically.
                   </p>
@@ -146,7 +146,7 @@ const ResearchPublications: React.FC = () => {
 
         {/* More coming */}
         <div className="mt-6 text-center">
-          <p className="font-mono text-[0.75rem] text-cs-gray-600 uppercase tracking-[0.1em]">
+          <p className="font-mono text-[0.75rem] text-cs-gray-400 uppercase tracking-[0.1em]">
             Additional publications in preparation — CLOS priority equation formalization, EPPE proof architecture
           </p>
         </div>

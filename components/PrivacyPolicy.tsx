@@ -25,7 +25,7 @@ const PrivacyPolicy: React.FC = () => {
         <div className="space-y-16">
           {/* Storage Model */}
           <section>
-            <h3 className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em] mb-8 flex items-center gap-2">
+            <h3 className="font-mono text-[0.875rem] text-cs-gray-300 uppercase tracking-[0.15em] mb-8 flex items-center gap-2">
               <Shield className="w-4 h-4" />
               <span>Technical Storage Model</span>
             </h3>
@@ -69,7 +69,7 @@ const PrivacyPolicy: React.FC = () => {
 
           {/* Data Retention */}
           <section className="border-l-2 border-cs-orange/30 pl-8">
-            <h3 className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em] mb-8 flex items-center gap-2">
+            <h3 className="font-mono text-[0.875rem] text-cs-gray-300 uppercase tracking-[0.15em] mb-8 flex items-center gap-2">
               <Trash2 className="w-4 h-4" />
               <span>Data Retention Hierarchy</span>
             </h3>
@@ -103,7 +103,7 @@ const PrivacyPolicy: React.FC = () => {
 
           {/* IRB Statement */}
           <section className="p-8 border border-cs-gray-700 bg-cs-gray-900 rounded">
-            <h3 className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em] mb-8 flex items-center gap-2">
+            <h3 className="font-mono text-[0.875rem] text-cs-gray-300 uppercase tracking-[0.15em] mb-8 flex items-center gap-2">
               <ShieldAlert className="w-4 h-4" />
               <span>Ethics Review & IRB Status</span>
             </h3>
@@ -128,7 +128,7 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           <footer className="pt-12 border-t border-cs-gray-700 text-center">
-            <p className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em] mb-3">Final Declaration</p>
+            <p className="font-mono text-[0.875rem] text-cs-gray-300 uppercase tracking-[0.15em] mb-3">Final Declaration</p>
             <p className="font-body text-base text-cs-gray-400 italic max-w-2xl mx-auto">
               "These protocols ensure the lab reads as research infrastructure, not a commercial product. We preserve the human in the loop, always."
             </p>

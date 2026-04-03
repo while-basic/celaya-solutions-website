@@ -89,13 +89,13 @@ const CCPPublication: React.FC = () => {
               { label: 'Date',         value: 'February 2026' },
             ].map(({ label, value }) => (
               <div key={label}>
-                <span className="font-mono text-[0.65rem] text-cs-gray-500 uppercase tracking-[0.15em] block mb-1">{label}</span>
+                <span className="font-mono text-[0.65rem] text-cs-gray-300 uppercase tracking-[0.15em] block mb-1">{label}</span>
                 <span className="font-body text-cs-gray-300 text-sm">{value}</span>
               </div>
             ))}
           </div>
           <div className="pt-6 border-t border-cs-gray-800">
-            <span className="font-mono text-[0.65rem] text-cs-gray-500 uppercase tracking-[0.15em] block mb-1">Published at</span>
+            <span className="font-mono text-[0.65rem] text-cs-gray-300 uppercase tracking-[0.15em] block mb-1">Published at</span>
             <a
               href="https://ethresear.ch/t/applications-economics/24194"
               target="_blank"
@@ -139,7 +139,7 @@ const CCPPublication: React.FC = () => {
               <thead>
                 <tr className="border-b border-cs-gray-700">
                   {['Pattern', 'Axis 1', 'Axis 2', 'Alignment Condition'].map(h => (
-                    <th key={h} className="text-left py-2 pr-4 text-cs-gray-500 uppercase tracking-[0.08em] font-medium">{h}</th>
+                    <th key={h} className="text-left py-2 pr-4 text-cs-gray-300 uppercase tracking-[0.08em] font-medium">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -256,7 +256,7 @@ const CCPPublication: React.FC = () => {
             ].map(({ label, value, color }) => (
               <div key={label} className="border border-cs-gray-700 rounded bg-cs-gray-900 p-4">
                 <p className={`font-mono text-base font-bold ${color}`}>{value}</p>
-                <p className="font-mono text-[0.6rem] text-cs-gray-500 uppercase tracking-[0.1em]">{label}</p>
+                <p className="font-mono text-[0.6rem] text-cs-gray-300 uppercase tracking-[0.1em]">{label}</p>
               </div>
             ))}
           </div>
@@ -296,7 +296,7 @@ const CCPPublication: React.FC = () => {
         {/* Footer */}
         <div className="pt-8 border-t border-cs-gray-700 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <span className="font-mono text-[0.65rem] text-cs-gray-500 uppercase tracking-[0.15em] block mb-1">Status</span>
+            <span className="font-mono text-[0.65rem] text-cs-gray-300 uppercase tracking-[0.15em] block mb-1">Status</span>
             <span className="font-mono text-sm text-cs-yellow">Research draft — open for peer review</span>
           </div>
           <a

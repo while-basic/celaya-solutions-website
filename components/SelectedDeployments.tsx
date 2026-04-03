@@ -81,11 +81,11 @@ const SelectedDeployments: React.FC = () => {
                 <span className="font-mono text-sm font-medium tracking-[0.1em] uppercase text-white">
                   {d.instrument}
                 </span>
-                <span className="font-mono text-[0.65rem] text-cs-gray-500 uppercase tracking-[0.1em]">
+                <span className="font-mono text-[0.65rem] text-cs-gray-300 uppercase tracking-[0.1em]">
                   {d.client}
                 </span>
               </div>
-              <p className="font-body text-[0.8125rem] text-cs-gray-500 leading-relaxed mb-3 italic">
+              <p className="font-body text-[0.8125rem] text-cs-gray-300 leading-relaxed mb-3 italic">
                 "{d.problem}"
               </p>
               <p className="font-body text-[0.8125rem] text-cs-gray-300 leading-relaxed">
@@ -97,7 +97,7 @@ const SelectedDeployments: React.FC = () => {
 
         {/* Bottom row */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-6 border-t border-cs-gray-700">
-          <p className="font-mono text-[0.7rem] text-cs-gray-600 uppercase tracking-[0.1em]">
+          <p className="font-mono text-[0.7rem] text-cs-gray-400 uppercase tracking-[0.1em]">
             All deployments run VERDICT CI checks. Source and methodology available on request.
           </p>
           <a

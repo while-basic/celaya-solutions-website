@@ -38,10 +38,10 @@ const Pricing: React.FC = () => {
         <div className="border border-cs-gray-700 rounded overflow-hidden">
           {/* Header row */}
           <div className="grid grid-cols-2 bg-cs-gray-800 px-6 py-3 border-b border-cs-gray-700">
-            <span className="font-mono text-[0.75rem] tracking-[0.2em] uppercase text-cs-gray-500">
+            <span className="font-mono text-[0.75rem] tracking-[0.2em] uppercase text-cs-gray-300">
               Component
             </span>
-            <span className="font-mono text-[0.75rem] tracking-[0.2em] uppercase text-cs-gray-500 text-right">
+            <span className="font-mono text-[0.75rem] tracking-[0.2em] uppercase text-cs-gray-300 text-right">
               Typical Range
             </span>
           </div>
@@ -59,7 +59,7 @@ const Pricing: React.FC = () => {
           ))}
         </div>
 
-        <p className="font-body text-cs-gray-500 text-sm mt-6">
+        <p className="font-body text-cs-gray-300 text-sm mt-6">
           All projects include a 30-day warranty period. Retainer plans available for ongoing maintenance and updates.
         </p>
       </div>

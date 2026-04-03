@@ -109,15 +109,15 @@ const LabNotes: React.FC = () => {
           <h3 className="font-mono text-[0.875rem] uppercase tracking-[0.15em] text-cs-gray-400 mb-4">Research Log Framing</h3>
           <div className="grid md:grid-cols-3 gap-8">
             <div>
-              <h4 className="font-mono text-[0.875rem] uppercase text-cs-gray-500 tracking-widest mb-2">Purpose</h4>
+              <h4 className="font-mono text-[0.875rem] uppercase text-cs-gray-300 tracking-widest mb-2">Purpose</h4>
               <p className="font-body text-[0.875rem] text-cs-gray-400 leading-relaxed">Lab Notes serve as a raw research log, not marketing commentary. They record empirical observations as they occur.</p>
             </div>
             <div>
-              <h4 className="font-mono text-[0.875rem] uppercase text-cs-gray-500 tracking-widest mb-2">Rule</h4>
+              <h4 className="font-mono text-[0.875rem] uppercase text-cs-gray-300 tracking-widest mb-2">Rule</h4>
               <p className="font-body text-[0.875rem] text-cs-gray-400 leading-relaxed">Entries must declare a standardized type and separate verifiable evidence from working hypotheses.</p>
             </div>
             <div>
-              <h4 className="font-mono text-[0.875rem] uppercase text-cs-gray-500 tracking-widest mb-2">Scope</h4>
+              <h4 className="font-mono text-[0.875rem] uppercase text-cs-gray-300 tracking-widest mb-2">Scope</h4>
               <p className="font-body text-[0.875rem] text-cs-gray-400 leading-relaxed">Notes may be partial, unresolved, or superseded by later revisions. Transparency is prioritized over narrative.</p>
             </div>
           </div>
@@ -161,18 +161,18 @@ const LabNotes: React.FC = () => {
             <div key={note.id} className="border border-cs-gray-700 bg-cs-gray-900 rounded p-6 hover:bg-cs-gray-800 transition-colors grid md:grid-cols-12 gap-6">
               {/* Metadata */}
               <div className="md:col-span-3 space-y-3">
-                <span className="font-mono text-[0.875rem] text-cs-gray-500 block">{note.date}</span>
+                <span className="font-mono text-[0.875rem] text-cs-gray-300 block">{note.date}</span>
                 <div className={`px-2 py-1 font-mono text-[0.875rem] uppercase tracking-[0.1em] border rounded-sm inline-block ${getTypeStyles(note.type)}`}>
                   {note.type}
                 </div>
                 <div className="pt-3 border-t border-cs-gray-700 space-y-2">
                   <div>
-                    <span className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-widest block mb-1">Entry ID</span>
+                    <span className="font-mono text-[0.875rem] text-cs-gray-300 uppercase tracking-widest block mb-1">Entry ID</span>
                     <span className="font-mono text-[0.875rem] text-cs-gray-400">{note.id}</span>
                   </div>
                   {note.instruments && (
                     <div>
-                      <span className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-widest block mb-1">Instruments</span>
+                      <span className="font-mono text-[0.875rem] text-cs-gray-300 uppercase tracking-widest block mb-1">Instruments</span>
                       <span className="font-mono text-[0.875rem] text-cs-gray-400">{note.instruments.join(", ")}</span>
                     </div>
                   )}
@@ -189,7 +189,7 @@ const LabNotes: React.FC = () => {
               <div className="md:col-span-9 space-y-6">
                 <header>
                   <h3 className="font-display text-xl font-bold tracking-tight mb-1">{note.title}</h3>
-                  <span className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-widest">{note.category} Node</span>
+                  <span className="font-mono text-[0.875rem] text-cs-gray-300 uppercase tracking-widest">{note.category} Node</span>
                 </header>
 
                 <div className="grid lg:grid-cols-2 gap-8">
@@ -202,7 +202,7 @@ const LabNotes: React.FC = () => {
                       {note.evidence}
                     </p>
                     <div className="pt-3">
-                      <h4 className="flex items-center gap-2 text-cs-gray-500 font-mono text-[0.875rem] uppercase tracking-widest mb-2">
+                      <h4 className="flex items-center gap-2 text-cs-gray-300 font-mono text-[0.875rem] uppercase tracking-widest mb-2">
                         <Shield className="w-3 h-3" />
                         <span>Technical Significance</span>
                       </h4>
@@ -213,7 +213,7 @@ const LabNotes: React.FC = () => {
                   </div>
 
                   <div className="space-y-4 border-l border-cs-gray-700 pl-6">
-                    <h4 className="flex items-center gap-2 text-cs-gray-500 font-mono text-[0.875rem] uppercase tracking-widest">
+                    <h4 className="flex items-center gap-2 text-cs-gray-300 font-mono text-[0.875rem] uppercase tracking-widest">
                       <Brain className="w-3 h-3" />
                       <span>Working Hypothesis</span>
                     </h4>
@@ -222,11 +222,11 @@ const LabNotes: React.FC = () => {
                     </p>
                     {note.artifacts && (
                       <div className="pt-3">
-                        <h4 className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-widest mb-2">Linked Artifacts</h4>
+                        <h4 className="font-mono text-[0.875rem] text-cs-gray-300 uppercase tracking-widest mb-2">Linked Artifacts</h4>
                         <div className="flex flex-wrap gap-2">
                           {note.artifacts.map(art => (
                             <div key={art} className="flex items-center gap-2 px-2 py-1 bg-cs-gray-800 border border-cs-gray-700 rounded-sm">
-                              <FileText className="w-3 h-3 text-cs-gray-500" />
+                              <FileText className="w-3 h-3 text-cs-gray-300" />
                               <span className="font-mono text-[0.875rem] text-cs-gray-400">{art}</span>
                             </div>
                           ))}
@@ -242,13 +242,13 @@ const LabNotes: React.FC = () => {
 
         {/* Footer */}
         <footer className="mt-16 pt-8 border-t border-cs-gray-700 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2 text-cs-gray-500">
+          <div className="flex items-center gap-2 text-cs-gray-300">
             <AlertOctagon className="w-4 h-4" />
             <p className="font-mono text-[0.875rem] uppercase tracking-widest">
               Log Persistence: Integrity Locked.
             </p>
           </div>
-          <p className="font-mono text-[0.875rem] text-cs-gray-500 italic text-right max-w-lg leading-relaxed">
+          <p className="font-mono text-[0.875rem] text-cs-gray-300 italic text-right max-w-lg leading-relaxed">
             These notes record research state at time of writing. They are not commitments, conclusions, or guarantees.
           </p>
         </footer>

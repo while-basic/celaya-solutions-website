@@ -50,7 +50,7 @@ const IsoFramework: React.FC = () => {
           {standards.map((s, idx) => (
             <div key={idx} className="border border-cs-gray-700 bg-cs-gray-900 rounded p-6 hover:bg-cs-gray-800 transition-colors group">
               <div className="flex items-center justify-between mb-6">
-                <span className="font-mono text-[0.875rem] text-cs-gray-500 group-hover:text-cs-gray-300 tracking-widest">{s.id}</span>
+                <span className="font-mono text-[0.875rem] text-cs-gray-300 group-hover:text-cs-gray-300 tracking-widest">{s.id}</span>
               </div>
               <h3 className="font-display text-lg font-bold mb-3 tracking-tight">{s.title}</h3>
               <p className="font-body text-[0.8rem] text-cs-orange leading-relaxed mb-4 border-l-2 border-cs-orange/30 pl-3">
@@ -59,7 +59,7 @@ const IsoFramework: React.FC = () => {
               <ul className="space-y-2">
                 {s.items.map((item, i) => (
                   <li key={i} className="font-mono text-[0.875rem] text-cs-gray-400 flex items-start gap-2">
-                    <span className="text-cs-gray-600 mt-0.5">&#8226;</span>
+                    <span className="text-cs-gray-400 mt-0.5">&#8226;</span>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -69,7 +69,7 @@ const IsoFramework: React.FC = () => {
         </div>
 
         <div className="pt-8 border-t border-cs-gray-700 flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-widest">
+          <p className="font-mono text-[0.875rem] text-cs-gray-300 uppercase tracking-widest">
             Operational Principle: Standards act as constraints on exploration, not bureaucracy.
           </p>
           <p className="font-body text-[0.875rem] text-cs-gray-400 italic">

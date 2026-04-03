@@ -154,7 +154,7 @@ const ResearchEcosystem: React.FC = () => {
                 {sys.description}
               </p>
               {sys.stack && (
-                <span className="font-mono text-[0.875rem] text-cs-gray-500 tracking-[0.05em]">
+                <span className="font-mono text-[0.875rem] text-cs-gray-300 tracking-[0.05em]">
                   {sys.stack}
                 </span>
               )}
@@ -164,7 +164,7 @@ const ResearchEcosystem: React.FC = () => {
 
         {/* Bottom link */}
         <div className="mt-8 pt-6 border-t border-cs-gray-700 flex items-center justify-between">
-          <p className="font-mono text-[0.75rem] text-cs-gray-600 uppercase tracking-[0.1em]">
+          <p className="font-mono text-[0.75rem] text-cs-gray-400 uppercase tracking-[0.1em]">
             Instrument inclusion does not imply stability. Status reflects current operational mode.
           </p>
           <a

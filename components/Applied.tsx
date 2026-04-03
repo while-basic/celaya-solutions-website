@@ -201,7 +201,7 @@ const Applied: React.FC = () => {
             ))}
           </div>
 
-          <p className="font-mono text-[0.7rem] text-cs-gray-600 uppercase tracking-[0.1em] mt-4">
+          <p className="font-mono text-[0.7rem] text-cs-gray-400 uppercase tracking-[0.1em] mt-4">
             All prices in USD. Retainer optional on à la carte work.
           </p>
         </div>
@@ -232,7 +232,7 @@ const Applied: React.FC = () => {
                 <span className="absolute top-2 right-3 font-display font-extrabold text-[3.5rem] leading-none text-white/5 select-none pointer-events-none">
                   {step.num}
                 </span>
-                <span className="font-mono text-[0.7rem] tracking-[0.15em] uppercase text-cs-gray-500 block mb-3">
+                <span className="font-mono text-[0.7rem] tracking-[0.15em] uppercase text-cs-gray-300 block mb-3">
                   {step.week}
                 </span>
                 <h3 className="font-display text-base font-bold leading-tight mb-3 relative z-10">
@@ -251,7 +251,7 @@ const Applied: React.FC = () => {
       <section className="py-20 px-6">
         <div className="max-w-[1100px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div>
-            <p className="font-mono text-[0.75rem] text-cs-gray-500 uppercase tracking-[0.2em] mb-3">
+            <p className="font-mono text-[0.75rem] text-cs-gray-300 uppercase tracking-[0.2em] mb-3">
               Next step
             </p>
             <h3 className="font-display text-[1.75rem] font-bold tracking-tight mb-2">

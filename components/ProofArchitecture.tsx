@@ -80,7 +80,7 @@ const ProofArchitecture: React.FC = () => {
             </p>
           </div>
           <div className="border border-cs-gray-700 rounded bg-cs-black p-6">
-            <p className="font-mono text-[0.7rem] text-cs-gray-500 uppercase tracking-[0.2em] mb-4">
+            <p className="font-mono text-[0.7rem] text-cs-gray-300 uppercase tracking-[0.2em] mb-4">
               Sample Chain — VERDICT · Claim Risk Evaluation
             </p>
             <div className="space-y-2 font-mono text-[0.75rem]">
@@ -93,7 +93,7 @@ const ProofArchitecture: React.FC = () => {
                 { k: 'Artifact',   v: 'Rejection manifest minted · Version 1.0.0 · Immutable', c: 'text-cs-green' },
               ].map(({ k, v, c }) => (
                 <div key={k} className="grid grid-cols-[80px_1fr] gap-3">
-                  <span className="text-cs-gray-600 uppercase tracking-[0.1em] text-[0.65rem] mt-0.5">{k}</span>
+                  <span className="text-cs-gray-400 uppercase tracking-[0.1em] text-[0.65rem] mt-0.5">{k}</span>
                   <span className={c}>{v}</span>
                 </div>
               ))}
@@ -108,17 +108,17 @@ const ProofArchitecture: React.FC = () => {
               <div key={step.n} className="relative">
                 {/* connector arrow — hidden on last item */}
                 {i < steps.length - 1 && (
-                  <span className="hidden lg:block absolute top-6 right-0 translate-x-1/2 z-10 text-cs-gray-600 font-mono text-xs">›</span>
+                  <span className="hidden lg:block absolute top-6 right-0 translate-x-1/2 z-10 text-cs-gray-400 font-mono text-xs">›</span>
                 )}
                 <div className="border border-cs-gray-700 rounded bg-cs-black p-4 h-full">
                   <div className="flex items-center gap-2 mb-3">
                     <span className="text-cs-orange">{step.icon}</span>
-                    <span className="font-mono text-[0.6rem] text-cs-gray-600 uppercase tracking-[0.15em]">{step.n}</span>
+                    <span className="font-mono text-[0.6rem] text-cs-gray-400 uppercase tracking-[0.15em]">{step.n}</span>
                   </div>
                   <h4 className="font-mono text-[0.8rem] font-medium tracking-[0.1em] uppercase text-cs-white mb-2">
                     {step.label}
                   </h4>
-                  <p className="font-body text-[0.75rem] text-cs-gray-500 leading-relaxed">
+                  <p className="font-body text-[0.75rem] text-cs-gray-300 leading-relaxed">
                     {step.desc}
                   </p>
                 </div>
@@ -144,7 +144,7 @@ const ProofArchitecture: React.FC = () => {
                 {ciDimensions.map((d) => (
                   <div key={d.label} className="border-l-2 border-cs-gray-700 pl-4">
                     <p className="font-mono text-[0.7rem] text-cs-gray-300 uppercase tracking-[0.1em] mb-0.5">{d.label}</p>
-                    <p className="font-body text-[0.75rem] text-cs-gray-500">{d.desc}</p>
+                    <p className="font-body text-[0.75rem] text-cs-gray-300">{d.desc}</p>
                   </div>
                 ))}
               </div>
@@ -152,7 +152,7 @@ const ProofArchitecture: React.FC = () => {
 
             {/* Right: CI bands */}
             <div>
-              <p className="font-mono text-[0.7rem] text-cs-gray-500 uppercase tracking-[0.2em] mb-4">
+              <p className="font-mono text-[0.7rem] text-cs-gray-300 uppercase tracking-[0.2em] mb-4">
                 Score → Action Mapping
               </p>
               <div className="space-y-2">
@@ -162,7 +162,7 @@ const ProofArchitecture: React.FC = () => {
                       <span className={`font-mono text-[0.7rem] font-bold tracking-[0.12em] ${b.color}`}>
                         {b.label}
                       </span>
-                      <span className="font-mono text-[0.65rem] text-cs-gray-500">{b.range}</span>
+                      <span className="font-mono text-[0.65rem] text-cs-gray-300">{b.range}</span>
                     </div>
                     <p className="font-mono text-[0.65rem] text-cs-gray-400">{b.action}</p>
                   </div>

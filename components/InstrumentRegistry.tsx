@@ -62,11 +62,11 @@ export function InstrumentRegistry({ instruments }: { instruments: Instrument[] 
                 className={`inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.12em] px-3 py-1.5 rounded-sm border transition-all duration-200 ${
                   isActive
                     ? `${colorClasses} bg-white/5`
-                    : 'text-cs-gray-500 border-cs-gray-700 hover:text-cs-gray-300 hover:border-cs-gray-600 bg-transparent'
+                    : 'text-cs-gray-300 border-cs-gray-700 hover:text-cs-white hover:border-cs-gray-500 bg-transparent'
                 }`}
               >
                 {cls}
-                <span className={`text-[0.65rem] ${isActive ? '' : 'text-cs-gray-600'}`}>
+                <span className={`text-[0.65rem] ${isActive ? '' : 'text-cs-gray-400'}`}>
                   {counts[cls]}
                 </span>
               </button>
@@ -86,10 +86,10 @@ export function InstrumentRegistry({ instruments }: { instruments: Instrument[] 
         </div>
 
         <footer className="mt-16 pt-8 border-t border-cs-gray-700 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <p className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em]">
+          <p className="font-mono text-[0.875rem] text-cs-gray-300 uppercase tracking-[0.15em]">
             Instruments are evaluated continuously. Inclusion does not imply stability.
           </p>
-          <p className="font-mono text-[0.75rem] text-cs-gray-600">
+          <p className="font-mono text-[0.75rem] text-cs-gray-400">
             Showing {filtered.length} of {instruments.length} instruments
           </p>
         </footer>

@@ -53,7 +53,7 @@ const Philosophy: React.FC = () => {
             <div className="space-y-3">
               {principles.map((p, i) => (
                 <div key={i} className="flex items-center gap-4 p-4 border border-cs-gray-700 bg-cs-gray-900 rounded hover:bg-cs-gray-800 transition-colors group">
-                  <span className="font-mono text-[0.875rem] text-cs-gray-500 group-hover:text-cs-gray-300">{String(i + 1).padStart(2, '0')}</span>
+                  <span className="font-mono text-[0.875rem] text-cs-gray-300 group-hover:text-cs-gray-300">{String(i + 1).padStart(2, '0')}</span>
                   <span className="text-cs-gray-300 text-base font-medium font-body">{p}</span>
                 </div>
               ))}
@@ -68,7 +68,7 @@ const Philosophy: React.FC = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {cards.map((v, i) => (
               <div key={i} className="border border-cs-gray-700 bg-cs-gray-900 rounded p-6 hover:bg-cs-gray-800 transition-colors group">
-                <div className="font-mono text-2xl text-cs-gray-600 group-hover:text-cs-orange transition-colors mb-4">0{i + 5}</div>
+                <div className="font-mono text-2xl text-cs-gray-400 group-hover:text-cs-orange transition-colors mb-4">0{i + 5}</div>
                 <h3 className="font-display text-lg font-bold mb-3 tracking-tight">{v.title}</h3>
                 <p className="font-body text-cs-gray-400 text-[0.875rem] leading-relaxed group-hover:text-cs-gray-300 transition-colors">
                   {v.description}

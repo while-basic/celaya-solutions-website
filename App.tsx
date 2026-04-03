@@ -152,14 +152,14 @@ const App: React.FC = () => {
               <p className="font-body text-[0.875rem] text-cs-gray-400 mb-1">
                 Independent AI Research Lab
               </p>
-              <p className="font-mono text-[0.75rem] text-cs-gray-600 uppercase tracking-[0.1em]">
+              <p className="font-mono text-[0.75rem] text-cs-gray-400 uppercase tracking-[0.1em]">
                 El Paso, Texas
               </p>
             </div>
 
             {/* Research */}
             <div>
-              <p className="font-mono text-[0.65rem] text-cs-gray-600 uppercase tracking-[0.2em] mb-4">
+              <p className="font-mono text-[0.65rem] text-cs-gray-400 uppercase tracking-[0.2em] mb-4">
                 Research
               </p>
               <ul className="space-y-2.5">
@@ -188,7 +188,7 @@ const App: React.FC = () => {
 
             {/* Products */}
             <div>
-              <p className="font-mono text-[0.65rem] text-cs-gray-600 uppercase tracking-[0.2em] mb-4">
+              <p className="font-mono text-[0.65rem] text-cs-gray-400 uppercase tracking-[0.2em] mb-4">
                 Instruments
               </p>
               <ul className="space-y-2.5">
@@ -223,7 +223,7 @@ const App: React.FC = () => {
 
             {/* Contact */}
             <div>
-              <p className="font-mono text-[0.65rem] text-cs-gray-600 uppercase tracking-[0.2em] mb-4">
+              <p className="font-mono text-[0.65rem] text-cs-gray-400 uppercase tracking-[0.2em] mb-4">
                 Contact
               </p>
               <ul className="space-y-2.5">
@@ -261,7 +261,7 @@ const App: React.FC = () => {
           {/* Bottom row */}
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pt-6 border-t border-cs-gray-800">
             <div className="flex items-center gap-6">
-              <p className="font-mono text-[0.75rem] text-cs-gray-600">
+              <p className="font-mono text-[0.75rem] text-cs-gray-400">
                 &copy; {new Date().getFullYear()} Celaya Solutions
               </p>
               <span className="font-mono text-[0.75rem] text-cs-gray-700">v1.0.0</span>

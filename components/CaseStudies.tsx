@@ -70,7 +70,7 @@ const CaseStudies: React.FC = () => {
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
                   <div>
                     <div className="flex items-center gap-3 mb-2">
-                      <span className="font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cs-gray-500">
+                      <span className="font-mono text-[0.6rem] tracking-[0.2em] uppercase text-cs-gray-300">
                         {c.label}
                       </span>
                       <span className="font-mono text-[0.6rem] tracking-[0.15em] uppercase text-cs-orange border border-cs-orange/30 px-2 py-0.5 rounded-sm">
@@ -84,7 +84,7 @@ const CaseStudies: React.FC = () => {
                     {c.metrics.map((m) => (
                       <div key={m.label} className="text-right">
                         <span className={`font-mono font-bold text-lg block ${c.metricColor}`}>{m.value}</span>
-                        <span className="font-mono text-[0.6rem] text-cs-gray-500 uppercase tracking-[0.1em]">
+                        <span className="font-mono text-[0.6rem] text-cs-gray-300 uppercase tracking-[0.1em]">
                           {m.label}
                         </span>
                       </div>
@@ -105,7 +105,7 @@ const CaseStudies: React.FC = () => {
                     key={field.label}
                     className={`p-6 ${i % 2 === 0 ? 'md:border-r border-cs-gray-700' : ''} ${i >= 2 ? 'border-t border-cs-gray-700' : ''}`}
                   >
-                    <p className="font-mono text-[0.65rem] text-cs-gray-500 uppercase tracking-[0.15em] mb-2">
+                    <p className="font-mono text-[0.65rem] text-cs-gray-300 uppercase tracking-[0.15em] mb-2">
                       {field.label}
                     </p>
                     <p className="font-body text-sm text-cs-gray-400 leading-relaxed">

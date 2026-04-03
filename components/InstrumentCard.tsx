@@ -51,7 +51,7 @@ export const InstrumentCard: React.FC<InstrumentCardProps> = ({ item, onClick })
         {item.role.length > 160 ? item.role.slice(0, 157) + '…' : item.role}
       </p>
       <div className="mt-3 pt-3 border-t border-cs-gray-800 flex items-center gap-2">
-        <span className="font-mono text-[0.6rem] uppercase tracking-[0.1em] text-cs-gray-600 group-hover:text-cs-gray-400 transition-colors">
+        <span className="font-mono text-[0.6rem] uppercase tracking-[0.1em] text-cs-gray-400 group-hover:text-cs-gray-200 transition-colors">
           {item.status}
         </span>
       </div>

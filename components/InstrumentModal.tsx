@@ -50,35 +50,35 @@ export function InstrumentModal({ open, item, onClose }: Props) {
 
         <div className="space-y-8">
           <section>
-            <h4 className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em] mb-2">Classification</h4>
+            <h4 className="font-mono text-[0.875rem] text-cs-gray-300 uppercase tracking-[0.15em] mb-2">Classification</h4>
             <p className="font-body text-base text-cs-gray-300">{item.classification}</p>
           </section>
 
           <section>
-            <h4 className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em] mb-2">Role</h4>
+            <h4 className="font-mono text-[0.875rem] text-cs-gray-300 uppercase tracking-[0.15em] mb-2">Role</h4>
             <p className="font-body text-base text-cs-gray-400 leading-relaxed">{item.role}</p>
           </section>
 
           <section>
-            <h4 className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em] mb-2">Observed Inputs</h4>
+            <h4 className="font-mono text-[0.875rem] text-cs-gray-300 uppercase tracking-[0.15em] mb-2">Observed Inputs</h4>
             <p className="font-mono text-[0.875rem] text-cs-gray-400 uppercase tracking-widest leading-relaxed">
               {item.inputs.join(", ")}
             </p>
           </section>
 
           <section>
-            <h4 className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em] mb-2">Produced Artifacts</h4>
+            <h4 className="font-mono text-[0.875rem] text-cs-gray-300 uppercase tracking-[0.15em] mb-2">Produced Artifacts</h4>
             <p className="font-body text-base text-cs-gray-400">
               {item.artifacts.join(", ")}
             </p>
           </section>
 
           <section>
-            <h4 className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em] mb-2">Failure Boundaries</h4>
+            <h4 className="font-mono text-[0.875rem] text-cs-gray-300 uppercase tracking-[0.15em] mb-2">Failure Boundaries</h4>
             <ul className="space-y-2">
               {item.failureBoundaries.map((boundary, i) => (
                 <li key={i} className="font-body text-[0.875rem] text-cs-gray-400 flex items-start gap-2">
-                  <span className="text-cs-gray-600 mt-0.5">&#8226;</span>
+                  <span className="text-cs-gray-400 mt-0.5">&#8226;</span>
                   <span>{boundary}</span>
                 </li>
               ))}
@@ -86,12 +86,12 @@ export function InstrumentModal({ open, item, onClose }: Props) {
           </section>
 
           <section>
-            <h4 className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em] mb-2">Research Status</h4>
+            <h4 className="font-mono text-[0.875rem] text-cs-gray-300 uppercase tracking-[0.15em] mb-2">Research Status</h4>
             <p className="font-mono text-base text-cs-gray-400 uppercase tracking-widest">{item.status}</p>
           </section>
 
           <div className="pt-8 border-t border-cs-gray-700">
-            <p className="font-mono text-[0.875rem] text-cs-gray-500 italic leading-relaxed">
+            <p className="font-mono text-[0.875rem] text-cs-gray-300 italic leading-relaxed">
               Constraint statement: This instrument is an analytical component. It is not a service, product, or guarantee.
             </p>
           </div>

@@ -23,16 +23,16 @@ const GptCard: React.FC<{ item: CustomGpt }> = ({ item }) => {
             ))}
           </div>
           {isExternal ? (
-            <ExternalLink className="w-4 h-4 text-cs-gray-500 group-hover:text-cs-orange transition-colors" />
+            <ExternalLink className="w-4 h-4 text-cs-gray-300 group-hover:text-cs-orange transition-colors" />
           ) : (
-            <ArrowUpRight className="w-4 h-4 text-cs-gray-500 group-hover:text-cs-orange transition-colors" />
+            <ArrowUpRight className="w-4 h-4 text-cs-gray-300 group-hover:text-cs-orange transition-colors" />
           )}
         </div>
         <div className="flex items-center gap-3 mb-1">
           <h3 className="font-display text-xl font-bold tracking-tight group-hover:text-cs-orange transition-colors">
             {item.title}
           </h3>
-          <span className="font-mono text-[0.875rem] text-cs-gray-500 border border-cs-gray-600 px-1.5 py-0.5 rounded uppercase tracking-widest">{item.platform}</span>
+          <span className="font-mono text-[0.875rem] text-cs-gray-300 border border-cs-gray-600 px-1.5 py-0.5 rounded uppercase tracking-widest">{item.platform}</span>
         </div>
         {item.subtitle && (
           <p className="font-mono text-[0.875rem] text-cs-gray-400 uppercase tracking-widest">{item.subtitle}</p>
@@ -41,17 +41,17 @@ const GptCard: React.FC<{ item: CustomGpt }> = ({ item }) => {
 
       <div className="space-y-4 flex-grow w-full">
         <section>
-          <h4 className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em] mb-2">What it is</h4>
+          <h4 className="font-mono text-[0.875rem] text-cs-gray-300 uppercase tracking-[0.15em] mb-2">What it is</h4>
           <p className="font-body text-[0.875rem] text-cs-gray-400 leading-relaxed">{item.whatItIs}</p>
         </section>
         <section>
-          <h4 className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em] mb-2">Operational Utility</h4>
+          <h4 className="font-mono text-[0.875rem] text-cs-gray-300 uppercase tracking-[0.15em] mb-2">Operational Utility</h4>
           <p className="font-body text-[0.875rem] text-cs-gray-400 italic leading-relaxed">{item.exampleUseCase}</p>
         </section>
       </div>
 
       <footer className="mt-6 pt-4 border-t border-cs-gray-700 w-full">
-        <h4 className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em] mb-2">Stop-and-Think</h4>
+        <h4 className="font-mono text-[0.875rem] text-cs-gray-300 uppercase tracking-[0.15em] mb-2">Stop-and-Think</h4>
         <p className="font-mono text-[0.875rem] text-cs-gray-400 leading-relaxed group-hover:text-cs-gray-300 transition-colors">
           "{item.stopAndThink}"
         </p>

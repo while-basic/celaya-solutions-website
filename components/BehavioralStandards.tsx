@@ -39,7 +39,7 @@ const BehavioralStandards: React.FC = () => {
               key={s.num}
               className={`border border-cs-gray-700 rounded bg-cs-gray-900 p-6 transition-colors duration-300 hover:bg-cs-gray-800 border-b-2 ${accentColors[i % 3]}`}
             >
-              <span className="font-mono text-[0.875rem] text-cs-gray-500 tracking-[0.15em] uppercase mb-2 block">
+              <span className="font-mono text-[0.875rem] text-cs-gray-300 tracking-[0.15em] uppercase mb-2 block">
                 {s.num}
               </span>
               <h3 className="font-display text-[1.125rem] font-bold leading-[1.2] mb-2">

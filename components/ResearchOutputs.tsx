@@ -124,7 +124,7 @@ const ResearchOutputs: React.FC = () => {
 
               {/* Example */}
               <div className="border border-cs-gray-700 rounded bg-cs-gray-900 px-3 py-2">
-                <span className="font-mono text-[0.6rem] text-cs-gray-600 uppercase tracking-[0.1em] block mb-1">
+                <span className="font-mono text-[0.6rem] text-cs-gray-400 uppercase tracking-[0.1em] block mb-1">
                   Example
                 </span>
                 <span className="font-mono text-[0.68rem] text-cs-gray-400 leading-relaxed">
@@ -138,7 +138,7 @@ const ResearchOutputs: React.FC = () => {
         {/* Bottom callout */}
         <div className="mt-10 pt-8 border-t border-cs-gray-700">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-            <p className="font-body text-cs-gray-500 text-sm leading-relaxed max-w-xl">
+            <p className="font-body text-cs-gray-300 text-sm leading-relaxed max-w-xl">
               All outputs are produced with the assumption they may be inspected years later. Provenance is not optional — it is the product.
             </p>
             <a

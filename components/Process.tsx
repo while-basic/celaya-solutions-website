@@ -64,7 +64,7 @@ const Process: React.FC = () => {
               <span className="absolute top-2 right-3 font-display font-extrabold text-[3.5rem] leading-none text-white/5 select-none pointer-events-none">
                 {step.num}
               </span>
-              <span className="font-mono text-[0.7rem] tracking-[0.15em] uppercase text-cs-gray-500 block mb-3">
+              <span className="font-mono text-[0.7rem] tracking-[0.15em] uppercase text-cs-gray-300 block mb-3">
                 {step.week}
               </span>
               <h3 className="font-display text-base font-bold leading-tight mb-3 relative z-10">

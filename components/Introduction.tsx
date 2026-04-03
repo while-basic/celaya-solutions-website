@@ -143,19 +143,19 @@ const Introduction: React.FC = () => {
           {/* Meta bar */}
           <div className="flex flex-wrap gap-8 pt-6 border-t border-cs-gray-700">
             <div>
-              <span className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em] block mb-1">
+              <span className="font-mono text-[0.875rem] text-cs-gray-300 uppercase tracking-[0.15em] block mb-1">
                 Location
               </span>
               <span className="font-mono text-[0.875rem] text-cs-gray-300">El Paso, TX</span>
             </div>
             <div>
-              <span className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em] block mb-1">
+              <span className="font-mono text-[0.875rem] text-cs-gray-300 uppercase tracking-[0.15em] block mb-1">
                 Flagship
               </span>
               <span className="font-mono text-[0.875rem] text-cs-orange">VERDICT · CORTEX · CLOS</span>
             </div>
             <div>
-              <span className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em] block mb-1">
+              <span className="font-mono text-[0.875rem] text-cs-gray-300 uppercase tracking-[0.15em] block mb-1">
                 Output
               </span>
               <span className="font-mono text-[0.875rem] text-cs-gray-300">Traces · Benchmarks · Audits</span>

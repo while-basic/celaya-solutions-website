@@ -27,7 +27,7 @@ const ResearchInstrumentsSummary: React.FC = () => {
               { label: 'Oversight', desc: 'Instruments audit safety thresholds and decision provenance (e.g., Verdict, Artifacts).' },
             ].map((item) => (
               <div key={item.label} className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4">
-                <span className="font-mono text-[0.875rem] uppercase tracking-widest text-cs-gray-500 w-32 shrink-0">{item.label}</span>
+                <span className="font-mono text-[0.875rem] uppercase tracking-widest text-cs-gray-300 w-32 shrink-0">{item.label}</span>
                 <p className="font-body text-base text-cs-gray-400">{item.desc}</p>
               </div>
             ))}

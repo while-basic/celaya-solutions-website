@@ -75,7 +75,7 @@ const Timeline: React.FC = () => {
           {researchLog.map((entry, idx) => (
             <div key={idx} className="border border-cs-gray-700 bg-cs-gray-900 rounded p-6 md:p-8 grid md:grid-cols-4 gap-6 hover:bg-cs-gray-800 transition-colors">
               <div className="md:col-span-1">
-                <span className="font-mono text-[0.875rem] text-cs-gray-500 block mb-2">{entry.date}</span>
+                <span className="font-mono text-[0.875rem] text-cs-gray-300 block mb-2">{entry.date}</span>
                 <span className={`font-mono text-[0.875rem] uppercase tracking-[0.1em] px-2 py-1 rounded-sm border inline-block ${typeStyles[entry.type]}`}>
                   {entry.type}
                 </span>
@@ -90,7 +90,7 @@ const Timeline: React.FC = () => {
         </div>
 
         <footer className="mt-12 pt-8 border-t border-cs-gray-700">
-          <p className="font-mono text-[0.875rem] text-cs-gray-500 uppercase tracking-[0.15em]">
+          <p className="font-mono text-[0.875rem] text-cs-gray-300 uppercase tracking-[0.15em]">
             Log persistence: immutable. Entries derived from Notion timestamps.
           </p>
         </footer>

@@ -57,7 +57,7 @@ const RecallFeature: React.FC = () => {
             >
               Recall
             </h2>
-            <p className="font-mono text-[0.7rem] text-cs-gray-500 uppercase tracking-[0.15em] mb-6">
+            <p className="font-mono text-[0.7rem] text-cs-gray-300 uppercase tracking-[0.15em] mb-6">
               Research finding → deployed instrument
             </p>
             <p className="font-body text-base text-cs-gray-400 leading-relaxed max-w-md">
@@ -67,7 +67,7 @@ const RecallFeature: React.FC = () => {
 
           {/* Right: instrument stats as a field-report table */}
           <div className="border border-cs-gray-700 rounded bg-cs-black p-6">
-            <p className="font-mono text-[0.65rem] text-cs-gray-600 uppercase tracking-[0.2em] mb-5">
+            <p className="font-mono text-[0.65rem] text-cs-gray-400 uppercase tracking-[0.2em] mb-5">
               Field Report — Instrument Summary
             </p>
             <dl className="space-y-3">
@@ -80,7 +80,7 @@ const RecallFeature: React.FC = () => {
                 { label: 'Cloud calls',        value: '0 (local-first)' },
               ].map(({ label, value, accent }) => (
                 <div key={label} className="flex items-center justify-between border-b border-cs-gray-800 pb-2 last:border-0 last:pb-0">
-                  <dt className="font-mono text-[0.7rem] text-cs-gray-500 uppercase tracking-[0.1em]">{label}</dt>
+                  <dt className="font-mono text-[0.7rem] text-cs-gray-300 uppercase tracking-[0.1em]">{label}</dt>
                   <dd className={`font-mono text-[0.75rem] ${accent ? 'text-cs-orange' : 'text-cs-gray-300'}`}>{value}</dd>
                 </div>
               ))}
@@ -90,7 +90,7 @@ const RecallFeature: React.FC = () => {
 
         {/* Research findings */}
         <div className="mb-12">
-          <p className="font-mono text-[0.7rem] text-cs-gray-600 uppercase tracking-[0.2em] mb-5">
+          <p className="font-mono text-[0.7rem] text-cs-gray-400 uppercase tracking-[0.2em] mb-5">
             Key Findings
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -113,7 +113,7 @@ const RecallFeature: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pt-6 border-t border-cs-gray-700">
           {/* Stack pills */}
           <div>
-            <p className="font-mono text-[0.65rem] text-cs-gray-600 uppercase tracking-[0.2em] mb-3">
+            <p className="font-mono text-[0.65rem] text-cs-gray-400 uppercase tracking-[0.2em] mb-3">
               Instrument Stack
             </p>
             <div className="flex flex-wrap gap-2">
@@ -122,7 +122,7 @@ const RecallFeature: React.FC = () => {
                   key={item.label}
                   className="inline-block border border-cs-gray-700 rounded-sm bg-cs-black px-2.5 py-1 font-mono text-[0.65rem] text-cs-gray-400"
                 >
-                  <span className="text-cs-gray-600">{item.label}:</span> {item.value}
+                  <span className="text-cs-gray-400">{item.label}:</span> {item.value}
                 </span>
               ))}
             </div>
