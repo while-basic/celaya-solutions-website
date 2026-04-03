@@ -11,6 +11,7 @@ const Navbar: React.FC = () => {
     { name: 'Philosophy', href: '#philosophy' },
     { name: 'Lab Notes', href: '#lab-notes' },
     { name: 'Instruments', href: '#catalog' },
+    { name: 'Recall', href: '#recall', product: true },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -46,16 +47,32 @@ const Navbar: React.FC = () => {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={(e) => handleNavClick(e, link.href)}
-              className={`font-mono text-[0.875rem] font-medium tracking-[0.12em] uppercase transition-colors duration-200 ${
-                currentHash === link.href ? 'text-cs-orange' : 'text-cs-gray-400 hover:text-cs-orange'
-              }`}
-            >
-              {link.name}
-            </a>
+            link.product ? (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className={`inline-flex items-center gap-1.5 font-mono text-[0.875rem] font-medium tracking-[0.12em] uppercase px-3 py-1 rounded-sm border transition-colors duration-200 ${
+                  currentHash === link.href
+                    ? 'border-cs-orange text-cs-orange'
+                    : 'border-cs-gray-600 text-cs-gray-400 hover:border-cs-orange hover:text-cs-orange'
+                }`}
+              >
+                <span className="block w-1.5 h-1.5 rounded-full bg-cs-green" />
+                {link.name}
+              </a>
+            ) : (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className={`font-mono text-[0.875rem] font-medium tracking-[0.12em] uppercase transition-colors duration-200 ${
+                  currentHash === link.href ? 'text-cs-orange' : 'text-cs-gray-400 hover:text-cs-orange'
+                }`}
+              >
+                {link.name}
+              </a>
+            )
           ))}
         </div>
 
@@ -77,11 +94,19 @@ const Navbar: React.FC = () => {
               key={link.name}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className={`font-mono text-lg font-medium tracking-[0.12em] uppercase transition-colors duration-200 ${
+              className={`inline-flex items-center gap-2 font-mono text-lg font-medium tracking-[0.12em] uppercase transition-colors duration-200 ${
                 currentHash === link.href ? 'text-cs-orange' : 'text-cs-gray-400 hover:text-cs-orange'
               }`}
             >
+              {link.product && (
+                <span className="block w-2 h-2 rounded-full bg-cs-green flex-shrink-0" />
+              )}
               {link.name}
+              {link.product && (
+                <span className="font-mono text-[0.55rem] tracking-[0.2em] uppercase text-cs-green border border-cs-green/30 px-1.5 py-0.5 rounded-sm">
+                  live
+                </span>
+              )}
             </a>
           ))}
         </div>

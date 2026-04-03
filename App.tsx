@@ -20,6 +20,7 @@ import Process from './components/Process.tsx';
 import PullQuote from './components/PullQuote.tsx';
 import CaseStudies from './components/CaseStudies.tsx';
 import Pricing from './components/Pricing.tsx';
+import RecallFeature from './components/RecallFeature.tsx';
 import { INSTRUMENTS } from './data/instruments.ts';
 
 const App: React.FC = () => {
@@ -60,6 +61,7 @@ const App: React.FC = () => {
         return (
           <>
             <Introduction />
+            <RecallFeature />
             <ResearchEcosystem />
             <BehavioralStandards />
             <IsoFramework />
