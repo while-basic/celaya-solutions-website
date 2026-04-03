@@ -23,26 +23,42 @@ import Pricing from './components/Pricing.tsx';
 import RecallFeature from './components/RecallFeature.tsx';
 import { INSTRUMENTS } from './data/instruments.ts';
 
+// Derive current "page" from both pathname (/recall) and hash (#catalog etc.)
+const getPage = (): string => {
+  if (window.location.pathname === '/recall') return '/recall';
+  return window.location.hash || '#home';
+};
+
 const App: React.FC = () => {
-  const [currentHash, setCurrentHash] = useState(window.location.hash || '#home');
+  const [currentPage, setCurrentPage] = useState(getPage());
 
   useEffect(() => {
     const handleHashChange = () => {
+      setCurrentPage(getPage());
       const hash = window.location.hash || '#home';
-      setCurrentHash(hash);
-
-      const subPages = ['#clos', '#privacy', '#catalog', '#timeline', '#philosophy', '#lab-notes', '#gpts', '#recall'];
+      const subPages = ['#clos', '#privacy', '#catalog', '#timeline', '#philosophy', '#lab-notes', '#gpts'];
       if (subPages.includes(hash)) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     };
 
+    const handlePopState = () => {
+      setCurrentPage(getPage());
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
     window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', handlePopState);
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener('popstate', handlePopState);
+    };
   }, []);
 
   const renderContent = useCallback(() => {
-    switch (currentHash) {
+    switch (currentPage) {
+      case '/recall':
+        return <Recall />;
       case '#privacy':
         return <PrivacyPolicy />;
       case '#catalog':
@@ -55,6 +71,7 @@ const App: React.FC = () => {
         return <LabNotes />;
       case '#gpts':
         return <GptRegistry />;
+      // legacy hash route — redirect handled by popstate but keep as fallback
       case '#recall':
         return <Recall />;
       default:
@@ -75,7 +92,7 @@ const App: React.FC = () => {
           </>
         );
     }
-  }, [currentHash]);
+  }, [currentPage]);
 
   return (
     <div className="min-h-screen bg-cs-black text-cs-white font-body">

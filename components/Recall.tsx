@@ -253,25 +253,25 @@ const Recall: React.FC = () => {
 
         {/* Orange glow — behind "Recall" headline */}
         <div aria-hidden="true" className="absolute pointer-events-none" style={{
-          zIndex: -1, top: '5%', left: '-8%', width: '60%', height: '65%',
-          background: 'radial-gradient(ellipse at 32% 32%, rgba(255,107,53,0.10) 0%, rgba(255,107,53,0.03) 38%, transparent 70%)',
-          filter: 'blur(52px)',
+          zIndex: -1, top: '2%', left: '-10%', width: '75%', height: '78%',
+          background: 'radial-gradient(ellipse at 32% 32%, rgba(255,107,53,0.22) 0%, rgba(255,107,53,0.07) 38%, transparent 70%)',
+          filter: 'blur(72px)',
           animation: 'cs-recall-orange 9s ease-in-out infinite',
         }} />
 
         {/* Green glow — lower right */}
         <div aria-hidden="true" className="absolute pointer-events-none" style={{
-          zIndex: -1, bottom: '-4%', right: '-8%', width: '55%', height: '70%',
-          background: 'radial-gradient(ellipse at 64% 62%, rgba(6,214,160,0.065) 0%, rgba(6,214,160,0.02) 40%, transparent 72%)',
-          filter: 'blur(60px)',
+          zIndex: -1, bottom: '-6%', right: '-8%', width: '65%', height: '80%',
+          background: 'radial-gradient(ellipse at 64% 62%, rgba(6,214,160,0.16) 0%, rgba(6,214,160,0.05) 40%, transparent 72%)',
+          filter: 'blur(80px)',
           animation: 'cs-recall-green 13s ease-in-out infinite 3s',
         }} />
 
         {/* Violet accent — upper right */}
         <div aria-hidden="true" className="absolute pointer-events-none" style={{
-          zIndex: -1, top: '12%', right: '4%', width: '38%', height: '50%',
-          background: 'radial-gradient(ellipse at 50% 50%, rgba(139,92,246,0.045) 0%, transparent 68%)',
-          filter: 'blur(44px)',
+          zIndex: -1, top: '10%', right: '2%', width: '48%', height: '60%',
+          background: 'radial-gradient(ellipse at 50% 50%, rgba(139,92,246,0.10) 0%, transparent 68%)',
+          filter: 'blur(60px)',
           animation: 'cs-recall-violet 17s ease-in-out infinite 7s',
         }} />
 

@@ -42,11 +42,11 @@ const Introduction: React.FC = () => {
         className="absolute pointer-events-none"
         style={{
           zIndex: -1,
-          top: '4%', left: '-10%',
-          width: '68%', height: '62%',
+          top: '2%', left: '-12%',
+          width: '80%', height: '75%',
           background:
-            'radial-gradient(ellipse at 38% 36%, rgba(255,107,53,0.11) 0%, rgba(255,107,53,0.04) 38%, transparent 70%)',
-          filter: 'blur(52px)',
+            'radial-gradient(ellipse at 38% 36%, rgba(255,107,53,0.22) 0%, rgba(255,107,53,0.08) 38%, transparent 70%)',
+          filter: 'blur(72px)',
           animation: 'cs-hero-glow 9s ease-in-out infinite',
         }}
       />
@@ -57,11 +57,11 @@ const Introduction: React.FC = () => {
         className="absolute pointer-events-none"
         style={{
           zIndex: -1,
-          bottom: '-4%', right: '-6%',
-          width: '56%', height: '72%',
+          bottom: '-6%', right: '-8%',
+          width: '65%', height: '80%',
           background:
-            'radial-gradient(ellipse at 64% 62%, rgba(6,214,160,0.07) 0%, rgba(6,214,160,0.02) 40%, transparent 72%)',
-          filter: 'blur(64px)',
+            'radial-gradient(ellipse at 64% 62%, rgba(6,214,160,0.16) 0%, rgba(6,214,160,0.05) 40%, transparent 72%)',
+          filter: 'blur(80px)',
           animation: 'cs-green-glow 13s ease-in-out infinite 3s',
         }}
       />
@@ -72,11 +72,11 @@ const Introduction: React.FC = () => {
         className="absolute pointer-events-none"
         style={{
           zIndex: -1,
-          top: '38%', right: '8%',
-          width: '36%', height: '44%',
+          top: '35%', right: '5%',
+          width: '45%', height: '55%',
           background:
-            'radial-gradient(ellipse at 50% 50%, rgba(139,92,246,0.05) 0%, transparent 68%)',
-          filter: 'blur(44px)',
+            'radial-gradient(ellipse at 50% 50%, rgba(139,92,246,0.10) 0%, transparent 68%)',
+          filter: 'blur(60px)',
           animation: 'cs-violet-glow 17s ease-in-out infinite 6s',
         }}
       />

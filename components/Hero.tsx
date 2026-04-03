@@ -48,7 +48,7 @@ const Hero: React.FC = () => {
               <p className="text-sm text-zinc-400 leading-relaxed border-l border-zinc-800 pl-4 italic">
                 "We observe that cloud-dependent automation systems tend to optimize for decision point removal rather than decision support."
                 <br/>
-                <a href="#analysis" className="text-blue-500 hover:text-blue-400 transition-colors inline-flex items-center space-x-1 mt-2">
+                <a href="#research" className="text-blue-500 hover:text-blue-400 transition-colors inline-flex items-center space-x-1 mt-2">
                   <span>View Comparative Analysis</span>
                   <ArrowRight className="w-2 h-2" />
                 </a>

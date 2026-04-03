@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RECALL — Private AI Document Intelligence by Celaya Solutions</title>
+<meta name="description" content="RECALL turns your business documents into a private AI assistant that knows your business, not the internet. Source-cited answers. Nothing leaves your network.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #000000; --white: #ffffff; --orange: #FF6B35; --green: #06D6A0;
+  --yellow: #FFBE0B; --gray-400: #999999; --gray-600: #555555; --gray-800: #1a1a1a;
+  --surface: #0d0d0d; --surface-2: #141414; --surface-3: #1c1c1c;
+  --border: rgba(255,255,255,0.08); --border-bright: rgba(255,255,255,0.16);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'Outfit', sans-serif; font-size: 16px; line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.4; }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; } .reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; } .reveal-delay-4 { transition-delay: 0.4s; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+@media (max-width: 768px) { .container { padding: 0 20px; } }
+section { position: relative; z-index: 1; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); transition: background 0.3s; }
+.nav-brand { display: flex; align-items: baseline; gap: 10px; }
+.nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 0.06em; color: var(--white); line-height: 1; }
+.nav-by { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--orange); letter-spacing: 0.12em; text-transform: uppercase; }
+.nav-cta { background: var(--orange); color: var(--white); font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 10px 22px; text-decoration: none; transition: background 0.2s, transform 0.15s; display: inline-block; }
+.nav-cta:hover { background: #e55a28; transform: translateY(-1px); }
+@media (max-width: 768px) { nav { padding: 16px 20px; } .nav-by { display: none; } }
+.hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 140px 40px 80px; position: relative; overflow: hidden; }
+.hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,107,53,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,107,53,0.04) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%); }
+.hero-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--orange); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards; }
+.hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(88px, 16vw, 200px); line-height: 0.9; letter-spacing: 0.02em; color: var(--white); opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards; }
+.hero-title span { color: var(--orange); display: inline-block; position: relative; }
+.hero-title span::after { content: ''; position: absolute; bottom: 4px; left: 0; right: 0; height: 4px; background: var(--orange); transform: scaleX(0); transform-origin: left; animation: lineReveal 0.6s ease 1.2s forwards; }
+.hero-sub { font-size: clamp(18px, 2.5vw, 26px); font-weight: 300; color: rgba(255,255,255,0.6); max-width: 600px; margin-top: 32px; opacity: 0; animation: fadeUp 0.8s ease 0.6s forwards; line-height: 1.4; }
+.hero-sub strong { color: var(--white); font-weight: 500; }
+.hero-actions { display: flex; gap: 16px; margin-top: 48px; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.8s ease 0.8s forwards; }
+.btn-primary { background: var(--orange); color: var(--white); font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 16px 36px; text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.15s; }
+.btn-primary:hover { background: #e55a28; transform: translateY(-2px); }
+.btn-secondary { background: transparent; color: var(--white); font-size: 14px; font-weight: 500; letter-spacing: 0.06em; padding: 16px 36px; text-decoration: none; display: inline-block; border: 1px solid var(--border-bright); transition: border-color 0.2s, transform 0.15s; }
+.btn-secondary:hover { border-color: rgba(255,255,255,0.4); transform: translateY(-2px); }
+.hero-scroll { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: fadeIn 1s ease 1.5s forwards; }
+.hero-scroll span { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.3); letter-spacing: 0.15em; text-transform: uppercase; }
+.scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(255,107,53,0.6), transparent); animation: scrollPulse 2s ease infinite; }
+@media (max-width: 768px) { .hero { padding: 120px 20px 80px; } }
+.demo-section { padding: 0 40px 100px; position: relative; z-index: 1; }
+.demo-window { max-width: 860px; margin: 0 auto; background: var(--surface-2); border: 1px solid var(--border); overflow: hidden; }
+.demo-titlebar { background: var(--surface-3); padding: 14px 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border); }
+.demo-dots { display: flex; gap: 6px; }
+.demo-dot { width: 10px; height: 10px; border-radius: 50%; }
+.demo-dot:nth-child(1) { background: #ff5f57; } .demo-dot:nth-child(2) { background: #febc2e; } .demo-dot:nth-child(3) { background: #28c840; }
+.demo-title-text { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.06em; }
+.demo-body { padding: 32px; }
+.demo-prompt-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--green); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; }
+.demo-query { font-size: 18px; font-weight: 500; color: var(--white); margin-bottom: 28px; line-height: 1.4; min-height: 54px; }
+.demo-query .cursor { display: inline-block; width: 2px; height: 1.1em; background: var(--orange); margin-left: 2px; vertical-align: middle; animation: blink 1s step-end infinite; }
+.demo-divider { width: 100%; height: 1px; background: var(--border); margin-bottom: 24px; }
+.demo-response-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--orange); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; }
+.demo-response { font-size: 16px; color: rgba(255,255,255,0.75); line-height: 1.7; min-height: 80px; }
+.demo-citation { margin-top: 20px; display: inline-flex; align-items: center; gap: 8px; background: rgba(6,214,160,0.08); border: 1px solid rgba(6,214,160,0.2); padding: 8px 14px; opacity: 0; transition: opacity 0.5s ease; }
+.demo-citation.visible { opacity: 1; }
+.demo-citation-icon { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--green); }
+.demo-citation-text { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--green); letter-spacing: 0.04em; }
+@media (max-width: 768px) { .demo-section { padding: 0 20px 80px; } .demo-body { padding: 20px; } .demo-query { font-size: 15px; } .demo-response { font-size: 14px; } }
+.trust-bar { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 40px; }
+.trust-inner { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; max-width: 1200px; margin: 0 auto; }
+.trust-item { padding: 20px 32px; border-right: 1px solid var(--border); display: flex; flex-direction: column; gap: 8px; }
+.trust-item:last-child { border-right: none; }
+.trust-icon { font-family: 'JetBrains Mono', monospace; font-size: 20px; color: var(--orange); line-height: 1; }
+.trust-label { font-size: 15px; font-weight: 500; color: var(--white); line-height: 1.3; }
+.trust-desc { font-size: 13px; color: var(--gray-400); line-height: 1.5; }
+@media (max-width: 768px) { .trust-bar { padding: 20px; } .trust-inner { grid-template-columns: 1fr; } .trust-item { border-right: none; border-bottom: 1px solid var(--border); padding: 20px 0; } .trust-item:last-child { border-bottom: none; } }
+.section-pad { padding: 100px 40px; }
+@media (max-width: 768px) { .section-pad { padding: 64px 20px; } }
+.section-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--orange); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 16px; }
+.section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 6vw, 72px); line-height: 0.95; letter-spacing: 0.02em; margin-bottom: 24px; }
+.section-body { font-size: 17px; color: rgba(255,255,255,0.55); max-width: 560px; line-height: 1.7; }
+.how-section { background: var(--surface); }
+.how-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; max-width: 1200px; margin: 0 auto; }
+.steps-list { margin-top: 48px; }
+.step-item { display: flex; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--border); position: relative; }
+.step-item:first-child { padding-top: 0; } .step-item:last-child { border-bottom: none; }
+.step-num { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--orange); line-height: 1; opacity: 0.4; flex-shrink: 0; width: 40px; transition: opacity 0.3s; }
+.step-item:hover .step-num { opacity: 1; }
+.step-content { flex: 1; }
+.step-title { font-size: 16px; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+.step-timing { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+.step-desc { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+.how-visual { position: sticky; top: 120px; }
+.how-diagram { background: var(--surface-2); border: 1px solid var(--border); padding: 32px; }
+.diagram-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--gray-400); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 24px; }
+.diagram-flow { display: flex; flex-direction: column; gap: 0; }
+.diagram-node { padding: 14px 18px; border: 1px solid var(--border); position: relative; }
+.diagram-node.active { border-color: rgba(255,107,53,0.4); background: rgba(255,107,53,0.04); }
+.diagram-node.output { border-color: rgba(6,214,160,0.4); background: rgba(6,214,160,0.04); }
+.diagram-node-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--gray-400); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+.diagram-node.active .diagram-node-label { color: var(--orange); }
+.diagram-node.output .diagram-node-label { color: var(--green); }
+.diagram-node-text { font-size: 13px; color: var(--white); font-weight: 500; }
+.diagram-arrow { display: flex; justify-content: center; padding: 8px 0; }
+.diagram-arrow-line { width: 1px; height: 20px; background: linear-gradient(to bottom, var(--orange), transparent); }
+@media (max-width: 900px) { .how-grid { grid-template-columns: 1fr; gap: 48px; } .how-visual { position: static; } }
+.diff-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); margin-top: 64px; max-width: 1200px; margin-left: auto; margin-right: auto; }
+.diff-item { background: var(--black); padding: 40px; transition: background 0.2s; }
+.diff-item:hover { background: var(--surface-2); }
+.diff-num { font-family: 'Bebas Neue', sans-serif; font-size: 56px; color: rgba(255,255,255,0.06); line-height: 1; margin-bottom: 16px; }
+.diff-title { font-size: 20px; font-weight: 600; color: var(--white); margin-bottom: 12px; line-height: 1.3; }
+.diff-desc { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.7; }
+.diff-accent { display: inline-block; width: 32px; height: 2px; background: var(--orange); margin-bottom: 16px; }
+@media (max-width: 768px) { .diff-grid { grid-template-columns: 1fr; } .diff-item { padding: 28px 20px; } }
+.verticals-section { background: var(--surface); }
+.verticals-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 64px; max-width: 1200px; margin-left: auto; margin-right: auto; }
+.vertical-card { border: 1px solid var(--border); padding: 32px 24px; transition: border-color 0.2s, transform 0.2s; cursor: default; }
+.vertical-card:hover { border-color: var(--border-bright); transform: translateY(-4px); }
+.vertical-icon { font-size: 28px; margin-bottom: 16px; display: block; }
+.vertical-name { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 10px; }
+.vertical-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.vertical-list li { font-size: 12px; color: rgba(255,255,255,0.4); padding-left: 12px; position: relative; line-height: 1.4; }
+.vertical-list li::before { content: ''; position: absolute; left: 0; top: 7px; width: 4px; height: 4px; background: var(--orange); border-radius: 50%; opacity: 0.5; }
+@media (max-width: 900px) { .verticals-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .verticals-grid { grid-template-columns: 1fr; } }
+.cases-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 64px; max-width: 1200px; margin-left: auto; margin-right: auto; }
+.case-card { border: 1px solid var(--border); overflow: hidden; transition: border-color 0.2s; }
+.case-card:hover { border-color: rgba(6,214,160,0.3); }
+.case-header { background: var(--surface-2); padding: 24px; border-bottom: 1px solid var(--border); }
+.case-type { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--green); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px; }
+.case-name { font-size: 20px; font-weight: 600; color: var(--white); }
+.case-body { padding: 24px; }
+.case-row { display: flex; flex-direction: column; gap: 4px; margin-bottom: 20px; }
+.case-row:last-child { margin-bottom: 0; }
+.case-row-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.3); letter-spacing: 0.12em; text-transform: uppercase; }
+.case-row-value { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.5; }
+@media (max-width: 768px) { .cases-grid { grid-template-columns: 1fr; } }
+.pricing-section { background: var(--surface); }
+.pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 64px; max-width: 900px; margin-left: auto; margin-right: auto; }
+.pricing-card { border: 1px solid var(--border); padding: 40px; position: relative; overflow: hidden; transition: transform 0.2s; }
+.pricing-card:hover { transform: translateY(-4px); }
+.pricing-card.featured { border-color: rgba(255,107,53,0.4); }
+.pricing-card.featured::before { content: 'MOST POPULAR'; position: absolute; top: 20px; right: -28px; background: var(--orange); color: var(--white); font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; padding: 5px 40px; transform: rotate(45deg); }
+.pricing-tier { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--orange); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
+.pricing-name { font-size: 24px; font-weight: 600; color: var(--white); margin-bottom: 8px; }
+.pricing-desc { font-size: 14px; color: rgba(255,255,255,0.4); margin-bottom: 32px; line-height: 1.5; }
+.pricing-price { display: flex; align-items: baseline; gap: 6px; margin-bottom: 8px; }
+.price-amount { font-family: 'Bebas Neue', sans-serif; font-size: 56px; color: var(--white); line-height: 1; }
+.price-label { font-size: 13px; color: rgba(255,255,255,0.35); }
+.pricing-retainer { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--green); margin-bottom: 32px; }
+.pricing-divider { width: 100%; height: 1px; background: var(--border); margin-bottom: 24px; }
+.pricing-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+.pricing-features li { font-size: 14px; color: rgba(255,255,255,0.55); padding-left: 20px; position: relative; line-height: 1.4; }
+.pricing-features li::before { content: ''; position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-left: 1.5px solid var(--green); border-bottom: 1.5px solid var(--green); transform: rotate(-45deg); }
+.pricing-cta { display: block; text-align: center; padding: 14px; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+.pricing-cta.primary { background: var(--orange); color: var(--white); }
+.pricing-cta.primary:hover { background: #e55a28; }
+.pricing-cta.secondary { border: 1px solid var(--border-bright); color: var(--white); }
+.pricing-cta.secondary:hover { border-color: rgba(255,255,255,0.4); }
+.pricing-note { text-align: center; font-size: 13px; color: rgba(255,255,255,0.3); margin-top: 32px; font-style: italic; }
+@media (max-width: 768px) { .pricing-grid { grid-template-columns: 1fr; } .pricing-card { padding: 28px; } }
+.cta-section { padding: 120px 40px; text-align: center; position: relative; overflow: hidden; }
+.cta-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(255,107,53,0.07) 0%, transparent 70%); pointer-events: none; }
+.cta-section .section-title { font-size: clamp(48px, 8vw, 96px); }
+.cta-sub { font-size: 18px; color: rgba(255,255,255,0.5); max-width: 520px; margin: 0 auto 48px; line-height: 1.6; }
+.cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.cta-detail { margin-top: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 0.08em; }
+@media (max-width: 768px) { .cta-section { padding: 80px 20px; } }
+footer { border-top: 1px solid var(--border); padding: 40px; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+.footer-brand { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.06em; color: rgba(255,255,255,0.4); }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.3); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+.footer-links a:hover { color: var(--orange); }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
+@media (max-width: 768px) { footer { flex-direction: column; align-items: flex-start; padding: 32px 20px; gap: 16px; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes lineReveal { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes scrollPulse { 0%, 100% { opacity: 0.3; transform: scaleY(1); } 50% { opacity: 1; transform: scaleY(1.2); } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">
+    <span class="nav-logo">RECALL</span>
+    <span class="nav-by">by Celaya Solutions</span>
+  </div>
+  <a href="mailto:hello@celayasolutions.com?subject=RECALL Onboarding Call" class="nav-cta">Book Onboarding Call</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="hero-eyebrow">Private AI Document Intelligence</div>
+    <div class="hero-title"><span>RECALL</span></div>
+    <p class="hero-sub">Your documents, <strong>instantly recalled.</strong><br>Private AI that knows your business — not the internet.</p>
+    <div class="hero-actions">
+      <a href="mailto:hello@celayasolutions.com?subject=RECALL Onboarding Call" class="btn-primary">Start Your Onboarding</a>
+      <a href="#how-it-works" class="btn-secondary">See How It Works</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div><span>Scroll</span></div>
+</section>
+
+<section class="demo-section">
+  <div class="demo-window reveal">
+    <div class="demo-titlebar">
+      <div class="demo-dots"><div class="demo-dot"></div><div class="demo-dot"></div><div class="demo-dot"></div></div>
+      <span class="demo-title-text">RECALL — document query interface</span>
+    </div>
+    <div class="demo-body">
+      <div class="demo-prompt-label">Your question</div>
+      <div class="demo-query" id="demoQuery"><span class="cursor"></span></div>
+      <div class="demo-divider"></div>
+      <div class="demo-response-label">RECALL answers from your documents</div>
+      <div class="demo-response" id="demoResponse"></div>
+      <div class="demo-citation" id="demoCitation">
+        <span class="demo-citation-icon">&#9670;</span>
+        <span class="demo-citation-text" id="demoCitationText"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item reveal"><div class="trust-icon">&#9632;</div><div class="trust-label">Your documents only</div><div class="trust-desc">RECALL never queries the internet. Every answer comes exclusively from files you’ve ingested.</div></div>
+    <div class="trust-item reveal reveal-delay-1"><div class="trust-icon">&#9632;</div><div class="trust-label">Source-cited answers</div><div class="trust-desc">Every response includes the exact file name and page number it came from. No guessing.</div></div>
+    <div class="trust-item reveal reveal-delay-2"><div class="trust-icon">&#9632;</div><div class="trust-label">Private by design</div><div class="trust-desc">Deployed on your infrastructure. Your data never leaves your network. Ever.</div></div>
+  </div>
+</section>
+
+<section class="how-section section-pad" id="how-it-works">
+  <div class="container">
+    <div class="how-grid">
+      <div>
+        <div class="section-label reveal">How it works</div>
+        <div class="section-title reveal reveal-delay-1">Five steps.<br>Six weeks.<br>Searchable.</div>
+        <div class="steps-list">
+          <div class="step-item reveal"><div class="step-num">01</div><div class="step-content"><div class="step-timing">Week 1</div><div class="step-title">Onboarding</div><div class="step-desc">Your onboarding starts here. We map your existing documents and identify what gets ingested. You receive a written overview of exactly what we’re building before anything begins.</div></div></div>
+          <div class="step-item reveal reveal-delay-1"><div class="step-num">02</div><div class="step-content"><div class="step-timing">Week 1–2</div><div class="step-title">Ingestion</div><div class="step-desc">PDFs, Word files, Notion exports, SOPs, spreadsheets — all formats. Your documents become a private, searchable knowledge base only you can access.</div></div></div>
+          <div class="step-item reveal reveal-delay-2"><div class="step-num">03</div><div class="step-content"><div class="step-timing">Week 2–3</div><div class="step-title">AI Layer</div><div class="step-desc">We connect our AI engine to your knowledge base. It answers only from your documents. Every answer cites the source file and page number.</div></div></div>
+          <div class="step-item reveal reveal-delay-3"><div class="step-num">04</div><div class="step-content"><div class="step-timing">Week 3–5</div><div class="step-title">Interface</div><div class="step-desc">Web UI for Knowledge Base tier. Full web app and branded iOS mobile app for the Full Product tier.</div></div></div>
+          <div class="step-item reveal reveal-delay-4"><div class="step-num">05</div><div class="step-content"><div class="step-timing">Week 5–6</div><div class="step-title">Deploy</div><div class="step-desc">Live on private cloud infrastructure. Your data exports cleanly at any time. Source code held in escrow — you are never stranded.</div></div></div>
+        </div>
+      </div>
+      <div class="how-visual reveal reveal-delay-2">
+        <div class="how-diagram">
+          <div class="diagram-label">Document flow</div>
+          <div class="diagram-flow">
+            <div class="diagram-node active"><div class="diagram-node-label">Input</div><div class="diagram-node-text">Your documents (any format)</div></div>
+            <div class="diagram-arrow"><div class="diagram-arrow-line"></div></div>
+            <div class="diagram-node"><div class="diagram-node-label">Step 01</div><div class="diagram-node-text">OCR + text extraction</div></div>
+            <div class="diagram-arrow"><div class="diagram-arrow-line"></div></div>
+            <div class="diagram-node"><div class="diagram-node-label">Step 02</div><div class="diagram-node-text">Chunking + embedding</div></div>
+            <div class="diagram-arrow"><div class="diagram-arrow-line"></div></div>
+            <div class="diagram-node"><div class="diagram-node-label">Step 03</div><div class="diagram-node-text">Private vector database</div></div>
+            <div class="diagram-arrow"><div class="diagram-arrow-line"></div></div>
+            <div class="diagram-node"><div class="diagram-node-label">Step 04</div><div class="diagram-node-text">AI query layer</div></div>
+            <div class="diagram-arrow"><div class="diagram-arrow-line"></div></div>
+            <div class="diagram-node output"><div class="diagram-node-label">Output</div><div class="diagram-node-text">Source-cited answer</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad">
+  <div class="container">
+    <div class="section-label reveal">Why RECALL</div>
+    <div class="section-title reveal reveal-delay-1">Built different.<br>By design.</div>
+    <div class="diff-grid">
+      <div class="diff-item reveal"><div class="diff-num">01</div><div class="diff-accent"></div><div class="diff-title">Internet-free answers</div><div class="diff-desc">RECALL is hardwired to your documents only. It cannot reach the internet, cannot hallucinate from Wikipedia, and cannot confuse your policies with someone else’s.</div></div>
+      <div class="diff-item reveal reveal-delay-1"><div class="diff-num">02</div><div class="diff-accent"></div><div class="diff-title">Every answer has a source</div><div class="diff-desc">Not just an answer — a citation. File name, page number, exact location. Your team can verify every response in seconds. Auditability built in from day one.</div></div>
+      <div class="diff-item reveal reveal-delay-2"><div class="diff-num">03</div><div class="diff-accent"></div><div class="diff-title">Your data stays yours</div><div class="diff-desc">Deployed on private infrastructure. No third-party training on your documents. Your data exports cleanly any time. Source code in escrow — you are never locked in.</div></div>
+      <div class="diff-item reveal reveal-delay-3"><div class="diff-num">04</div><div class="diff-accent"></div><div class="diff-title">Format-agnostic ingestion</div><div class="diff-desc">PDFs — scanned or text-based. Word documents. Notion exports. Google Docs. Spreadsheets. SOPs. We handle the OCR and processing. You hand us the files.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="verticals-section section-pad">
+  <div class="container">
+    <div class="section-label reveal">Who it’s for</div>
+    <div class="section-title reveal reveal-delay-1">Any business<br>drowning in documents.</div>
+    <div class="verticals-grid">
+      <div class="vertical-card reveal"><span class="vertical-icon">&#9878;</span><div class="vertical-name">Law Firms</div><ul class="vertical-list"><li>Case files and research archives</li><li>Multi-jurisdiction document sets</li><li>Contract and compliance libraries</li><li>Deposition and discovery records</li></ul></div>
+      <div class="vertical-card reveal reveal-delay-1"><span class="vertical-icon">&#9877;</span><div class="vertical-name">Healthcare</div><ul class="vertical-list"><li>Clinical SOPs and protocols</li><li>Compliance and HIPAA documentation</li><li>Training and onboarding materials</li><li>Multi-site policy libraries</li></ul></div>
+      <div class="vertical-card reveal reveal-delay-2"><span class="vertical-icon">&#9783;</span><div class="vertical-name">CPA Firms</div><ul class="vertical-list"><li>Decades of client workpapers</li><li>Tax research archives</li><li>Audit files and compliance docs</li><li>Cross-border advisory records</li></ul></div>
+      <div class="vertical-card reveal reveal-delay-3"><span class="vertical-icon">&#9741;</span><div class="vertical-name">SMBs</div><ul class="vertical-list"><li>Internal knowledge bases</li><li>Operations and SOP libraries</li><li>Training and HR documentation</li><li>Product and service archives</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad">
+  <div class="container">
+    <div class="section-label reveal">Proven in production</div>
+    <div class="section-title reveal reveal-delay-1">Built. Deployed.<br>Working.</div>
+    <div class="cases-grid">
+      <div class="case-card reveal">
+        <div class="case-header"><div class="case-type">Government Archive</div><div class="case-name">Texas Historical Archive</div></div>
+        <div class="case-body">
+          <div class="case-row"><div class="case-row-label">The problem</div><div class="case-row-value">500GB of historical government PDFs spanning 200 years — completely unsearchable and inaccessible to researchers.</div></div>
+          <div class="case-row"><div class="case-row-label">What we built</div><div class="case-row-value">OCR ingestion pipeline, vector search index, AI query layer with source citations. Web application deployed on private cloud.</div></div>
+          <div class="case-row"><div class="case-row-label">The result</div><div class="case-row-value">Ask “What happened at the Battle of Medina in 1813?” and receive a cited answer from the exact source document in under three seconds.</div></div>
+        </div>
+      </div>
+      <div class="case-card reveal reveal-delay-1">
+        <div class="case-header"><div class="case-type">Personal Knowledge Base</div><div class="case-name">Organizational Memory System</div></div>
+        <div class="case-body">
+          <div class="case-row"><div class="case-row-label">The problem</div><div class="case-row-value">Years of Notion notes, SOPs, project journals, and internal documentation — impossible to query or reference at speed.</div></div>
+          <div class="case-row"><div class="case-row-label">What we built</div><div class="case-row-value">Full-stack system: document ingestion, proprietary vector index, AI engine, web UI, and iOS mobile app. Deployed on private cloud infrastructure.</div></div>
+          <div class="case-row"><div class="case-row-label">The result</div><div class="case-row-value">Any question answered from years of organizational knowledge in plain language, on desktop and mobile, with full source attribution.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing-section section-pad" id="pricing">
+  <div class="container">
+    <div class="section-label reveal">Pricing</div>
+    <div class="section-title reveal reveal-delay-1">Two tiers.<br>One onboarding call.</div>
+    <p class="section-body reveal reveal-delay-2">Starting prices. Final scope depends on document volume, integrations, and custom features. All engagements begin with a free onboarding call.</p>
+    <div class="pricing-grid">
+      <div class="pricing-card reveal">
+        <div class="pricing-tier">Tier 01</div>
+        <div class="pricing-name">Knowledge Base</div>
+        <div class="pricing-desc">Private AI trained on your documents with a web interface. Internal teams, researchers, and operations.</div>
+        <div class="pricing-price"><span class="price-amount">3,500</span><span class="price-label">starting at</span></div>
+        <div class="pricing-retainer">+ $250/month hosting retainer</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li>Document onboarding and ingestion</li><li>Private vector database</li><li>AI query layer — your documents only</li>
+          <li>Source-cited answers</li><li>Web UI accessible by URL</li><li>Private cloud deployment</li>
+          <li>Data portability — always</li><li>Source code escrow</li>
+        </ul>
+        <a href="mailto:hello@celayasolutions.com?subject=RECALL Knowledge Base Onboarding" class="pricing-cta secondary">Start Onboarding</a>
+      </div>
+      <div class="pricing-card featured reveal reveal-delay-1">
+        <div class="pricing-tier">Tier 02</div>
+        <div class="pricing-name">Full AI Product</div>
+        <div class="pricing-desc">Everything in Knowledge Base plus a branded web app and iOS mobile app for customer-facing or team-wide deployment.</div>
+        <div class="pricing-price"><span class="price-amount">8,500</span><span class="price-label">starting at</span></div>
+        <div class="pricing-retainer">+ $500/month hosting retainer</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li>Everything in Knowledge Base</li><li>Branded web application</li><li>iOS mobile app (App Store or TestFlight)</li>
+          <li>User authentication</li><li>Usage dashboard</li><li>3–6 week delivery</li>
+          <li>Priority support tier</li><li>Source code escrow</li>
+        </ul>
+        <a href="mailto:hello@celayasolutions.com?subject=RECALL Full Product Onboarding" class="pricing-cta primary">Start Onboarding</a>
+      </div>
+    </div>
+    <p class="pricing-note">Rush delivery available (+25%) for under 2-week turnaround.</p>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-bg"></div>
+  <div style="position:relative;z-index:1;">
+    <div class="section-label reveal" style="text-align:center;">Get started</div>
+    <div class="section-title reveal reveal-delay-1" style="text-align:center;">Your onboarding<br>starts here.</div>
+    <p class="cta-sub reveal reveal-delay-2">Free 20-minute onboarding call. You’ll leave knowing exactly what your system looks like and what it costs.</p>
+    <div class="cta-actions reveal reveal-delay-3">
+      <a href="mailto:hello@celayasolutions.com?subject=RECALL Onboarding Call" class="btn-primary">Book Onboarding Call</a>
+      <a href="mailto:hello@celayasolutions.com" class="btn-secondary">Ask a Question</a>
+    </div>
+    <div class="cta-detail reveal reveal-delay-4">hello@celayasolutions.com · El Paso, Texas · celayasolutions.com</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">RECALL by Celaya Solutions</div>
+  <div class="footer-links">
+    <a href="https://celayasolutions.com">celayasolutions.com</a>
+    <a href="mailto:hello@celayasolutions.com">Contact</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#how-it-works">How it works</a>
+  </div>
+  <div class="footer-copy">© 2026 Celaya Solutions LLC, El Paso TX</div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+  });
+}, { threshold: 0.12 });
+reveals.forEach(el => observer.observe(el));
+
+const demos = [
+  {
+    query: "What are the filing deadlines for our cross-border clients this quarter?",
+    response: "Based on your cross-border client procedures manual, the Q2 filing deadlines are: U.S. federal returns due April 15, Mexico SAT declarations due the 17th of the following month, and New Mexico state returns due April 30. Extensions are available for all three jurisdictions with prior notice.",
+    citation: "cross-border-procedures-v3.pdf — Page 14, Section 4.2"
+  },
+  {
+    query: "What does our malpractice policy say about client communication requirements?",
+    response: "Per your malpractice insurance policy documentation, written confirmation is required within 48 hours of any verbal legal advice on matters exceeding $50,000 in exposure. Electronic communication satisfies this requirement provided a copy is retained in the client file.",
+    citation: "malpractice-policy-2025.pdf — Page 8, Article III"
+  },
+  {
+    query: "Find all SOPs related to patient intake at the Eastside clinic location.",
+    response: "Your Eastside clinic intake SOPs include three active documents: the standard patient registration protocol (updated March 2025), the Spanish-language intake supplement, and the pediatric intake addendum for patients under 18. All require dual staff signature for completion.",
+    citation: "eastside-sop-intake-v7.pdf — Pages 1–4"
+  }
+];
+
+let demoIdx = 0, charIdx = 0, phase = 'query', responseCharIdx = 0, timer;
+const queryEl = document.getElementById('demoQuery');
+const responseEl = document.getElementById('demoResponse');
+const citationEl = document.getElementById('demoCitation');
+const citationTextEl = document.getElementById('demoCitationText');
+
+function resetDemo() {
+  clearTimeout(timer); charIdx = 0; responseCharIdx = 0; phase = 'query';
+  queryEl['innerHTML'] = '<span class=\"cursor\"></span>';
+  responseEl.textContent = ''; citationEl.classList.remove('visible');
+}
+
+function typeQuery() {
+  const d = demos[demoIdx];
+  if (charIdx < d.query.length) {
+    queryEl['innerHTML'] = d.query.slice(0, charIdx + 1) + '<span class=\"cursor\"></span>';
+    charIdx++;
+    timer = setTimeout(typeQuery, 28 + Math.random() * 20);
+  } else {
+    queryEl['innerHTML'] = d.query;
+    phase = 'response';
+    timer = setTimeout(typeResponse, 600);
+  }
+}
+
+function typeResponse() {
+  const d = demos[demoIdx];
+  if (responseCharIdx < d.response.length) {
+    responseEl.textContent = d.response.slice(0, responseCharIdx + 1);
+    responseCharIdx++;
+    timer = setTimeout(typeResponse, 14 + Math.random() * 10);
+  } else {
+    citationTextEl.textContent = d.citation;
+    citationEl.classList.add('visible');
+    timer = setTimeout(() => {
+      resetDemo();
+      demoIdx = (demoIdx + 1) % demos.length;
+      timer = setTimeout(typeQuery, 400);
+    }, 4000);
+  }
+}
+
+setTimeout(() => { typeQuery(); }, 1200);
+</script>
+</body>
+</html>

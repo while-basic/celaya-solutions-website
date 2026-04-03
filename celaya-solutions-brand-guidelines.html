@@ -1,0 +1,2579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Celaya Solutions — Brand Guidelines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --orange: #FF6B35;
+    --green: #06D6A0;
+    --yellow: #FFBE0B;
+    --gray-900: #0A0A0A;
+    --gray-800: #111111;
+    --gray-700: #1A1A1A;
+    --gray-600: #242424;
+    --gray-500: #3A3A3A;
+    --gray-400: #6B6B6B;
+    --gray-300: #9A9A9A;
+    --gray-200: #CCCCCC;
+    --mono: 'JetBrains Mono', monospace;
+    --display: 'Syne', sans-serif;
+    --body: 'DM Sans', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAVIGATION */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(0,0,0,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-700);
+    padding: 0 2rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: var(--orange);
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--gray-400);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--orange); }
+
+  /* SECTIONS */
+  section {
+    padding: 6rem 0;
+    border-bottom: 1px solid var(--gray-800);
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+  }
+
+  /* SECTION LABELS */
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-label::after {
+    content: '';
+    height: 1px;
+    width: 40px;
+    background: var(--orange);
+    opacity: 0.5;
+    display: inline-block;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-intro {
+    font-family: var(--body);
+    font-size: 1.1rem;
+    color: var(--gray-300);
+    max-width: 640px;
+    line-height: 1.7;
+  }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 0 6rem;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--gray-800);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(255,107,53,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 20% 70%, rgba(6,214,160,0.04) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--orange);
+  }
+
+  .hero-title {
+    font-family: var(--display);
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    margin-bottom: 1rem;
+  }
+
+  .hero-title .highlight { color: var(--orange); }
+
+  .hero-subtitle {
+    font-family: var(--display);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 400;
+    color: var(--gray-400);
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-meta {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--gray-500);
+    letter-spacing: 0.1em;
+    margin-top: 4rem;
+    display: flex;
+    gap: 3rem;
+  }
+
+  .hero-meta span { display: flex; flex-direction: column; gap: 0.25rem; }
+  .hero-meta .meta-label { color: var(--gray-600); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; }
+  .hero-meta .meta-value { color: var(--gray-300); }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gray-700), transparent);
+    margin: 4rem 0;
+  }
+
+  /* PHILOSOPHY */
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--gray-800);
+    margin-top: 3rem;
+    border: 1px solid var(--gray-800);
+  }
+
+  .philosophy-card {
+    background: var(--black);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .philosophy-card:hover { background: var(--gray-900); }
+
+  .philosophy-card::before {
+    content: attr(data-num);
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    font-family: var(--mono);
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--gray-800);
+    line-height: 1;
+    transition: color 0.3s;
+  }
+
+  .philosophy-card:hover::before { color: var(--gray-700); }
+
+  .philosophy-card h3 {
+    font-family: var(--display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    position: relative;
+  }
+
+  .philosophy-card p {
+    font-size: 0.9rem;
+    color: var(--gray-400);
+    line-height: 1.65;
+    position: relative;
+  }
+
+  .accent-orange { color: var(--orange); }
+  .accent-green { color: var(--green); }
+  .accent-yellow { color: var(--yellow); }
+
+  /* COLOR SYSTEM */
+  .color-system { margin-top: 3rem; }
+
+  .color-primary-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .color-swatch {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .swatch-block {
+    height: 100px;
+    border-radius: 4px 4px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .swatch-block::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 50%);
+  }
+
+  .swatch-info {
+    background: var(--gray-900);
+    border: 1px solid var(--gray-800);
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    padding: 0.75rem;
+  }
+
+  .swatch-name {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 0.25rem;
+  }
+
+  .swatch-hex {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--gray-400);
+  }
+
+  .swatch-usage {
+    font-family: var(--body);
+    font-size: 0.72rem;
+    color: var(--gray-500);
+    margin-top: 0.35rem;
+    line-height: 1.4;
+  }
+
+  .color-section-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .gray-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+  }
+
+  .gray-swatch .swatch-block {
+    height: 50px;
+  }
+
+  /* COLOR USAGE */
+  .color-usage-table {
+    margin-top: 2.5rem;
+    border: 1px solid var(--gray-800);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .color-usage-row {
+    display: grid;
+    grid-template-columns: 140px 1fr 1fr;
+    border-bottom: 1px solid var(--gray-800);
+    align-items: center;
+  }
+
+  .color-usage-row:last-child { border-bottom: none; }
+
+  .color-usage-row.header {
+    background: var(--gray-900);
+  }
+
+  .color-usage-cell {
+    padding: 0.9rem 1.25rem;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    color: var(--gray-400);
+  }
+
+  .color-usage-row.header .color-usage-cell {
+    color: var(--gray-500);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .color-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 0.6rem;
+    vertical-align: middle;
+  }
+
+  /* TYPOGRAPHY */
+  .type-specimen { margin-top: 3rem; }
+
+  .type-family {
+    border: 1px solid var(--gray-800);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+
+  .type-family-header {
+    background: var(--gray-900);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--gray-800);
+  }
+
+  .type-family-name {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+  }
+
+  .type-family-role {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--orange);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .type-family-body {
+    padding: 2rem 1.5rem;
+  }
+
+  .type-sample-display {
+    font-family: var(--display);
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .type-sample-mono {
+    font-family: var(--mono);
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--green);
+    margin-bottom: 0.5rem;
+  }
+
+  .type-sample-body {
+    font-family: var(--body);
+    font-size: 1.1rem;
+    color: var(--gray-300);
+    line-height: 1.7;
+  }
+
+  .type-scale {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--gray-800);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .type-scale-row {
+    display: grid;
+    grid-template-columns: 120px 1fr 100px;
+    border-bottom: 1px solid var(--gray-800);
+    align-items: center;
+    padding: 1rem 1.5rem;
+    gap: 1rem;
+  }
+
+  .type-scale-row:last-child { border-bottom: none; }
+
+  .type-scale-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    color: var(--gray-500);
+    text-transform: uppercase;
+  }
+
+  .type-scale-value {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--gray-500);
+    text-align: right;
+  }
+
+  /* LOGO */
+  .logo-section { margin-top: 3rem; }
+
+  .logo-variants {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .logo-card {
+    border: 1px solid var(--gray-800);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .logo-display {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+  }
+
+  .logo-display.on-black { background: var(--black); }
+  .logo-display.on-dark { background: var(--gray-800); }
+  .logo-display.on-orange { background: var(--orange); }
+
+  .logo-wordmark {
+    font-family: var(--display);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    text-align: center;
+  }
+
+  .logo-wordmark .cs-celaya { font-size: 1.8rem; display: block; }
+  .logo-wordmark .cs-solutions {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 0.15rem;
+  }
+
+  .logo-mark-only {
+    width: 60px;
+    height: 60px;
+    border: 2px solid currentColor;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: -0.05em;
+    position: relative;
+  }
+
+  .logo-mark-only::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    right: -6px;
+    width: 12px;
+    height: 12px;
+    background: var(--orange);
+    border-radius: 50%;
+  }
+
+  .logo-card-footer {
+    background: var(--gray-900);
+    border-top: 1px solid var(--gray-800);
+    padding: 0.75rem 1rem;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--gray-500);
+    text-transform: uppercase;
+  }
+
+  /* CLEARSPACE */
+  .clearspace-demo {
+    border: 1px solid var(--gray-800);
+    border-radius: 4px;
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    background: var(--gray-900);
+    position: relative;
+  }
+
+  .clearspace-inner {
+    border: 1px dashed rgba(255,107,53,0.4);
+    padding: 2rem 3rem;
+    position: relative;
+  }
+
+  .clearspace-note {
+    position: absolute;
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    color: var(--orange);
+    letter-spacing: 0.1em;
+    opacity: 0.7;
+  }
+
+  .clearspace-note.top { top: -18px; left: 0; }
+  .clearspace-note.bottom { bottom: -18px; left: 0; }
+  .clearspace-note.left { left: -3rem; top: 50%; transform: translateY(-50%) rotate(-90deg); }
+  .clearspace-note.right { right: -3rem; top: 50%; transform: translateY(-50%) rotate(90deg); }
+
+  /* DONT'S */
+  .logo-donts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .dont-card {
+    border: 1px solid var(--gray-800);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .dont-display {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gray-900);
+    position: relative;
+  }
+
+  .dont-display::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) rotate(-45deg);
+    width: 100%;
+    height: 1px;
+    background: rgba(255,0,0,0.3);
+  }
+
+  .dont-display::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) rotate(45deg);
+    width: 100%;
+    height: 1px;
+    background: rgba(255,0,0,0.3);
+  }
+
+  .dont-label {
+    background: var(--gray-800);
+    padding: 0.6rem 0.75rem;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: #ff4444;
+    letter-spacing: 0.08em;
+    border-top: 1px solid rgba(255,68,68,0.2);
+  }
+
+  /* VOICE */
+  .voice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .voice-card {
+    border: 1px solid var(--gray-800);
+    border-radius: 4px;
+    padding: 2rem;
+    background: var(--gray-900);
+  }
+
+  .voice-card.yes { border-color: rgba(6,214,160,0.3); }
+  .voice-card.no { border-color: rgba(255,68,68,0.2); }
+
+  .voice-card-header {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--gray-800);
+  }
+
+  .voice-card.yes .voice-card-header { color: var(--green); }
+  .voice-card.no .voice-card-header { color: #ff4444; }
+
+  .voice-example {
+    margin-bottom: 1.2rem;
+    padding: 1rem;
+    background: var(--black);
+    border-radius: 3px;
+    border-left: 2px solid;
+  }
+
+  .voice-card.yes .voice-example { border-color: var(--green); }
+  .voice-card.no .voice-example { border-color: rgba(255,68,68,0.4); }
+
+  .voice-example p {
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: var(--gray-300);
+  }
+
+  .voice-example .voice-note {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--gray-500);
+    margin-top: 0.5rem;
+    letter-spacing: 0.08em;
+  }
+
+  /* MOTION */
+  .motion-tokens {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .motion-card {
+    border: 1px solid var(--gray-800);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .motion-preview {
+    height: 100px;
+    background: var(--gray-900);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .motion-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--orange);
+    position: relative;
+  }
+
+  .motion-card:hover .motion-dot-slide { animation: slideDemo 0.4s cubic-bezier(0.4,0,0.2,1) forwards; }
+  .motion-card:hover .motion-dot-fade { animation: fadeDemo 0.3s ease-out forwards; }
+  .motion-card:hover .motion-dot-spring { animation: springDemo 0.5s cubic-bezier(0.175,0.885,0.32,1.275) forwards; }
+
+  @keyframes slideDemo {
+    0% { transform: translateX(-30px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+  }
+
+  @keyframes fadeDemo {
+    0% { opacity: 0; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes springDemo {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+  }
+
+  .motion-info {
+    padding: 1rem 1.25rem;
+    background: var(--gray-900);
+    border-top: 1px solid var(--gray-800);
+  }
+
+  .motion-name {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: var(--white);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.2rem;
+  }
+
+  .motion-value {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--green);
+  }
+
+  /* SPACING */
+  .spacing-scale {
+    display: flex;
+    gap: 0;
+    align-items: flex-end;
+    margin-top: 2.5rem;
+    border: 1px solid var(--gray-800);
+    border-radius: 4px;
+    padding: 2rem;
+    background: var(--gray-900);
+    overflow-x: auto;
+  }
+
+  .spacing-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    min-width: 50px;
+  }
+
+  .spacing-bar {
+    background: var(--orange);
+    width: 100%;
+    border-radius: 2px 2px 0 0;
+    opacity: 0.7;
+    max-width: 40px;
+  }
+
+  .spacing-label {
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    color: var(--gray-500);
+    text-align: center;
+  }
+
+  .spacing-value {
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    color: var(--green);
+    text-align: center;
+  }
+
+  /* COMPONENTS */
+  .component-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .component-card {
+    border: 1px solid var(--gray-800);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .component-preview {
+    padding: 2.5rem 2rem;
+    background: var(--gray-900);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    min-height: 120px;
+  }
+
+  .component-label {
+    background: var(--gray-800);
+    border-top: 1px solid var(--gray-800);
+    padding: 0.6rem 1rem;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--gray-500);
+    text-transform: uppercase;
+  }
+
+  /* BUTTONS */
+  .btn {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background: var(--orange);
+    color: var(--black);
+  }
+
+  .btn-primary:hover {
+    background: #ff7d49;
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid var(--gray-600);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--orange);
+    color: var(--orange);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--green);
+    border: 1px solid rgba(6,214,160,0.4);
+  }
+
+  .btn-ghost:hover {
+    background: rgba(6,214,160,0.08);
+  }
+
+  .btn-danger {
+    background: transparent;
+    color: #ff4444;
+    border: 1px solid rgba(255,68,68,0.3);
+  }
+
+  /* TAGS / BADGES */
+  .tag {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+  .tag-orange { background: rgba(255,107,53,0.15); color: var(--orange); border: 1px solid rgba(255,107,53,0.3); }
+  .tag-green { background: rgba(6,214,160,0.1); color: var(--green); border: 1px solid rgba(6,214,160,0.25); }
+  .tag-yellow { background: rgba(255,190,11,0.1); color: var(--yellow); border: 1px solid rgba(255,190,11,0.25); }
+  .tag-ghost { background: transparent; color: var(--gray-400); border: 1px solid var(--gray-700); }
+
+  /* INPUT */
+  .input-demo {
+    background: var(--black);
+    border: 1px solid var(--gray-700);
+    border-radius: 2px;
+    padding: 0.7rem 1rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--white);
+    width: 220px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .input-demo:focus { border-color: var(--orange); }
+  .input-demo::placeholder { color: var(--gray-600); }
+
+  /* CODE BLOCK */
+  .code-block {
+    background: var(--gray-900);
+    border: 1px solid var(--gray-800);
+    border-left: 3px solid var(--green);
+    border-radius: 0 4px 4px 0;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+  }
+
+  .code-block pre {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    line-height: 1.7;
+    color: var(--gray-300);
+  }
+
+  .code-block .token-comment { color: var(--gray-600); }
+  .code-block .token-key { color: var(--orange); }
+  .code-block .token-value { color: var(--green); }
+  .code-block .token-string { color: var(--yellow); }
+
+  /* ALERT / CALLOUT */
+  .callout {
+    border-radius: 3px;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+
+  .callout-icon {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .callout-info {
+    background: rgba(6,214,160,0.08);
+    border: 1px solid rgba(6,214,160,0.2);
+    color: var(--gray-300);
+  }
+
+  .callout-info .callout-icon {
+    background: rgba(6,214,160,0.15);
+    color: var(--green);
+  }
+
+  .callout-warn {
+    background: rgba(255,190,11,0.06);
+    border: 1px solid rgba(255,190,11,0.2);
+    color: var(--gray-300);
+  }
+
+  .callout-warn .callout-icon {
+    background: rgba(255,190,11,0.12);
+    color: var(--yellow);
+  }
+
+  /* ICONOGRAPHY */
+  .icon-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 0;
+    border: 1px solid var(--gray-800);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 2rem;
+  }
+
+  .icon-item {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1.25rem 0.5rem;
+    border-right: 1px solid var(--gray-800);
+    border-bottom: 1px solid var(--gray-800);
+    background: var(--gray-900);
+    transition: background 0.2s;
+  }
+
+  .icon-item:hover { background: var(--gray-800); }
+
+  .icon-item svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--gray-300);
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .icon-item:hover svg { stroke: var(--orange); }
+
+  .icon-name {
+    font-family: var(--mono);
+    font-size: 0.5rem;
+    color: var(--gray-600);
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  /* BEHAVIORAL STANDARDS */
+  .behavioral-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .behavioral-card {
+    border: 1px solid var(--gray-800);
+    border-radius: 4px;
+    padding: 2rem 1.5rem;
+    background: var(--gray-900);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .behavioral-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+  }
+
+  .behavioral-card.orange::after { background: var(--orange); }
+  .behavioral-card.green::after { background: var(--green); }
+  .behavioral-card.yellow::after { background: var(--yellow); }
+
+  .behavioral-num {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--gray-600);
+    letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+  }
+
+  .behavioral-title {
+    font-family: var(--display);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .behavioral-body {
+    font-size: 0.82rem;
+    color: var(--gray-400);
+    line-height: 1.6;
+  }
+
+  /* GRID SYSTEM */
+  .grid-demo {
+    margin-top: 2.5rem;
+    border: 1px solid var(--gray-800);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .grid-demo-header {
+    background: var(--gray-900);
+    padding: 1rem 1.5rem;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--gray-800);
+  }
+
+  .grid-demo-body {
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 6px;
+    background: var(--black);
+  }
+
+  .grid-col {
+    background: rgba(255,107,53,0.12);
+    border: 1px solid rgba(255,107,53,0.2);
+    border-radius: 2px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 0.5rem;
+    color: rgba(255,107,53,0.6);
+  }
+
+  /* IMAGERY */
+  .imagery-principles {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .imagery-card {
+    border: 1px solid var(--gray-800);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .imagery-display {
+    height: 160px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .imagery-display.data {
+    background: var(--black);
+    background-image: 
+      radial-gradient(circle at 30% 50%, rgba(255,107,53,0.15) 0%, transparent 50%),
+      radial-gradient(circle at 70% 50%, rgba(6,214,160,0.1) 0%, transparent 50%);
+  }
+
+  .imagery-display.infra {
+    background: linear-gradient(135deg, var(--gray-900) 0%, var(--black) 100%);
+  }
+
+  .imagery-display.human {
+    background: linear-gradient(160deg, rgba(255,190,11,0.08) 0%, var(--black) 100%);
+  }
+
+  .imagery-info {
+    padding: 1rem 1.25rem;
+    background: var(--gray-900);
+    border-top: 1px solid var(--gray-800);
+  }
+
+  .imagery-title {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--white);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  .imagery-desc {
+    font-size: 0.78rem;
+    color: var(--gray-500);
+    line-height: 1.5;
+  }
+
+  /* DATA VIZ */
+  .dataviz-card {
+    border: 1px solid var(--gray-800);
+    border-radius: 4px;
+    padding: 2rem;
+    background: var(--gray-900);
+    margin-top: 2rem;
+  }
+
+  .dataviz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .dataviz-title {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--gray-400);
+    text-transform: uppercase;
+  }
+
+  .dataviz-legend {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--gray-500);
+  }
+
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  .bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    height: 100px;
+  }
+
+  .bar {
+    flex: 1;
+    border-radius: 2px 2px 0 0;
+    position: relative;
+    transition: opacity 0.2s;
+  }
+
+  .bar:hover { opacity: 0.8; }
+
+  .bar-label {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--mono);
+    font-size: 0.5rem;
+    color: var(--gray-600);
+    white-space: nowrap;
+  }
+
+  .bar-value {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    color: var(--gray-400);
+    white-space: nowrap;
+  }
+
+  /* ACCESSIBILITY */
+  .a11y-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .contrast-demo {
+    border: 1px solid var(--gray-800);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .contrast-pair {
+    padding: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--gray-800);
+  }
+
+  .contrast-pair:last-child { border-bottom: none; }
+
+  .contrast-sample {
+    font-family: var(--display);
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .contrast-ratio {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 2px;
+  }
+
+  .ratio-pass { background: rgba(6,214,160,0.15); color: var(--green); }
+  .ratio-warn { background: rgba(255,190,11,0.1); color: var(--yellow); }
+
+  /* RELEASE VERSIONING */
+  .release-table {
+    border: 1px solid var(--gray-800);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 2rem;
+  }
+
+  .release-row {
+    display: grid;
+    grid-template-columns: 80px 120px 1fr 100px;
+    border-bottom: 1px solid var(--gray-800);
+    align-items: center;
+  }
+
+  .release-row:last-child { border-bottom: none; }
+  .release-row.header { background: var(--gray-900); }
+
+  .release-cell {
+    padding: 0.9rem 1.25rem;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--gray-400);
+  }
+
+  .release-row.header .release-cell {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 4rem 0;
+    border-top: 1px solid var(--gray-800);
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .footer-brand {
+    font-family: var(--display);
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+
+  .footer-meta {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--gray-600);
+    letter-spacing: 0.1em;
+    text-align: right;
+    line-height: 2;
+  }
+
+  /* UTILITIES */
+  .mt-sm { margin-top: 1rem; }
+  .mt-md { margin-top: 2rem; }
+  .mt-lg { margin-top: 3rem; }
+
+  .inline-code {
+    font-family: var(--mono);
+    font-size: 0.8em;
+    background: var(--gray-800);
+    padding: 0.15em 0.4em;
+    border-radius: 2px;
+    color: var(--green);
+  }
+
+  table.standards {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    border: 1px solid var(--gray-800);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  table.standards th, table.standards td {
+    padding: 0.9rem 1.25rem;
+    text-align: left;
+    border-bottom: 1px solid var(--gray-800);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+  }
+
+  table.standards th {
+    background: var(--gray-900);
+    color: var(--gray-500);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-size: 0.6rem;
+  }
+
+  table.standards td { color: var(--gray-300); }
+  table.standards tr:last-child td { border-bottom: none; }
+  table.standards tr:hover td { background: var(--gray-900); }
+
+  /* SCROLL INDICATOR */
+  .progress-bar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    height: 2px;
+    background: var(--orange);
+    z-index: 101;
+    transition: width 0.1s;
+    width: 0%;
+  }
+
+  /* SIDEBAR TOC */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .philosophy-grid,
+    .voice-grid,
+    .component-grid,
+    .behavioral-grid,
+    .imagery-principles { grid-template-columns: 1fr; }
+    .color-primary-row { grid-template-columns: repeat(3, 1fr); }
+    .logo-variants { grid-template-columns: 1fr; }
+    .a11y-grid { grid-template-columns: 1fr; }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav>
+  <div class="nav-logo">CS / Brand Guidelines</div>
+  <ul class="nav-links">
+    <li><a href="#philosophy">Philosophy</a></li>
+    <li><a href="#color">Color</a></li>
+    <li><a href="#typography">Typography</a></li>
+    <li><a href="#logo">Logo</a></li>
+    <li><a href="#voice">Voice</a></li>
+    <li><a href="#components">Components</a></li>
+    <li><a href="#behavior">Standards</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="container hero-content">
+    <div class="hero-eyebrow">Celaya Solutions / Brand Identity System</div>
+    <h1 class="hero-title">
+      Make<br>
+      <span class="highlight">Coherence</span><br>
+      Visible
+    </h1>
+    <p class="hero-subtitle">Brand Guidelines v1.0</p>
+
+    <div class="hero-meta">
+      <span>
+        <span class="meta-label">Founded</span>
+        <span class="meta-value">El Paso, TX</span>
+      </span>
+      <span>
+        <span class="meta-label">Identity Version</span>
+        <span class="meta-value">1.0.0</span>
+      </span>
+      <span>
+        <span class="meta-label">Primary Font</span>
+        <span class="meta-value">JetBrains Mono</span>
+      </span>
+      <span>
+        <span class="meta-label">Primary Color</span>
+        <span class="meta-value">#FF6B35</span>
+      </span>
+      <span>
+        <span class="meta-label">Classification</span>
+        <span class="meta-value">Internal + Partner Use</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <div class="container">
+    <div class="section-label">01 / Brand Philosophy</div>
+    <h2 class="section-title">What we're<br>actually building</h2>
+    <p class="section-intro">Celaya Solutions is an independent AI research lab rooted in El Paso, Texas. We build infrastructure for coherence to examine itself. Every design decision either supports that mission or it doesn't.</p>
+
+    <div class="philosophy-grid">
+      <div class="philosophy-card" data-num="01">
+        <h3 class="accent-orange">Coherence as Prime Function</h3>
+        <p>Systems thinking is not a method here, it's the substrate. Every visual, every interaction, every word should reduce cognitive friction and increase signal clarity. If it doesn't make something more legible, it doesn't ship.</p>
+      </div>
+      <div class="philosophy-card" data-num="02">
+        <h3 class="accent-green">Precision Without Ceremony</h3>
+        <p>Industrial-grade precision, zero bureaucratic polish. We document carefully and speak directly. The work is hard enough; the brand should not create additional overhead. Clarity is the only luxury we permit ourselves.</p>
+      </div>
+      <div class="philosophy-card" data-num="03">
+        <h3 class="accent-yellow">Border Intelligence</h3>
+        <p>Born at the intersection of two cultures, two economies, two ways of thinking. We don't occupy a single lane. The brand reflects cross-domain fluency: technical precision and human warmth, rigor and invention.</p>
+      </div>
+      <div class="philosophy-card" data-num="04">
+        <h3>Edge-of-Chaos Operations</h3>
+        <p>We operate at the boundary of what is currently possible. The brand must hold its shape under entropy. Robust, not rigid. Principled, not precious. Identity that survives contact with real conditions.</p>
+      </div>
+    </div>
+
+    <div class="callout callout-info mt-md">
+      <span class="callout-icon">Note</span>
+      <span>These four principles are not marketing language. They are operational reality. Every brand decision should trace back to one of them. If it can't, reconsider it.</span>
+    </div>
+  </div>
+</section>
+
+<!-- COLOR -->
+<section id="color">
+  <div class="container">
+    <div class="section-label">02 / Color System</div>
+    <h2 class="section-title">Colorblind-safe.<br>High-contrast. Intentional.</h2>
+    <p class="section-intro">Every color in this palette was selected for accessibility, legibility, and semantic weight. Nothing is decorative without purpose. The palette is designed to remain coherent under deuteranopia, protanopia, and tritanopia simulation.</p>
+
+    <div class="color-system">
+      <div class="color-section-label">Core Palette</div>
+      <div class="color-primary-row">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#FF6B35;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Signal Orange</div>
+            <div class="swatch-hex">#FF6B35</div>
+            <div class="swatch-usage">Primary action, emphasis, brand anchor</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#06D6A0;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Proof Green</div>
+            <div class="swatch-hex">#06D6A0</div>
+            <div class="swatch-usage">Confirmed states, code, system output</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#FFBE0B;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Alert Yellow</div>
+            <div class="swatch-hex">#FFBE0B</div>
+            <div class="swatch-usage">Warnings, highlights, caution states</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#FFFFFF;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Pure White</div>
+            <div class="swatch-hex">#FFFFFF</div>
+            <div class="swatch-usage">Primary text, foreground content</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#000000; border: 1px solid #242424;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Void Black</div>
+            <div class="swatch-hex">#000000</div>
+            <div class="swatch-usage">Canvas, background, negative space</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="color-section-label mt-md">Neutral Scale</div>
+      <div class="gray-row">
+        <div class="color-swatch gray-swatch">
+          <div class="swatch-block" style="background:#0A0A0A;"></div>
+          <div class="swatch-info">
+            <div class="swatch-hex">#0A0A0A</div>
+            <div class="swatch-usage">Surface 01</div>
+          </div>
+        </div>
+        <div class="color-swatch gray-swatch">
+          <div class="swatch-block" style="background:#111111;"></div>
+          <div class="swatch-info">
+            <div class="swatch-hex">#111111</div>
+            <div class="swatch-usage">Surface 02</div>
+          </div>
+        </div>
+        <div class="color-swatch gray-swatch">
+          <div class="swatch-block" style="background:#1A1A1A;"></div>
+          <div class="swatch-info">
+            <div class="swatch-hex">#1A1A1A</div>
+            <div class="swatch-usage">Surface 03</div>
+          </div>
+        </div>
+        <div class="color-swatch gray-swatch">
+          <div class="swatch-block" style="background:#242424;"></div>
+          <div class="swatch-info">
+            <div class="swatch-hex">#242424</div>
+            <div class="swatch-usage">Border</div>
+          </div>
+        </div>
+        <div class="color-swatch gray-swatch">
+          <div class="swatch-block" style="background:#3A3A3A;"></div>
+          <div class="swatch-info">
+            <div class="swatch-hex">#3A3A3A</div>
+            <div class="swatch-usage">Inactive</div>
+          </div>
+        </div>
+        <div class="color-swatch gray-swatch">
+          <div class="swatch-block" style="background:#6B6B6B;"></div>
+          <div class="swatch-info">
+            <div class="swatch-hex">#6B6B6B</div>
+            <div class="swatch-usage">Muted text</div>
+          </div>
+        </div>
+        <div class="color-swatch gray-swatch">
+          <div class="swatch-block" style="background:#9A9A9A;"></div>
+          <div class="swatch-info">
+            <div class="swatch-hex">#9A9A9A</div>
+            <div class="swatch-usage">Secondary text</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="color-usage-table mt-lg">
+        <div class="color-usage-row header">
+          <div class="color-usage-cell">Token</div>
+          <div class="color-usage-cell">Usage Context</div>
+          <div class="color-usage-cell">Never Use For</div>
+        </div>
+        <div class="color-usage-row">
+          <div class="color-usage-cell"><span class="color-dot" style="background:#FF6B35;"></span>Signal Orange</div>
+          <div class="color-usage-cell">Primary CTAs, active nav, brand headers, alert outlines, hover states on key elements</div>
+          <div class="color-usage-cell">Body text, backgrounds, success indicators</div>
+        </div>
+        <div class="color-usage-row">
+          <div class="color-usage-cell"><span class="color-dot" style="background:#06D6A0;"></span>Proof Green</div>
+          <div class="color-usage-cell">System output, code syntax, success states, confirmed status, live data indicators</div>
+          <div class="color-usage-cell">Error states, primary CTAs, large background fills</div>
+        </div>
+        <div class="color-usage-row">
+          <div class="color-usage-cell"><span class="color-dot" style="background:#FFBE0B;"></span>Alert Yellow</div>
+          <div class="color-usage-cell">Warnings, pending states, highlight annotations, data spikes, caution badges</div>
+          <div class="color-usage-cell">Error states, body text on white, decorative use</div>
+        </div>
+        <div class="color-usage-row">
+          <div class="color-usage-cell"><span class="color-dot" style="background:#fff; border: 1px solid #333;"></span>Pure White</div>
+          <div class="color-usage-cell">All primary body text, headings on dark backgrounds, icon fills</div>
+          <div class="color-usage-cell">Backgrounds, borders, low-emphasis elements</div>
+        </div>
+      </div>
+
+      <div class="callout callout-warn mt-md">
+        <span class="callout-icon">WCAG</span>
+        <span>All foreground-to-background color pairings must meet WCAG AA (4.5:1 for normal text, 3:1 for large text). Signal Orange on Void Black passes at 4.6:1. Never use yellow text on white or orange on white in production interfaces.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section id="typography">
+  <div class="container">
+    <div class="section-label">03 / Typography</div>
+    <h2 class="section-title">Language is<br>infrastructure.</h2>
+    <p class="section-intro">Three typefaces. Each carries a distinct cognitive weight and context. JetBrains Mono is the identity anchor, reflecting our roots in code, precision, and measurable systems.</p>
+
+    <div class="type-specimen">
+      <div class="type-family">
+        <div class="type-family-header">
+          <span class="type-family-name">JetBrains Mono</span>
+          <span class="type-family-role">Identity / Code / Labels</span>
+        </div>
+        <div class="type-family-body">
+          <div class="type-sample-mono" style="font-size: 2rem;">
+            ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+            abcdefghijklmnopqrstuvwxyz<br>
+            0123456789 !@#$%^&amp;*()
+          </div>
+          <div class="divider"></div>
+          <p style="font-family: var(--mono); font-size: 0.85rem; color: var(--gray-400); line-height: 1.8;">
+            Used for: labels, tags, code blocks, data readouts, nav items, timestamps, hex values, all system-layer communication.<br>
+            Weights in use: 300 (light data), 400 (default), 500 (labels), 700 (emphasis).
+          </p>
+        </div>
+      </div>
+
+      <div class="type-family">
+        <div class="type-family-header">
+          <span class="type-family-name">Syne</span>
+          <span class="type-family-role">Display / Headlines / Brand Voice</span>
+        </div>
+        <div class="type-family-body">
+          <div class="type-sample-display" style="margin-bottom: 0.5rem;">The Lab That Thinks</div>
+          <div class="type-sample-display" style="font-size: 2rem; font-weight: 600; color: var(--gray-400);">Make Coherence Visible.</div>
+          <div class="divider"></div>
+          <p style="font-family: var(--body); font-size: 0.85rem; color: var(--gray-400); line-height: 1.8;">
+            Used for: page headings, hero text, section titles, marketing headers, product names.<br>
+            Weights in use: 400 (subheadings), 600 (section titles), 800 (hero display). Tracking: -0.02em to -0.04em at large sizes.
+          </p>
+        </div>
+      </div>
+
+      <div class="type-family">
+        <div class="type-family-header">
+          <span class="type-family-name">DM Sans</span>
+          <span class="type-family-role">Body / UI / Prose</span>
+        </div>
+        <div class="type-family-body">
+          <div class="type-sample-body">
+            We build systems that make coherence visible and actionable. Based in El Paso, operating at the edge of industrial electrical infrastructure and AI research. Cross-domain by design, not by accident. Precision without ceremony.
+          </div>
+          <div class="divider"></div>
+          <p style="font-family: var(--body); font-size: 0.85rem; color: var(--gray-400); line-height: 1.8;">
+            Used for: body copy, UI labels where mono is too technical, documentation prose, descriptions, captions.<br>
+            Weights in use: 300 (captions), 400 (default body), 500 (UI emphasis). Line-height: 1.6 to 1.75 for readability.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label mt-lg">Type Scale</div>
+    <div class="type-scale">
+      <div class="type-scale-row">
+        <div class="type-scale-label">Display XL</div>
+        <div style="font-family: var(--display); font-size: clamp(3rem,8vw,5rem); font-weight: 800; letter-spacing:-0.04em; line-height:1;">Celaya</div>
+        <div class="type-scale-value">Syne 800 / 5–7rem</div>
+      </div>
+      <div class="type-scale-row">
+        <div class="type-scale-label">Display</div>
+        <div style="font-family: var(--display); font-size: 2.5rem; font-weight: 800; letter-spacing:-0.03em;">Research Lab</div>
+        <div class="type-scale-value">Syne 800 / 2.5rem</div>
+      </div>
+      <div class="type-scale-row">
+        <div class="type-scale-label">Heading 1</div>
+        <div style="font-family: var(--display); font-size: 1.75rem; font-weight: 700;">Make Coherence Visible</div>
+        <div class="type-scale-value">Syne 700 / 1.75rem</div>
+      </div>
+      <div class="type-scale-row">
+        <div class="type-scale-label">Heading 2</div>
+        <div style="font-family: var(--display); font-size: 1.25rem; font-weight: 600;">El Paso Proof Engine</div>
+        <div class="type-scale-value">Syne 600 / 1.25rem</div>
+      </div>
+      <div class="type-scale-row">
+        <div class="type-scale-label">Body</div>
+        <div style="font-family: var(--body); font-size: 1rem; color: var(--gray-300);">Building infrastructure for coherence to examine itself.</div>
+        <div class="type-scale-value">DM Sans 400 / 1rem</div>
+      </div>
+      <div class="type-scale-row">
+        <div class="type-scale-label">Label</div>
+        <div style="font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.15em; color: var(--gray-400); text-transform: uppercase;">System Status / Active</div>
+        <div class="type-scale-value">Mono 500 / 0.7rem</div>
+      </div>
+      <div class="type-scale-row">
+        <div class="type-scale-label">Caption</div>
+        <div style="font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; color: var(--gray-600); text-transform: uppercase;">v1.0.0 / 2026-01-01</div>
+        <div class="type-scale-value">Mono 400 / 0.6rem</div>
+      </div>
+    </div>
+
+    <div class="callout callout-info mt-md">
+      <span class="callout-icon">Rule</span>
+      <span>Minimum body text size is 14px (0.875rem) in all interfaces. No exceptions for captions, footnotes, or metadata. Readability is a core accessibility commitment, not a nice-to-have.</span>
+    </div>
+
+    <div class="code-block mt-md">
+      <pre><span class="token-comment">/* CSS Custom Properties — paste into any Celaya project */</span>
+<span class="token-key">--font-mono:</span>    <span class="token-string">'JetBrains Mono', monospace</span><span class="token-comment">; /* identity layer */</span>
+<span class="token-key">--font-display:</span> <span class="token-string">'Syne', sans-serif</span><span class="token-comment">;        /* brand voice */</span>
+<span class="token-key">--font-body:</span>    <span class="token-string">'DM Sans', sans-serif</span><span class="token-comment">;      /* communication */</span>
+
+<span class="token-key">--text-xs:</span>   <span class="token-value">0.6rem</span><span class="token-comment">;   /* 9.6px  — captions, timestamps */</span>
+<span class="token-key">--text-sm:</span>   <span class="token-value">0.7rem</span><span class="token-comment">;   /* 11.2px — labels, tags */</span>
+<span class="token-key">--text-base:</span> <span class="token-value">1rem</span><span class="token-comment">;     /* 16px   — body */</span>
+<span class="token-key">--text-lg:</span>   <span class="token-value">1.25rem</span><span class="token-comment">;  /* 20px   — subheadings */</span>
+<span class="token-key">--text-xl:</span>   <span class="token-value">2rem</span><span class="token-comment">;     /* 32px   — section headers */</span>
+<span class="token-key">--text-2xl:</span>  <span class="token-value">3.5rem</span><span class="token-comment">;   /* 56px   — display */</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO -->
+<section id="logo">
+  <div class="container">
+    <div class="section-label">04 / Logo System</div>
+    <h2 class="section-title">The mark and<br>what it carries.</h2>
+    <p class="section-intro">The Celaya Solutions wordmark is built on Syne 800. The accompanying dot is always Signal Orange: it represents the proof point, the anchored claim, the blockchain timestamp. The dot is non-negotiable.</p>
+
+    <div class="logo-variants">
+      <div class="logo-card">
+        <div class="logo-display on-black">
+          <div class="logo-wordmark" style="color: var(--white);">
+            <span class="cs-celaya">Celaya</span>
+            <span class="cs-solutions" style="color: var(--orange);">Solutions</span>
+          </div>
+        </div>
+        <div class="logo-card-footer">Primary — On Black</div>
+      </div>
+      <div class="logo-card">
+        <div class="logo-display on-dark">
+          <div class="logo-wordmark" style="color: var(--white);">
+            <span class="cs-celaya">Celaya</span>
+            <span class="cs-solutions" style="color: var(--orange);">Solutions</span>
+          </div>
+        </div>
+        <div class="logo-card-footer">Secondary — On Dark</div>
+      </div>
+      <div class="logo-card">
+        <div class="logo-display on-orange">
+          <div class="logo-wordmark" style="color: var(--black);">
+            <span class="cs-celaya">Celaya</span>
+            <span class="cs-solutions" style="color: rgba(0,0,0,0.65);">Solutions</span>
+          </div>
+        </div>
+        <div class="logo-card-footer">Reversed — On Orange</div>
+      </div>
+    </div>
+
+    <div class="clearspace-demo">
+      <div class="clearspace-inner">
+        <span class="clearspace-note top">Min. clearspace: 1× cap-height</span>
+        <span class="clearspace-note bottom">Never crowd the mark</span>
+        <div class="logo-wordmark" style="color: var(--white); text-align: center;">
+          <span class="cs-celaya">Celaya</span>
+          <span class="cs-solutions" style="color: var(--orange);">Solutions</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label mt-lg">Logo Don'ts</div>
+    <div class="logo-donts">
+      <div class="dont-card">
+        <div class="dont-display">
+          <div class="logo-wordmark" style="color: var(--gray-500); filter: grayscale(1);">
+            <span class="cs-celaya" style="font-size: 1.4rem;">Celaya</span>
+            <span class="cs-solutions" style="color: var(--gray-500);">Solutions</span>
+          </div>
+        </div>
+        <div class="dont-label">Don't recolor in gray</div>
+      </div>
+      <div class="dont-card">
+        <div class="dont-display">
+          <div class="logo-wordmark" style="color: #6B35FF; transform: skewX(-10deg);">
+            <span class="cs-celaya" style="font-size: 1.4rem;">Celaya</span>
+            <span class="cs-solutions" style="color: #6B35FF;">Solutions</span>
+          </div>
+        </div>
+        <div class="dont-label">Don't distort or recolor</div>
+      </div>
+      <div class="dont-card">
+        <div class="dont-display" style="background: rgba(255,107,53,0.5);">
+          <div class="logo-wordmark" style="color: rgba(255,255,255,0.4);">
+            <span class="cs-celaya" style="font-size: 1.4rem;">Celaya</span>
+            <span class="cs-solutions">Solutions</span>
+          </div>
+        </div>
+        <div class="dont-label">Don't use on low-contrast bg</div>
+      </div>
+      <div class="dont-card">
+        <div class="dont-display">
+          <div class="logo-wordmark" style="color: var(--white); transform: scale(0.4);">
+            <span class="cs-celaya" style="font-size: 1.4rem;">Celaya</span>
+            <span class="cs-solutions">Solutions</span>
+          </div>
+        </div>
+        <div class="dont-label">Don't use below minimum size</div>
+      </div>
+    </div>
+
+    <table class="standards mt-lg">
+      <thead>
+        <tr>
+          <th>Context</th>
+          <th>Minimum Size</th>
+          <th>Background</th>
+          <th>Clearspace</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Digital (screen)</td>
+          <td>120px wide</td>
+          <td>#000000 or #111111</td>
+          <td>16px all sides</td>
+        </tr>
+        <tr>
+          <td>Print (document)</td>
+          <td>30mm wide</td>
+          <td>White or black only</td>
+          <td>5mm all sides</td>
+        </tr>
+        <tr>
+          <td>Favicon / App icon</td>
+          <td>32px wide</td>
+          <td>#000000</td>
+          <td>N/A (bounded)</td>
+        </tr>
+        <tr>
+          <td>Social / OG Image</td>
+          <td>200px wide</td>
+          <td>#000000</td>
+          <td>40px all sides</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- VOICE & TONE -->
+<section id="voice">
+  <div class="container">
+    <div class="section-label">05 / Voice and Tone</div>
+    <h2 class="section-title">Speak like<br>someone who built it.</h2>
+    <p class="section-intro">Celaya Solutions voice is direct, technical, and rooted. We earned our vocabulary in data centers, lab sessions, and city council meetings. The brand does not perform expertise. It demonstrates it.</p>
+
+    <div class="voice-grid">
+      <div class="voice-card yes">
+        <div class="voice-card-header">Voice Characteristics</div>
+        <div class="voice-example">
+          <p>The water demand numbers don't match the permit data. We published the analysis. Here's what we found.</p>
+          <div class="voice-note">Direct. Evidence-first. No hedge.</div>
+        </div>
+        <div class="voice-example">
+          <p>CORTEX runs 14 agents across manufacturing ops. Built in 6 hours. Still running.</p>
+          <div class="voice-note">Specific. Earned confidence. No fanfare.</div>
+        </div>
+        <div class="voice-example">
+          <p>We don't know yet. That's why we're building the instrument.</p>
+          <div class="voice-note">Honest about uncertainty. Active, not passive.</div>
+        </div>
+        <div class="voice-example">
+          <p>This is infrastructure for communities that have been told to accept permanent problems.</p>
+          <div class="voice-note">Rooted. Mission-clear. Emotional without sentiment.</div>
+        </div>
+      </div>
+      <div class="voice-card no">
+        <div class="voice-card-header">Never Sound Like This</div>
+        <div class="voice-example">
+          <p>We leverage cutting-edge AI solutions to empower stakeholders with actionable insights and synergistic outcomes.</p>
+          <div class="voice-note">Corporate filler. Zero information density.</div>
+        </div>
+        <div class="voice-example">
+          <p>We're so excited to announce our innovative new platform! Stay tuned for more amazing updates!</p>
+          <div class="voice-note">Hype without substance. Performative enthusiasm.</div>
+        </div>
+        <div class="voice-example">
+          <p>Please be advised that the aforementioned system may potentially facilitate certain operational efficiencies...</p>
+          <div class="voice-note">Over-hedged. Legal-speak in the wrong context.</div>
+        </div>
+        <div class="voice-example">
+          <p>As a thought leader in the AI space, we believe disruption is key to transforming the paradigm...</p>
+          <div class="voice-note">Credential-signaling instead of demonstrating.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label mt-lg">Voice Attributes</div>
+    <table class="standards">
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>What It Means</th>
+          <th>What It Does Not Mean</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span style="color:var(--orange)">Direct</span></td>
+          <td>Lead with the finding. No preamble. No softening when clarity matters more.</td>
+          <td>Blunt without empathy. Dismissing nuance.</td>
+        </tr>
+        <tr>
+          <td><span style="color:var(--green)">Precise</span></td>
+          <td>Use the specific word. Name the number. Date the claim. Version the system.</td>
+          <td>Technical jargon as gatekeeping. Precision for its own sake.</td>
+        </tr>
+        <tr>
+          <td><span style="color:var(--yellow)">Rooted</span></td>
+          <td>El Paso is not background detail. It's the operating context. Reference it with intent.</td>
+          <td>Localism as a marketing angle. Fabricated authenticity.</td>
+        </tr>
+        <tr>
+          <td><span style="color:var(--white)">Curious</span></td>
+          <td>We're building instruments, not products. The brand reflects genuine inquiry.</td>
+          <td>Performed wonder. Optimism detached from reality.</td>
+        </tr>
+        <tr>
+          <td><span style="color:var(--gray-300)">Honest</span></td>
+          <td>Name the unknowns. Acknowledge limitations. The work is documented, not spun.</td>
+          <td>Self-deprecation as humility performance. Hiding real capability.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-info mt-md">
+      <span class="callout-icon">Em dash rule</span>
+      <span>No em dashes in any Celaya Solutions content. Use colons, commas, periods, or parentheses. This applies to all public-facing copy, documentation, code comments, and internal communications. Enforce it in linters, templates, and review checklists.</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENTS -->
+<section id="components">
+  <div class="container">
+    <div class="section-label">06 / Component Library</div>
+    <h2 class="section-title">Reusable parts.<br>Consistent signal.</h2>
+    <p class="section-intro">All UI components derive from the same four properties: dark background, high-contrast text, orange as the primary activation color, mono type for system-layer communication. Deviations require explicit justification.</p>
+
+    <div class="component-grid">
+      <div class="component-card">
+        <div class="component-preview">
+          <button class="btn btn-primary">Run Analysis</button>
+          <button class="btn btn-secondary">View Proof</button>
+          <button class="btn btn-ghost">Verify Hash</button>
+        </div>
+        <div class="component-label">Buttons — Primary / Secondary / Ghost</div>
+      </div>
+
+      <div class="component-card">
+        <div class="component-preview" style="flex-direction: column; align-items: flex-start; gap: 0.75rem;">
+          <span class="tag tag-orange">Active</span>
+          <span class="tag tag-green">Verified</span>
+          <span class="tag tag-yellow">Pending</span>
+          <span class="tag tag-ghost">Archived</span>
+        </div>
+        <div class="component-label">Status Tags / Badges</div>
+      </div>
+
+      <div class="component-card">
+        <div class="component-preview" style="flex-direction: column;">
+          <input class="input-demo" type="text" placeholder="Enter wallet address...">
+          <input class="input-demo" type="text" placeholder="Search proof index..." style="margin-top: 0.75rem;">
+        </div>
+        <div class="component-label">Text Inputs</div>
+      </div>
+
+      <div class="component-card">
+        <div class="component-preview" style="flex-direction: column; align-items: stretch; gap: 0.75rem; padding: 1.5rem;">
+          <div class="callout callout-info" style="margin: 0;">
+            <span class="callout-icon">Info</span>
+            <span style="font-size: 0.8rem;">Hash anchored to Solana devnet.</span>
+          </div>
+          <div class="callout callout-warn" style="margin: 0;">
+            <span class="callout-icon">Warn</span>
+            <span style="font-size: 0.8rem;">Signature mismatch detected.</span>
+          </div>
+        </div>
+        <div class="component-label">Callouts / Alert Banners</div>
+      </div>
+
+      <div class="component-card">
+        <div class="component-preview">
+          <div class="code-block" style="margin: 0; flex: 1;">
+            <pre><span class="token-key">hash:</span> <span class="token-value">sha256</span>
+<span class="token-key">chain:</span> <span class="token-string">solana-devnet</span>
+<span class="token-key">ts:</span> <span class="token-value">1706745600</span></pre>
+          </div>
+        </div>
+        <div class="component-label">Code Blocks / Data Readouts</div>
+      </div>
+
+      <div class="component-card">
+        <div class="component-preview" style="flex-direction: column; align-items: flex-start; padding: 1.5rem;">
+          <div style="background: var(--gray-800); border: 1px solid var(--gray-700); border-radius: 3px; padding: 1.25rem; width: 100%;">
+            <div style="font-family: var(--mono); font-size: 0.6rem; color: var(--orange); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem;">CORTEX / Agent Status</div>
+            <div style="font-family: var(--display); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem;">SENTINEL</div>
+            <div style="font-family: var(--mono); font-size: 0.7rem; color: var(--green);">● Online — 14 agents active</div>
+          </div>
+        </div>
+        <div class="component-label">Data Cards / Agent Panels</div>
+      </div>
+    </div>
+
+    <!-- MOTION -->
+    <div class="section-label mt-lg">Motion System</div>
+    <p class="section-intro mt-sm" style="max-width: 100%;">Motion confirms state, not spectacle. Every animation should answer: does this help the user understand what just happened? If no, remove it. Hover over cards below to preview.</p>
+
+    <div class="motion-tokens">
+      <div class="motion-card">
+        <div class="motion-preview">
+          <div class="motion-dot motion-dot-slide"></div>
+        </div>
+        <div class="motion-info">
+          <div class="motion-name">Slide In</div>
+          <div class="motion-value">0.4s cubic-bezier(0.4, 0, 0.2, 1)</div>
+        </div>
+      </div>
+      <div class="motion-card">
+        <div class="motion-preview">
+          <div class="motion-dot motion-dot-fade" style="background: var(--green);"></div>
+        </div>
+        <div class="motion-info">
+          <div class="motion-name">Fade Scale</div>
+          <div class="motion-value">0.3s ease-out</div>
+        </div>
+      </div>
+      <div class="motion-card">
+        <div class="motion-preview">
+          <div class="motion-dot motion-dot-spring" style="background: var(--yellow);"></div>
+        </div>
+        <div class="motion-info">
+          <div class="motion-name">Spring Pop</div>
+          <div class="motion-value">0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPACING -->
+    <div class="section-label mt-lg">Spacing Scale</div>
+    <div class="spacing-scale">
+      <div class="spacing-item"><div class="spacing-bar" style="height: 4px;"></div><div class="spacing-label">space-1</div><div class="spacing-value">4px</div></div>
+      <div class="spacing-item"><div class="spacing-bar" style="height: 8px;"></div><div class="spacing-label">space-2</div><div class="spacing-value">8px</div></div>
+      <div class="spacing-item"><div class="spacing-bar" style="height: 12px;"></div><div class="spacing-label">space-3</div><div class="spacing-value">12px</div></div>
+      <div class="spacing-item"><div class="spacing-bar" style="height: 16px;"></div><div class="spacing-label">space-4</div><div class="spacing-value">16px</div></div>
+      <div class="spacing-item"><div class="spacing-bar" style="height: 24px;"></div><div class="spacing-label">space-6</div><div class="spacing-value">24px</div></div>
+      <div class="spacing-item"><div class="spacing-bar" style="height: 32px;"></div><div class="spacing-label">space-8</div><div class="spacing-value">32px</div></div>
+      <div class="spacing-item"><div class="spacing-bar" style="height: 48px;"></div><div class="spacing-label">space-12</div><div class="spacing-value">48px</div></div>
+      <div class="spacing-item"><div class="spacing-bar" style="height: 64px;"></div><div class="spacing-label">space-16</div><div class="spacing-value">64px</div></div>
+      <div class="spacing-item"><div class="spacing-bar" style="height: 80px;"></div><div class="spacing-label">space-20</div><div class="spacing-value">80px</div></div>
+    </div>
+
+    <!-- GRID -->
+    <div class="section-label mt-lg">Grid System</div>
+    <div class="grid-demo">
+      <div class="grid-demo-header">12-column / Max-width 1100px / Gutter 24px / Side padding 40px</div>
+      <div class="grid-demo-body">
+        <div class="grid-col">1</div>
+        <div class="grid-col">2</div>
+        <div class="grid-col">3</div>
+        <div class="grid-col">4</div>
+        <div class="grid-col">5</div>
+        <div class="grid-col">6</div>
+        <div class="grid-col">7</div>
+        <div class="grid-col">8</div>
+        <div class="grid-col">9</div>
+        <div class="grid-col">10</div>
+        <div class="grid-col">11</div>
+        <div class="grid-col">12</div>
+      </div>
+    </div>
+
+    <!-- DATA VIZ -->
+    <div class="section-label mt-lg">Data Visualization Standards</div>
+    <div class="dataviz-card">
+      <div class="dataviz-header">
+        <div class="dataviz-title">Grid Surplus vs Demand — EP44 Corridor (Illustrative)</div>
+        <div class="dataviz-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:var(--orange);"></div>Demand</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--green);"></div>Surplus</div>
+        </div>
+      </div>
+      <div class="bar-chart" style="padding-bottom: 2rem;">
+        <div class="bar" style="background: var(--orange); height: 90%;"><span class="bar-value">197%</span><span class="bar-label">Q1</span></div>
+        <div class="bar" style="background: var(--green); height: 45%;"><span class="bar-value">100%</span><span class="bar-label">Q1</span></div>
+        <div class="bar" style="background: var(--orange); height: 75%;"><span class="bar-value">164%</span><span class="bar-label">Q2</span></div>
+        <div class="bar" style="background: var(--green); height: 50%;"><span class="bar-value">100%</span><span class="bar-label">Q2</span></div>
+        <div class="bar" style="background: var(--orange); height: 85%;"><span class="bar-value">184%</span><span class="bar-label">Q3</span></div>
+        <div class="bar" style="background: var(--green); height: 42%;"><span class="bar-value">100%</span><span class="bar-label">Q3</span></div>
+        <div class="bar" style="background: var(--orange); height: 95%; opacity: 0.7;"><span class="bar-value">211%</span><span class="bar-label">Q4</span></div>
+        <div class="bar" style="background: var(--green); height: 38%;"><span class="bar-value">100%</span><span class="bar-label">Q4</span></div>
+      </div>
+    </div>
+
+    <div class="callout callout-info mt-md">
+      <span class="callout-icon">Rule</span>
+      <span>Data visualizations always use the core palette only: orange for primary metric, green for confirmation/baseline, yellow for warnings/outliers. Never use gradients on data series. Axes must be legible at 1x scale. All charts must be colorblind-tested before publishing.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESSIBILITY -->
+<section id="accessibility">
+  <div class="container">
+    <div class="section-label">07 / Accessibility</div>
+    <h2 class="section-title">Coherence is<br>for everyone.</h2>
+    <p class="section-intro">The EPPE was built specifically for communities without institutional access. Accessibility is not a compliance checkbox. It's the mission made operational. Every interface ships WCAG AA minimum.</p>
+
+    <div class="a11y-grid">
+      <div class="contrast-demo">
+        <div class="contrast-pair" style="background: var(--black);">
+          <div class="contrast-sample" style="color: var(--white);">White on Black</div>
+          <div class="contrast-ratio ratio-pass">21:1 AAA</div>
+        </div>
+        <div class="contrast-pair" style="background: var(--black);">
+          <div class="contrast-sample" style="color: var(--orange);">Orange on Black</div>
+          <div class="contrast-ratio ratio-pass">4.6:1 AA</div>
+        </div>
+        <div class="contrast-pair" style="background: var(--black);">
+          <div class="contrast-sample" style="color: var(--green);">Green on Black</div>
+          <div class="contrast-ratio ratio-pass">8.6:1 AAA</div>
+        </div>
+        <div class="contrast-pair" style="background: var(--black);">
+          <div class="contrast-sample" style="color: var(--yellow);">Yellow on Black</div>
+          <div class="contrast-ratio ratio-pass">12.7:1 AAA</div>
+        </div>
+        <div class="contrast-pair" style="background: var(--black);">
+          <div class="contrast-sample" style="color: var(--gray-400);">Gray on Black</div>
+          <div class="contrast-ratio ratio-warn">3.2:1 AA lg</div>
+        </div>
+      </div>
+
+      <div>
+        <table class="standards" style="margin-top: 0;">
+          <thead>
+            <tr>
+              <th>Requirement</th>
+              <th>Target</th>
+              <th>Scope</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Contrast (text)</td>
+              <td><span style="color:var(--green)">4.5:1 min</span></td>
+              <td>All interfaces</td>
+            </tr>
+            <tr>
+              <td>Contrast (large text)</td>
+              <td><span style="color:var(--green)">3:1 min</span></td>
+              <td>All interfaces</td>
+            </tr>
+            <tr>
+              <td>Touch target size</td>
+              <td><span style="color:var(--green)">44px min</span></td>
+              <td>Mobile</td>
+            </tr>
+            <tr>
+              <td>Focus indicators</td>
+              <td><span style="color:var(--green)">2px orange ring</span></td>
+              <td>All interactive</td>
+            </tr>
+            <tr>
+              <td>Motion (reduced)</td>
+              <td><span style="color:var(--green)">prefers-reduced-motion</span></td>
+              <td>All animations</td>
+            </tr>
+            <tr>
+              <td>Font size minimum</td>
+              <td><span style="color:var(--green)">14px</span></td>
+              <td>All text</td>
+            </tr>
+            <tr>
+              <td>Alt text</td>
+              <td><span style="color:var(--green)">All non-decorative</span></td>
+              <td>All images</td>
+            </tr>
+            <tr>
+              <td>Keyboard nav</td>
+              <td><span style="color:var(--green)">Full coverage</span></td>
+              <td>All interactive</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEHAVIORAL STANDARDS -->
+<section id="behavior">
+  <div class="container">
+    <div class="section-label">08 / Exceptional Behavioral Standards</div>
+    <h2 class="section-title">How Celaya<br>Solutions behaves.</h2>
+    <p class="section-intro">Brand identity is not only visual. It's the pattern of decisions we make when no guidelines specify. These are the non-negotiable behavioral commitments that define Celaya Solutions in practice.</p>
+
+    <div class="behavioral-grid">
+      <div class="behavioral-card orange">
+        <div class="behavioral-num">01 / Credibility</div>
+        <div class="behavioral-title">Evidence Before Claims</div>
+        <div class="behavioral-body">We publish the analysis before the press release. Every public statement links to the underlying data, hash, or methodology. Sealed Envelope Protocol: hash before publish. No claim exists without its proof.</div>
+      </div>
+      <div class="behavioral-card green">
+        <div class="behavioral-num">02 / Privacy</div>
+        <div class="behavioral-title">Identity Protection by Default</div>
+        <div class="behavioral-body">Sources, collaborators, and community members are identified by initials or variables only in all public content. No backdoors to individuals. Same ethic Apple applies to encryption, applied to human identity.</div>
+      </div>
+      <div class="behavioral-card yellow">
+        <div class="behavioral-num">03 / Ownership</div>
+        <div class="behavioral-title">IP Documented in Real Time</div>
+        <div class="behavioral-body">All significant builds are timestamped, versioned, and anchored. GitHub commit history is evidence. Solana blockchain is witness. We operate with the assumption that what we build has value and document accordingly.</div>
+      </div>
+      <div class="behavioral-card orange">
+        <div class="behavioral-num">04 / Access</div>
+        <div class="behavioral-title">No Sign-Up, No Tracking</div>
+        <div class="behavioral-body">EPPE and civic tools ship with no accounts, no analytics, no third-party tracking. Photos never leave the device. Coherence infrastructure for communities that have been surveilled enough already.</div>
+      </div>
+      <div class="behavioral-card green">
+        <div class="behavioral-num">05 / Community</div>
+        <div class="behavioral-title">El Paso as Operating Context</div>
+        <div class="behavioral-body">We don't describe El Paso as an "underserved market." It's home. Every civic tool is designed for actual people we know with actual problems we've watched persist for decades. The work is personal before it's professional.</div>
+      </div>
+      <div class="behavioral-card yellow">
+        <div class="behavioral-num">06 / Research</div>
+        <div class="behavioral-title">Surprise Over Market Fit</div>
+        <div class="behavioral-body">Research instruments optimize for discovery, not conversion. We build things to find out what happens. If it turns into a product, fine. If it turns into a paper, fine. The lab exists to extend what's knowable, not what's sellable.</div>
+      </div>
+      <div class="behavioral-card orange">
+        <div class="behavioral-num">07 / Consistency</div>
+        <div class="behavioral-title">Systems Speak, Not Silos</div>
+        <div class="behavioral-body">31+ instruments share a visual language, naming convention, and architecture philosophy. CORTEX, CLOS, MORTEM, EPPE, and Project Jupiter look like they came from the same mind because they did. The brand is the connective tissue.</div>
+      </div>
+      <div class="behavioral-card green">
+        <div class="behavioral-num">08 / Communication</div>
+        <div class="behavioral-title">Direct First, Diplomatic Always</div>
+        <div class="behavioral-body">We say the thing. We don't bury a finding in hedges. We don't soften a data discrepancy with marketing language. We can be warm and still be precise. We can be direct and still be respectful. Both, always.</div>
+      </div>
+      <div class="behavioral-card yellow">
+        <div class="behavioral-num">09 / Integrity</div>
+        <div class="behavioral-title">Version What You Change</div>
+        <div class="behavioral-body">If a document, system, or claim changes, it gets a version number and a changelog. We don't silently edit history. If we were wrong, we say so explicitly. Integrity is the minimum viable trust infrastructure.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NAMING CONVENTIONS -->
+<section id="naming">
+  <div class="container">
+    <div class="section-label">09 / Naming Conventions</div>
+    <h2 class="section-title">Names as<br>cognitive anchors.</h2>
+    <p class="section-intro">Product and system names in the Celaya Solutions ecosystem follow patterns that signal function, scope, and intent. Names are chosen to be memorable, typeable in code, and pronounceable in conversation.</p>
+
+    <table class="standards">
+      <thead>
+        <tr>
+          <th>Pattern</th>
+          <th>Examples</th>
+          <th>Use For</th>
+          <th>Convention</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span style="color:var(--orange)">Single Word / Acronym</span></td>
+          <td>CORTEX, CLOS, EPPE, MORTEM, SIGNAL</td>
+          <td>Core platforms and research instruments</td>
+          <td>ALL CAPS, noun, evokes function</td>
+        </tr>
+        <tr>
+          <td><span style="color:var(--green)">Code Name</span></td>
+          <td>Project Jupiter, Operation Meridian</td>
+          <td>Civic research and multi-phase initiatives</td>
+          <td>Title Case, "Project" prefix optional</td>
+        </tr>
+        <tr>
+          <td><span style="color:var(--yellow)">Agent Names</span></td>
+          <td>SENTINEL, WATT, COMPASS, RACHEL, Juniper</td>
+          <td>Individual AI agents within a system</td>
+          <td>ALL CAPS or Title Case, role-evocative</td>
+        </tr>
+        <tr>
+          <td><span style="color:var(--white)">Feature / Protocol</span></td>
+          <td>Sealed Envelope Protocol, Proof Engine</td>
+          <td>Named technical methods or civic standards</td>
+          <td>Title Case, noun phrase</td>
+        </tr>
+        <tr>
+          <td><span style="color:var(--gray-300)">Personal Brand</span></td>
+          <td>C-Cell, Ghost, Celaya Chain Protocol</td>
+          <td>Creative and public persona work</td>
+          <td>Mixed; align with context</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-warn mt-md">
+      <span class="callout-icon">Critical</span>
+      <span>In all public-facing content, never reference personal identifiers beyond initials or established public names. This applies to all documentation, social posts, civic submissions, and partner materials. Protect collaborators and sources with the same rigor applied to the EPPE's no-tracking architecture.</span>
+    </div>
+  </div>
+</section>
+
+<!-- VERSIONING -->
+<section id="versioning">
+  <div class="container">
+    <div class="section-label">10 / Document Standards</div>
+    <h2 class="section-title">Everything that<br>ships gets versioned.</h2>
+    <p class="section-intro">All Celaya Solutions documents, systems, and public communications follow consistent versioning and metadata standards. If you edited it, version it. If you published it, hash it.</p>
+
+    <div class="release-table">
+      <div class="release-row header">
+        <div class="release-cell">Version</div>
+        <div class="release-cell">Date</div>
+        <div class="release-cell">Changes</div>
+        <div class="release-cell">Status</div>
+      </div>
+      <div class="release-row">
+        <div class="release-cell" style="color:var(--orange)">v1.0.0</div>
+        <div class="release-cell">2026-01-01</div>
+        <div class="release-cell">Initial brand guidelines release. Full color, type, logo, voice, and component system.</div>
+        <div class="release-cell"><span class="tag tag-green" style="font-size: 0.55rem; padding: 0.2rem 0.5rem;">Current</span></div>
+      </div>
+    </div>
+
+    <div class="section-label mt-lg">Document Metadata Standard</div>
+    <div class="code-block">
+      <pre><span class="token-comment"><!-- Required header block for all Celaya Solutions documents --></span>
+
+<span class="token-key">Document:</span>    <span class="token-string">[Full Title]</span>
+<span class="token-key">Version:</span>     <span class="token-value">v1.0.0</span>
+<span class="token-key">Author:</span>      <span class="token-string">Celaya Solutions</span>
+<span class="token-key">Contact:</span>     <span class="token-string">hello@celayasolutions.com</span>
+<span class="token-key">Date:</span>        <span class="token-value">YYYY-MM-DD</span>
+<span class="token-key">SHA256:</span>      <span class="token-value">[hash of canonical content]</span>
+<span class="token-key">Chain:</span>       <span class="token-string">solana-[mainnet|devnet]</span>
+<span class="token-key">Tx:</span>          <span class="token-value">[transaction signature if anchored]</span>
+<span class="token-key">License:</span>     <span class="token-string">All Rights Reserved / Celaya Solutions</span></pre>
+    </div>
+
+    <table class="standards">
+      <thead>
+        <tr>
+          <th>Content Type</th>
+          <th>Format</th>
+          <th>Hash Required</th>
+          <th>Archive Location</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Civic research / data analysis</td>
+          <td>HTML (GitHub Pages)</td>
+          <td><span style="color:var(--green)">Yes — Sealed Envelope Protocol</span></td>
+          <td>celaya-solutions GitHub org</td>
+        </tr>
+        <tr>
+          <td>Technical documentation</td>
+          <td>Markdown / Notion</td>
+          <td><span style="color:var(--yellow)">Recommended</span></td>
+          <td>Internal repo + Notion</td>
+        </tr>
+        <tr>
+          <td>Legal / IP documentation</td>
+          <td>PDF + DOCX</td>
+          <td><span style="color:var(--green)">Yes</span></td>
+          <td>Encrypted storage + attorney</td>
+        </tr>
+        <tr>
+          <td>Public social content</td>
+          <td>Platform native</td>
+          <td><span style="color:var(--gray-400)">Optional</span></td>
+          <td>Screenshot archive</td>
+        </tr>
+        <tr>
+          <td>Brand guidelines (this doc)</td>
+          <td>HTML</td>
+          <td><span style="color:var(--green)">Yes</span></td>
+          <td>celaya-solutions/brand</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div>
+        <div class="footer-brand">Celaya <span style="color:var(--orange)">Solutions</span></div>
+        <div style="font-family: var(--mono); font-size: 0.65rem; color: var(--gray-500); margin-top: 0.5rem; letter-spacing: 0.1em;">
+          An independent AI research lab.<br>
+          El Paso, Texas.
+        </div>
+        <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+          <span class="tag tag-ghost">hello@celayasolutions.com</span>
+          <span class="tag tag-ghost">chris@chriscelaya.com</span>
+        </div>
+      </div>
+      <div class="footer-meta">
+        <div>Brand Guidelines v1.0.0</div>
+        <div>Effective 2026-01-01</div>
+        <div style="color: var(--gray-700);">Make Coherence Visible</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div style="font-family: var(--mono); font-size: 0.6rem; color: var(--gray-700); letter-spacing: 0.1em; text-align: center; line-height: 2;">
+      All content copyright Celaya Solutions. All rights reserved.<br>
+      Questions regarding this document: hello@celayasolutions.com
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    document.getElementById('progressBar').style.width = progress + '%';
+  });
+
+  // Smooth active nav
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.style.color = link.getAttribute('href') === '#' + entry.target.id
+            ? 'var(--orange)' : '';
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

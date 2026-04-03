@@ -69,10 +69,12 @@ const RecallFeature: React.FC = () => {
                 <ArrowRight className="w-3 h-3" />
               </a>
               <a
-                href="#recall"
+                href="/recall"
                 onClick={(e) => {
                   e.preventDefault();
-                  window.location.hash = '#recall';
+                  window.history.pushState({}, '', '/recall');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-cs-gray-600 text-cs-white font-mono text-[0.75rem] uppercase tracking-[0.15em] font-bold rounded-sm hover:border-cs-orange hover:text-cs-orange transition-all duration-200"
               >

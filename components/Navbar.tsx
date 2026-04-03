@@ -6,54 +6,75 @@ const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Research', href: '#research' },
-    { name: 'Standards', href: '#standards' },
-    { name: 'Philosophy', href: '#philosophy' },
-    { name: 'Lab Notes', href: '#lab-notes' },
-    { name: 'Instruments', href: '#catalog' },
-    { name: 'Recall', href: '#recall', product: true },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Research',     href: '#research' },
+    { name: 'Standards',    href: '#standards' },
+    { name: 'Philosophy',   href: '#philosophy' },
+    { name: 'Lab Notes',    href: '#lab-notes' },
+    { name: 'Instruments',  href: '#catalog' },
+    { name: 'Recall',       href: '/recall', product: true },
+    { name: 'Contact',      href: '#contact' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>, href: string) => {
     e.preventDefault();
+    setIsMobileMenuOpen(false);
+
+    if (href.startsWith('/')) {
+      // Path-based navigation (e.g. /recall) — use History API
+      window.history.pushState({}, '', href);
+      window.dispatchEvent(new PopStateEvent('popstate'));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    // Hash-based navigation
+    // If currently on a path page (/recall), navigate back to root first
+    if (window.location.pathname !== '/') {
+      window.location.href = '/' + href;
+      return;
+    }
+
     const hash = href.replace('#', '');
     window.location.hash = hash;
-    setIsMobileMenuOpen(false);
     if (window.location.hash === `#${hash}`) {
       const el = document.getElementById(hash);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
-  const currentHash = window.location.hash || '#home';
+  const isRecallActive = window.location.pathname === '/recall';
+  const currentHash    = window.location.hash || '#home';
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-cs-gray-700" style={{ background: 'rgba(0,0,0,0.92)', backdropFilter: 'blur(12px)' }}>
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 border-b border-cs-gray-700"
+      style={{ background: 'rgba(0,0,0,0.92)', backdropFilter: 'blur(12px)' }}
+    >
       <div className="max-w-[1100px] mx-auto px-10 h-[60px] flex items-center justify-between">
-        {/* Logo lockup */}
-        <div
-          className="cursor-pointer group"
-          onClick={(e) => handleNavClick(e as any, '#home')}
-        >
+
+        {/* Logo */}
+        <div className="cursor-pointer" onClick={(e) => handleNavClick(e as any, '#home')}>
           <div className="font-display font-extrabold tracking-[-0.03em] text-lg leading-tight">
             Celaya
-            <span className="font-mono text-[0.875rem] font-normal tracking-[0.35em] uppercase text-cs-orange block" style={{ marginTop: '2px' }}>
+            <span
+              className="font-mono text-[0.875rem] font-normal tracking-[0.35em] uppercase text-cs-orange block"
+              style={{ marginTop: '2px' }}
+            >
               Solutions
             </span>
           </div>
         </div>
 
-        {/* Desktop Navigation */}
+        {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
+          {navLinks.map((link) =>
             link.product ? (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
                 className={`inline-flex items-center gap-1.5 font-mono text-[0.875rem] font-medium tracking-[0.12em] uppercase px-3 py-1 rounded-sm border transition-colors duration-200 ${
-                  currentHash === link.href
+                  isRecallActive
                     ? 'border-cs-orange text-cs-orange'
                     : 'border-cs-gray-600 text-cs-gray-400 hover:border-cs-orange hover:text-cs-orange'
                 }`}
@@ -73,10 +94,10 @@ const Navbar: React.FC = () => {
                 {link.name}
               </a>
             )
-          ))}
+          )}
         </div>
 
-        {/* Mobile Menu Toggle */}
+        {/* Mobile toggle */}
         <button
           className="md:hidden text-white p-2"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -86,7 +107,7 @@ const Navbar: React.FC = () => {
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile overlay */}
       {isMobileMenuOpen && (
         <div className="md:hidden fixed inset-0 top-[60px] bg-cs-black z-50 flex flex-col p-10 gap-8">
           {navLinks.map((link) => (
@@ -95,7 +116,9 @@ const Navbar: React.FC = () => {
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
               className={`inline-flex items-center gap-2 font-mono text-lg font-medium tracking-[0.12em] uppercase transition-colors duration-200 ${
-                currentHash === link.href ? 'text-cs-orange' : 'text-cs-gray-400 hover:text-cs-orange'
+                (link.product ? isRecallActive : currentHash === link.href)
+                  ? 'text-cs-orange'
+                  : 'text-cs-gray-400 hover:text-cs-orange'
               }`}
             >
               {link.product && (
