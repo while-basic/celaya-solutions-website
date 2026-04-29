@@ -6,11 +6,7 @@ const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Research',     href: '#research' },
     { name: 'Instruments',  href: '#catalog' },
-    { name: 'Lab Notes',    href: '#lab-notes' },
-    { name: 'Papers',       href: '#ccp' },
-    { name: 'Applied',      href: '#applied' },
     { name: 'Recall',       href: '/recall', product: true },
     { name: 'Contact',      href: '#contact' },
   ];

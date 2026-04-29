@@ -121,7 +121,7 @@ const Introduction: React.FC = () => {
 
           {/* Subhead */}
           <p className="font-display font-normal text-cs-gray-300 tracking-[-0.01em] text-xl md:text-2xl max-w-3xl mb-12">
-            An independent proof lab. We build instruments that convert system behavior into measurable coherence scores, inspectable traces, and versioned artifacts. 45 instruments across 8 domains.
+            An independent proof lab. We build instruments that convert system behavior into measurable coherence scores, inspectable traces, and versioned artifacts. 72 instruments across 9 categories.
           </p>
 
           {/* CTA buttons */}
@@ -133,10 +133,10 @@ const Introduction: React.FC = () => {
               View Instruments
             </a>
             <a
-              href="#lab-notes"
+              href="#contact"
               className="font-mono text-[0.875rem] font-medium tracking-[0.12em] uppercase px-6 py-3 rounded-sm bg-transparent text-white border border-cs-gray-600 hover:border-cs-orange hover:text-cs-orange transition-all duration-200 inline-flex items-center gap-2 text-center justify-center"
             >
-              Read Lab Notes
+              Contact
             </a>
           </div>
 
